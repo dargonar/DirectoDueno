@@ -1,0 +1,119 @@
+{% extends "backend/_base.html" %}
+
+{%- macro form_field(field) -%}
+    {{field(**kwargs)}}
+    {% if field.errors %} <p class="error">{{ field.errors.0 }}</p> {% endif %}
+{%- endmacro -%}
+
+{% block menuleft %} 
+<!--div id="mnuLeft">
+  
+</div--> 
+{% endblock %}
+
+{% block headscript %} 
+<script type="text/javascript">
+$(document).ready(function() {
+  setTimeout("hideFlashMessageSlow()", 5000);
+});
+</script> 
+{% endblock %}
+
+{% block content %}
+
+<h1 style="margin-bottom:20px;">Ayuda</h1>
+{% if flash %}
+  <div class="msg_{{flash.type}}" id="flash_message"><b>{{flash.message}}</b></div>
+{% endif %}
+<table width="900px" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top" style="width:600px;">
+		<div class="box">
+	<h2>Consultas</h2>
+    <div class="block_info">
+    	Envíenos su consulta y nos comunicaremos a la brevedad.
+    </div>
+
+    <div class="contactbox">  
+      <form class="contact_form" action="{{url_for('backend/help')}}" method="post">
+        	<h3>{{session['account.realestate.name']}}</h3>
+        	<label>Su Nombre <em>(¿A quién debe contactar DirectoDueño por esta consulta?)</em></label>
+          <!--input type="text" value="" placeholder="nombre" name="name" id="name" class="name"-->
+          {{ form_field(form.sender_name,placeholder="nombre") }}
+          
+          <label>Su Email </label>
+          {{ form_field(form.sender_email, placeholder="email") }}
+          
+          <label>Su teléfono <em>(Móvil, directo o interno)</em></label>
+          {{ form_field(form.sender_telephone, placeholder="cód.area número") }}
+          
+          <label>Asunto</label>
+          {{ form_field(form.sender_subject, placeholder="asunto") }}
+          
+          <label>Comentario</label>
+          {{ form_field(form.sender_comment, placeholder="comentario") }}
+          
+          <input type="submit" class="btnWizard" name="" value="Enviar consulta">
+      </form>
+    </div>
+
+</div> 
+    </td>
+    <td width="300px" valign="top" style="padding-left:15px">
+    	<div class="box">
+	<h2>¿Necesita Ayuda?</h2>
+    <div class="block_info">
+    	Contáctese con el equipo de ULTAPROP:
+    </div>
+
+    <div class="contactbox">  
+        <h3>Consultas técnicas</h3>
+        <dl class="contact">
+            <dt><img src="/img/icons/telephone.png" /></dt>
+            <dd>[011] 4857-9235</dd>
+            
+            <dt><img src="/img/icons/send.gif" /></dt>
+            <dd><a href="mailto:ayuda@directodueno.com">ayuda@directodueno.com</a></dd>
+        </dl>
+    </div>
+
+    <div class="contactbox"> 
+        <h3>La Plata </h3>
+        <h4>Emilio</h4>
+        <dl class="contact">
+            <dt><img src="/img/icons/telephone.png" /></dt>
+            <dd>[0221] 466-0162</dd>
+            
+            <dt style="width:30px;"><img src="/img/icons/skype.png" /></dt>
+            <dd>maullemilio</dd>
+            
+            <dt><img src="/img/icons/send.gif" /></dt>
+            <dd><a href="mailto:emilio@directodueno.com">emilio@directodueno.com</a></dd>
+        </dl>
+    </div>
+    
+    <div class="contactbox">  
+        <h3>Capital Federal</h3>
+        <h4>Pablo</h4>
+        <dl class="contact">
+            
+            <dt><img src="/img/icons/mobile_phone.png" /></dt>
+            <dd>[011] 15 3127-2458</dd>
+            
+            <dt style="width:30px;"><img src="/img/icons/skype.png" /></dt>
+            <dd>pablo.tutino</dd>
+            
+            <dt><img src="/img/icons/send.gif" /></dt>
+            <dd><a href="mailto:pablo@directodueno.com">pablo@directodueno.com</a></dd>
+        </dl>
+    </div>
+
+</div>    
+    </td>
+  </tr>
+</table>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,112 @@
+  <!-- AREA UNDER WINDOW TABS -->
+  <!-- wh=133,47 , wh=230,80 -->
+  {% set realestate_logo = property.realestate.logo_url+'=s133' if property.realestate.logo_url else '/img/picturebox/realestate_ficha_nophoto.jpg'%}
+  {% set realestate_logo_big = property.realestate.logo_url+'=s230' if property.realestate.logo_url else '/img/picturebox/realestate_ficha_nophoto.jpg'%}
+  <div class="innerContent detail" id="ficha_{{property.key()}}">
+    <div id="detailBox">
+      <h2>Ficha de Propiedad</h2>
+      <h1>{{property | headlinify}}</h1>
+      <p class="address">{{ property | addressify }}</p>
+      <div class="colBox">
+        <!-- /// PICTURE COLUMN /// -->
+        <div class="picCol">
+          <!-- /// SLIDESHOW /// -->
+          {%include "frontend/templates/_slideshow.html"%}
+        </div>
+        <!--div style="float:left;position:absolute;bottom:0px">
+            Visitas: {{property.visits}}.
+        </div-->
+        <!-- ///// DATA COLUMN ///// -->
+        <div class="dataCol">
+          {%include "frontend/templates/_prop_details.html"%}
+          <!-- LOGO / BTN CONTACT -->
+          <div class="agent">
+              <img class="logo" src="{{realestate_logo}}" style="max-width:133px;max-height:47px;" title="{{property.realestate.name}}" />
+              {% if ficha is defined %}
+                <a class="btnContact" title="Ver información del agente inmobiliario" href="#" onclick="jQuery(body).scrollTo(jQuery('#ficha_{{property.key()}} .contactBox'), 800 ); return false;">Contactar Agente</a>
+              {% else %}
+                <a class="btnContact" title="Ver información del agente inmobiliario" href="#" onclick="return scrollFichaToBottom('ficha_{{property.key()}}');">Contactar Agente</a -->
+              {% endif %}
+          </div>
+        </div>
+      </div>
+      <!-- ///// DETAIL ///// -->
+      <div class="infoBox file">
+        <h2>Descripción de la Propiedad</h2>
+          <p class="detail">
+            {{ property.main_description}}
+          </p>
+          <h2>Detalles de la Propiedad</h2>
+          <ul class="detail">
+            {% set binary_properties = config_array['binary_values_properties'] %}
+            {% for key in binary_properties.keys() if (property[key] > 0 and binary_properties[key]['is_filter']==1) %}
+            <li>{{ binary_properties[key]['description'] }}</li>
+            {% endfor%}
+          </ul>
+          <h2>Servicios Adicionales</h2>
+          <ul class="detail">
+            {% for key in binary_properties.keys() if (property[key] > 0 and binary_properties[key]['is_filter']==0) %}
+            <li>{{ binary_properties[key]['description'] }}</li>
+            {% endfor%}
+          </ul>
+          <h2>Ubicación de la propiedad</h2>
+          {% set map_width  = '616' %}
+          {% set map_height = '320' %}
+          {% set img_map_src  = 'http://maps.google.com/maps/api/staticmap?center='+property.latitude|string+', '+property.longitude|string+'&zoom=14&size='+map_width+'x'+map_height+'&maptype=roadmap&markers=icon:http://testsdavento.appspot.com/img/icons/map/icong.png|'+property.latitude|string+', '+property.longitude|string+'&sensor=false' %}
+          {% set map_img_id   = 'map_image_'+property.key()|string%}
+          {% set map_buttons  = 'mapButtons_'+property.key()|string%}
+          <div class="mapButtons" id="{{map_buttons}}">
+            <span onclick="return swithPropertyLocationMap(this,'{{map_img_id}}','{{img_map_src}}','roadmap','{{map_buttons}}');" class="selected">Calle</span>
+            <span onclick="return swithPropertyLocationMap(this,'{{map_img_id}}','{{img_map_src}}','satellite','{{map_buttons}}');">Satélite</span>
+            <span onclick="return swithPropertyLocationMap(this,'{{map_img_id}}','{{img_map_src}}','terrain','{{map_buttons}}');">Terreno</span>
+            <span onclick="return swithPropertyLocationMap(this,'{{map_img_id}}','{{img_map_src}}','hybrid','{{map_buttons}}');">Híbrido</span>
+          </div>
+          <!-- ////// MAP 625 x 302 ////// -->
+          <div style="{{ 'text-align:center;' if ficha is defined else '' }}">
+            <img id="{{ map_img_id }}" src="{{img_map_src}}"/>
+          </div>
+          <h2>Información de Contacto</h2>
+          <!-- AGENT INFO -->
+          <div id="agent_info" class="agentbox">
+          
+              <img class="logo" src="{{realestate_logo_big}}" style="max-width:230px;max-height:80px;" title="{{property.realestate.name}}"/>
+              {% if property.realestate %}  
+              <div class="data">
+                <h1>{{property.realestate.name}}</h1>
+                <span>{{property.realestate.telephone_number}}</span><br/>
+                <span>{{property.realestate.email}}</span><br/>
+                {% if property.realestate.open_at %}
+                  <span>Atención {{property.realestate.open_at}}</span><br/>
+                {% endif %}
+              </div>
+            {% endif %}
+            
+          </div>
+            
+          <div class="contactBox" id="contactBox">
+            <form method="post" action="{{url_for('frontend/ficha/sendemail', key=property.key()|string, oper=price_data_operation)}}" onsubmit="return sendMail(this);">
+              <h1>Solicitar Información sobre esta propiedad</h1>
+              <div class="rebox">
+                <!-- COL LEFT -->
+                <div class="data">
+                  <label>Su nombre</label>
+                  {{form.name(placeholder="nombre", title="nombre")}}
+                  <label>Su email</label>
+                  {{form.email(placeholder="email", title="email")}}
+                </div>
+                <!-- COL RIGHT -->                                
+                <div class="comment">
+                  {{form.message(placeholder="mensaje", title="mensaje", class="comment_txtarea")}}
+                  {{form.ketchup(id='ketchup')}}
+                </div>
+              </div>
+              <div class="center">
+                <input type="submit" class="btnSend" title="Enviar correo" value="Enviar Email" />
+              </div>
+              <input type="hidden" name="opened_ficha_keys" value="{{property.key()|string}}"/>
+            </form>
+          </div>
+
+     </div>
+    </div>
+  </div>

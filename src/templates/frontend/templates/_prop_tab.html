@@ -1,0 +1,9 @@
+<li class="active resizable" id="tab_{{property.key()}}" window="ficha_{{property.key()}}" key="{{property.key()}}">
+  <div class="head prop">
+    <img class="icon prop" src="/img/pixel-transp.gif" />
+    <a class="close" href="#" onclick="return closeTabWindow(this, '{{property.key()}}');" title="Cerrar tab"></a>
+    <div title="{{property | headlinify}} - {{cur}}{{ price|currencyfy }}-" class="address" style="overflow:hidden;" 
+      onclick="return showTabWindow(this, '{{property.key()}}');">{{property|headlinify|replace(' ','&nbsp;')}}&nbsp;<small>{{cur}}</small>{{ price|currencyfy(small=True) }}				
+    </div>
+  </div>
+</li>

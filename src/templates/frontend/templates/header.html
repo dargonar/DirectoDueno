@@ -1,0 +1,53 @@
+<div id="header"> 
+  <!-- SEARCH --> 
+    <a title="Inicio" href="{{ url_for('frontend/home') }}">
+    	<img class="logo" src="/img/pixel-transp.gif">
+    </a>
+  
+  
+  {% set in_map = 1 %}
+  {%include "frontend/templates/header_links.html"%}
+  {% if not ficha is defined %}
+    <div id="searchbox">
+      <input class="search" name="searchmap" id="searchmap" type="text" value="" placeholder="Localidad, Provincia, País"/>
+      
+      <!-- SEARCH LIMITIS -->
+      <!--ul id="searchLimits">
+        <li class="btnLimits">
+          <div class="selected"><a href="#">0 km</a></div>
+          <ul id="searchLimitsMenu">
+            <li><a href="#">0 km</a></li>
+            <li><a href="#">+½ km</a></li>
+            <li><a href="#">+1 km</a></li>
+            <li><a href="#">+2 km</a></li>
+            <li><a href="#">+5 km</a></li>
+            <li><a href="#">+10 km</a></li>
+            <li><a href="#">Todo el Mapa</a></li>
+          </ul>
+        </li>
+      </ul-->
+      
+      <!-- SEARCH BUTTON -->
+      <div id="btnSearch">Buscar</div>
+      
+      <!-- OPTIONS BUTTON -->
+      <a id="btnFilters" class="uibutton icon16 filters" onclick="return toggleFilter();" title="Más opciones de búsqueda" href="#" >opciones</a>
+      
+      
+      <ul id="locations" style="display:none;">
+        <li><a href="#" onclick="enableSearchOnPan(false); return false;">Deshabilitar MAPA</a></li>
+        <li><a href="#" onclick="enableSearchOnPan(true); return false;">Habilitar MAPA,</a></li>
+        <li><a href="#">más...</a></li>
+      </ul>
+    </div>
+    
+    <div class="messages">
+      <!--img id="loading" src="/img/icons/ajax-loader.gif" alt="Cargando..." alt="Cargando..." style="padding-top:5px;" /-->
+      <p id="error" style="display:none;">Error</p>
+    </div>
+    
+    <div id="filterbox">
+      {%include "frontend/templates/filter_more.html"%}
+    </div>
+  {% endif %}
+</div>

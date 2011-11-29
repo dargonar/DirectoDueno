@@ -1,0 +1,12 @@
+{% extends "email/_base.txt"%}
+
+{%block content%}
+    Estimado usuario de DirectoDueño.
+
+    Usted posee {{invoices_count}} factura{{plural}} impaga{{plural}}.
+    Las propiedades publicadas han sido desactivadas de los resultados de búsqueda hasta que efectúe el pago de la{{plural}} factura{{plural}} impaga{{plural}}.
+
+    Para regularizar su situación deberá realizar el pago de la{{plural}} factura{{plural}} accediendo a "Mi Cuenta" dentro del panel de control de DirectoDueño.
+    Para acceder al panel ahora ingrese en http://www.directodueno.com/admin/account/status.
+    
+{% endblock %}

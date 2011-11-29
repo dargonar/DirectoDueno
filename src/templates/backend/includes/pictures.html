@@ -1,0 +1,83 @@
+{% extends "backend/property.html" %}
+
+{% block headscript %}
+<script type="text/javascript">
+$(document).ready(function() {
+  init_pictures('{{url_for('images/bulkremove', key=key)}}','{{url_for('images/reorder')}}','{{url_for('images/upload', key=key)}}');
+});
+</script>
+{% endblock %}
+
+{% block tab_content %}
+<h2 class="title">
+	Fotos
+</h2>
+
+<div class="uibutton-toolbar picture" style="margin-bottom:0px;">
+    <span class="label">Seleccionar:</span>
+    <div class="uibutton-group">
+        <a id="selectall" class="uibutton" href="#">Todo</a>
+        <a id="deselectall"class="uibutton" href="#">Nada</a>
+    </div>
+    <a id="delselected" class="uibutton" href="#">Eliminar</a>
+    <a id="reorder" class="uibutton disable" href="#">Reordenar</a>
+    <img id="wait" src="/img/ajax-loader.gif" style="display:none"/>    
+</div>
+    
+<div class="viewPicBox">
+  <form action="{{url_for('images/bulkremove', key=key)}}" method="POST">
+  <ul id="masterpic" class="picturebox_admin">
+  <p id="drag_msg" class="msg_warning" style="display:none">Para cambiar el orden de aparición, arrastre las imágenes y luego haga click en "Reordenar" para guardar los cambios.</p>
+  {% for image in images %}
+    {% if image.file %}
+      {% include "backend/includes/img_box.html" %}
+    {% endif %}
+  {% else %}
+    <div class="noelement proplist txt"><span>No hay fotografías cargadas para esta propiedad</span></div> 
+  {% endfor %}
+  </ul>
+  </form>
+</div>
+
+<span id="addphoto"></span>
+<!--<div id="addphoto" class="btnUpload"><a href="#"></a>Agregar Fotos</div>-->
+
+<!-- ///// UPLOADER ///// -->
+<table id="uploader" style="display:none">
+  <thead>
+    <tr>
+      <th scope="col">Nombre de archivo</th>
+      <th scope="col">Tamaño</th>
+      <th scope="col">Estado</th>
+    </tr>
+  </thead>
+  <tbody id="filelist">
+    <tr id="masterrow" style="display:none">
+      <td class="filename">NOMBRE</td>
+      <td class="size">TAMANO</td>
+      <td class="status">
+      	<table> 
+            <tbody>  
+                <tr>  
+                    <td>
+                    	<div class="progressbar">
+                    		<div class="point" style="width:0%;"></div>
+                		</div>
+                    </td>
+                    <td class="percent">0%</td> 
+                    <td class="buttons"><!--<img src="/img/icons/delete.gif" />--></td>  
+                </tr>  
+            </tbody> 
+        </table> 
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <ul class="uploader">
+    <li class="filename"></li>
+    <li class="size"></li>
+    <li class="status"></li>
+  </ul>
+</div>
+{% endblock %}

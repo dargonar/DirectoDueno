@@ -1,0 +1,36 @@
+{% extends "backend/_base.html" %}
+
+{% block menuleft %} 
+<!--div id="mnuLeft">
+  
+</div--> 
+{% endblock %}
+
+{% block headscript %} 
+<script type="text/javascript">
+$(document).ready(function() {
+  setTimeout("hideFlashMessageSlow()", 5000);
+});
+</script> 
+{% endblock %}
+
+{% block content %}
+  {% for consulta in consultas %}
+    {% if loop.first %}   
+      {% include "backend/includes/consultas_navigation.html" %}
+    {% endif %}
+    
+    {% include "backend/includes/consulta_list_view.html" %}
+    
+    {% if loop.last %} 
+      <div class="h_last"></div>
+      {% include "backend/includes/consultas_navigation.html" %}
+    {% endif %}
+  {% else %}
+    <div class="divider"></div>
+    <div class="noelement proplist txt">
+      <span>No posee consultas</span>
+    </div>
+  {% endfor %}
+
+{% endblock %}

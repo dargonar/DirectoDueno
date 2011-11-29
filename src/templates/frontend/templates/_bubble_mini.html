@@ -1,0 +1,10 @@
+<div id="mini_bubble" class="mini_bubble bubble_css" onclick="onShowPopup(this, null, '{{ property.key()|string }}');return false;" >
+  <div class="picture">
+      <img {% if property.main_image_url %} src="{{property.main_image_url}}=s80" {% else %} src="/img/picturebox/nophoto_80x60.jpg"  {% endif %} style="max-width:80px; max-height:60px;" onerror="this.src='/pics/small/sample1.jpg';" title="{{property | headlinify}}"/>
+  </div>
+  <div class="info">
+      <div class="price"><small>{{ cur }}</small> {{ price|currencyfy }}</div>
+      <div class="headline">{{ property | headlinify }} </div>
+      <div class="extra">{{property | descriptify(cols=['rooms','bedrooms','bathrooms','area_indoor'], small=True, total_area_included=True) }}</div>
+  <div class="mini_point bubble_css"></div>
+</div>

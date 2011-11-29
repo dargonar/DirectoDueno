@@ -1,0 +1,37 @@
+<!-- PROPERTIES -->
+<dl class="properties">
+    <dt class="price">Precio:</dt>
+    <dd class="price"><small>{{ cur }}</small>{{ price|currencyfy }}-</dd>
+    
+    {% if price_data_operation|int == Property._OPER_RENT %}
+      <dt class="act">Expensas:</dt>
+      <dd class="act">{{ property|expensasfy(operation_type=price_data_operation, small=False, small_if_none=True)}}</dd>
+    {% endif %}
+    
+    <dt class="alt">Sup. Total:</dt>
+    <dd class="alt">{{ property|totalareafy }}</dd>
+    
+    <dt class="alt">Ambientes:</dt>
+    <dd class="alt">{{ property.rooms }}</dd>
+    
+    <dt class="alt">Dormitorios:</dt>
+    <dd class="alt">{{ property.bedrooms }}</dd>
+    
+    <dt>Baños:</dt>
+    <dd>{{ property.bathrooms }}</dd>
+    
+    <dt>Plantas:</dt>
+    <dd>{{ property.building_floors }}</dd>
+    
+    <dt class="alt">Antigüedad:</dt>
+    <dd class="alt">{{ property.getAge() }}</dd>
+    
+    <dt>Estado General:</dt>
+    <dd>{{ property.getPropState() }}</dd>
+    
+    <dt>Sup. Cubierta:</dt>
+    <dd>{{ "%.1f"|format(property.area_indoor) }} m²</dd>
+    
+    <dt>Sup. Descubierta:</dt>
+    <dd>{{ "%.1f"|format(property.area_outdoor) }} m²</dd> 
+</dl>  

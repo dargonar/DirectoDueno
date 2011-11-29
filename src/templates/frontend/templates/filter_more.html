@@ -1,0 +1,135 @@
+{%- macro select_checkbox3(key) -%}
+  {% if preset and preset[key] %}
+    checked="checked"
+  {% endif %}
+{%- endmacro -%}
+
+
+<div id="box-options">
+  <form action="#" id="box-options-form">
+    <div class="button_separator">
+      <div class="left"></div>
+      <!-- div class="right"></div --> 
+    </div>
+    <div class="block block-1 padding_label" id="prop_type_id_groups" jqtransform="true">
+      {% set type_descriptions = config_array['cells']['prop_type_id']['descriptions'] %}
+      {% set short_type_descriptions = config_array['cells']['prop_type_id']['short_descriptions'] %}
+      {% set has_divider = config_array['cells']['prop_type_id']['has_divider'] %}
+      {% set groups = config_array['cells']['prop_type_id']['generated_attributes'].keys() %}
+      {% set in_home = config_array['cells']['prop_type_id']['in_home'] %}
+      {% set groups_index = 1%} <!-- el grupo al que pertenece en search_helper. Para habilitar y deshabilitar grupos de tipos de propiedad. -->
+      <div class="sub_options" group="{{groups[groups_index]}}"> <!-- selected -->
+      {% for item in type_descriptions %}
+        {% set index = loop.index0 %}
+        {% if index > 0 and in_home[index]==0 %}
+          <label title="{{ item }}">
+            <input {{ select_checkbox3('prop_type_id['+index|string+']') }} group_item="{{groups[groups_index]}}" type="checkbox" onclick="return onPropTypeChanged(this);"  id="prop_type_id_{{ index }}" name="prop_type_id[{{index}}]" title="{{ item }}" />
+            {{ short_type_descriptions[index] }}
+          </label>
+          <div class="divider"></div>
+          <!-- div class="{{ 'divider_lined' if has_divider[index]==1 else 'divider' }}"></div -->
+          {% if has_divider[index]==1 %}
+            </div>
+            {% if loop.index != loop.length %}
+              {% set groups_index = groups_index + 1%}
+              <div class="sub_options" group="{{groups[groups_index]}}">
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    <!-- block-1 -->
+    
+    <!--div class="block block-2 padding_label" jqtransform="true">
+      {% set key = 'prop_owner_id' %}
+      {% set descriptions = config_array['multiple_values_properties'][key]['descriptions'] %}
+      {% for item in descriptions %}
+        {% set index = loop.index0 %}
+        {% if index>0 %}
+        <label>
+          <input type="checkbox" checked="checked" id="{{key}}_{{ index }}" name="{{key}}[{{ index }}]" title="{{ item }}" />
+          {{item}}</label>
+      	<div class="divider"></div>
+        {% endif %}
+      {% endfor %}
+    </div-->
+    
+    <!-- block-2 -->
+    <div class="block block-3">
+      <div class="option_item">
+        <label>Antigüedad</label>
+        <div class="slider">
+          <div id="year_built_slider" class="filter-slider"></div>
+        </div>
+        <span id="year_built_display"></span>
+      </div>
+      <div class="option_item">
+        <label>Ambientes</label>
+        <div class="slider">
+          <div id="rooms_slider" class="filter-slider"></div>
+        </div>
+        <span id="rooms_display"></span>
+      </div>
+      <div class="option_item">
+        <label>Dormitorios</label>
+        <div class="slider">
+          <div id="bedrooms_slider" class="filter-slider"></div>
+        </div>
+        <span id="bedrooms_display"></span>
+      </div>
+      <div class="option_item">
+        <label>m<sup>2</sup> cub.</label>
+        <div class="slider">
+          <div id="area_indoor_slider" class="filter-slider"></div>
+        </div>
+        <span id="area_indoor_display"></span>
+      </div>
+      <div class="option_item">
+        <label>m<sup>2</sup> descub.</label>
+        <div class="slider">
+          <div id="area_outdoor_slider" class="filter-slider"></div>
+        </div>
+        <span id="area_outdoor_display"></span>
+      </div>
+      
+      <div class="option_item">
+        <label>Baños</label>
+        <div class="slider">
+          <div id="bathrooms_slider" class="filter-slider"></div>
+        </div>
+        <span id="bathrooms_display">0 a 2</span>
+      </div>
+      
+      <div class="option_item">
+        <label>Estado</label>
+        <div class="slider">
+          <div id="prop_state_id_slider" class="filter-slider"></div>
+        </div>
+        <span id="prop_state_id_display">Indistinto</span>
+      </div>
+      
+    </div>
+    <!-- block-3 -->
+    
+    <ul class="block block-4 padding_label" jqtransform="true">
+      {% set binary_properties = config_array['binary_values_properties'] %}
+      {% for key in binary_properties.keys() if binary_properties[key]['is_filter']==1 %}
+        <li>
+            <label title="{{ binary_properties[key]['title']}}" >
+              <input {{ select_checkbox3(key) }} type="checkbox" id="{{key}}" name="{{key}}" title="{{ binary_properties[key]['title']}} Si/No"/>
+              {{ binary_properties[key]['description']}}
+            </label>
+        </li>
+
+      {% endfor %}
+    </ul>
+    <!-- block-4 -->
+    <!--div style="clear:both;"></div-->
+    <div class="buttons">
+	    <!-- a onclick="return toggleFilter();" class="uibutton cancel" href="#">Cancelar</a -->
+      <a id="btn-filter-props" onclick="return applyFilterOptions();" class="uibutton special icon refresh noncancel" href="#" title="Aplicar filtros">Aplicar filtros</a>
+    </div>
+    <!-- buttons -->
+  </form>
+</div>
+<!-- box-options -->

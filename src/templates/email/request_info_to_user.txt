@@ -1,0 +1,15 @@
+{% extends "email/_base.txt"%}
+{%block content%}
+    Consulta por inmueble desde DirectoDueño.
+    
+    ¡Hola {{sender_name}}!
+    Has enviado una consulta a {{realestate_name}} por la propiedad {{property_link}}.
+    
+    Datos de tu consulta
+    Nombre: {{sender_name}}
+    Correo electrónico: {{sender_email}}
+    Consulta: "{{sender_comment}}"
+    
+    A la brevedad {{realestate_name}} se estará comunicando contigo.
+    
+{% endblock %}

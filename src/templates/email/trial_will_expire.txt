@@ -1,0 +1,13 @@
+{% extends "email/_base.txt"%}
+
+{%block content%}
+    Estimado usuario de DirectoDueño.
+
+    Su período de prueba en DirectoDueño finaliza el {{expire_date.strftime('%d/%m/%Y')}}, dentro de {{expire_span}} días.
+    Pasados estos {{expire_span}} días sus propiedades publicadas serán desactivadas de los resultados de búsqueda.
+
+    Para continuar deberá realizar el pago de la factura correspondiente al mes en curso.
+    Puede acceder entrando en "Mi Cuenta" en el panel de control de DirectoDueño.
+    Para acceder al panel ahora ingrese en http://www.directodueno.com/admin/account/status.
+    
+{% endblock %}

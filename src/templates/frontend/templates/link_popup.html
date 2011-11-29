@@ -1,0 +1,20 @@
+  <div id="copylink" class="w1024plus dialog link" style="display:none;">
+    <div class="btnClose" onclick="jQuery('#copylink').hide();return false;"></div>
+    <div class="inner">
+      <p class="label">Copiar al portapapeles</p>
+      <input class="search_meddium link" id="copied_link" name="" type="text" />
+      <a class="fancy_button" href="#" id="copier_button" onclick="return false;" title="Copiar link">
+        <span class="cpy_lnk">Copiar</span>
+      </a>
+    </div>
+    <div class="inner">
+      <p class="label">Compartir por correo electrónico</p>
+      <form id="share_link_by_mail" action="{{url_for('frontend/link/sendmail')}}" method="post">
+        <input class="search_meddium link" id="email_link" name="email" type="text" title="Ingrese el corrreo del destinatario" placeholder="Correo del destinatario"/>
+        <input id="copied_link2" name="link" type="hidden" />
+      </form>
+      <a class="fancy_button" href="#" id="emailer_button" onclick="return false;" title="Compartir por email">
+        <span class="cpy_lnk">Enviar</span>
+      </a>
+    </div>
+  </div>

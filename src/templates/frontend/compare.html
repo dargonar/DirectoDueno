@@ -1,0 +1,9 @@
+      <div class="innerContent" id="tab_compare_content_{{comp_key}}">
+        <div class="compareContentBdr"></div>
+        <div class="compareContent">
+          {% for prop in properties %}
+           {% include "frontend/templates/comparebox.html" %}
+          {% endfor %}
+        </div>
+      </div>
+    

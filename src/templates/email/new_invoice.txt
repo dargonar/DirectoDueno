@@ -1,0 +1,11 @@
+{% extends "email/_base.txt"%}
+
+{%block content%}
+    Estimado usuario de DirectoDueño.
+
+    Le enviamos la factura {{invoice.trx_id}} del mes {{invoice.date.strftime('%m')}} de {{invoice.date.strftime('%Y')}}.
+                
+    Puede realizar el pago de la factura ingresando en "Mi Cuenta" en el panel de control de DirectoDueño.
+    Para acceder al panel ahora ingrese en http://www.directodueno.com/admin/account/status.
+    
+{% endblock %}

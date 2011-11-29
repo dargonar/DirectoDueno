@@ -1,0 +1,23 @@
+    <li key="{{image.key()}}"> 
+        <div class="confirm" style="display:none">
+            <div class="actions">
+                <p class="msg">Seguro desea eliminar?</p>
+                <a href="#" class="no">NO</a>
+                <a href="#" class="yes">SI</a>
+            </div>
+            <div class="bg"></div>
+        </div>
+        
+        <img class="btnClose" src="/img/icons/btnClose.png" title="Eliminar imagen"/> 
+        <div id="imgbox" style="display: table-cell; vertical-align: middle; text-align:center; width:160px; height:120px">
+          <img style="max-width:160px; max-height:120px" alt="{{image.filename}}" 
+            title="{{image.filename}}" delme="{{url_for('images/remove',key=image.key()|string)}}" 
+            class="propImg" orig="{{image.title}}=s160" src="/img/ajax-loader.gif" onload="img_loaded_callback(this);"/>
+        </div>
+        <p class="name">{{image.filename|truncate(18)}}</p>
+        <div jqtransform="true">
+            <div class="ex-label">
+              <input type="checkbox" id="main_filter-proptype-departamento" name="{{image.key()}}" />
+            </div>
+        </div>
+    </li>

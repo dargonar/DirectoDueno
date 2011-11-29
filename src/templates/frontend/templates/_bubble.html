@@ -1,0 +1,66 @@
+<div id="bubble_{{property.key()}}" class="bubble {{bubble_css}}">
+  <!-- HEADER -->
+  <div class="head">
+      <!--div class="letter">A</div-->
+      <div class="address">{{ property | addressify }}</div>
+      <div id="btnCloseBubble" class="close" onclick="return closeBubble();"></div>
+  </div>
+  
+  <div class="subhead">
+      <div class="type">{{ property | headlinify }}</div>
+      {% set price            = property.price_sell %}
+      {% set cur              = property.price_sell_currency %}
+      {% if price_data_operation ==  Property._OPER_RENT %}
+        {% set price  = property.price_rent %}
+        {% set cur    = property.price_rent_currency %}
+      {% endif %}
+      <div class="price"><small>{{ cur }}</small> {{ price|currencyfy }}</div>
+  </div>
+  
+  <!-- PICTURE BOX -->
+  <div class="picturebox">
+      <div class="btnInfo" onclick="jQuery('#data_{{property.key()}}').fadeSliderToggle(); return false;" title="Info">
+        <img src="/img/pixel-transp.gif" title="Info" alt="Info" />
+      </div>
+      <div id="data_{{property.key()}}" class="data">
+          <p>{{ property | descriptify(cols=['rooms','bedrooms','bathrooms','area_indoor','area_outdoor'], total_area_included=True) }}</p>
+          <div class="databg"></div>
+      </div>
+      <!-- BOTONES SLIDE PHOTO -->
+      <div class="buttonsSlide">
+          <input class="btnSlide prev" name="" type="button" onclick="return getImage(-1);" />
+          <input class="btnSlide next" name="" type="button" onclick="return getImage(1);" />
+      </div>
+      
+      <div class="picbox picbox_bubble">
+        
+          {% for img in images %}
+            {% if loop.index == 1 %}
+              <div class="qty">foto <font class="qty_font">1</font> de {{ loop.length }}</div>
+              <center>
+            {% endif %}
+            <img id="image_{{loop.index}}" class="popupimg" style="max-width:306px; max-height:230px; {%if loop.index != 1 %} display:none {%endif%}" src="{{img.title}}=s306" wh="306,230" onerror="this.src='/img/picturebox/nophoto_306x230.jpg';" />
+          {% else %}
+          <div class="qty">No hay imagenes.</div>
+          <center>
+          <img id="image_no" style="max-width:306px; max-height:230px;" src="/img/picturebox/nophoto_306x230.jpg" />
+          {% endfor %}
+        </center>
+      </div>
+  </div>
+  
+  <ul class="prop_actions">
+    <li>
+      <!--div jqtransform="true">
+        <label><input type="checkbox" checked="checked" id="" name="" />&nbsp;Comparar</label>
+      </div-->
+    </li>
+    <!--li>Guardar</li-->
+    <li class="detail"><a href="#" onclick="return onShowFicha(this, '{{property.key()}}');">Mostrar Ficha »</a></li>
+  </ul>
+        
+        <div class="point {{bubble_css}}"></div>
+        <!--div class="point bl"></div>
+        <div class="point tl"></div>
+        <div class="point tr"></div-->
+</div>

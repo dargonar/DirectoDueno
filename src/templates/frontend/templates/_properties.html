@@ -1,0 +1,7 @@
+{% set index = base_cursor_index %}
+{% for property in properties %}
+  {% if property %}
+    {% set index = index + 1 %}
+    {%include "frontend/templates/_prop.html"%}
+  {% endif %}
+{% endfor %}

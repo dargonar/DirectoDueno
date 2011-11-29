@@ -1,0 +1,1 @@
+dev_appserver.py --clear_datastore W:\wdir\ultrageo\src

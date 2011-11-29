@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DirectoDueño admin</title>
+    {% include "backend/includes/_head_css.html" %}
+    {% include "backend/includes/_head_js.html" %}
+    {% block headscript %}
+    {% endblock %}
+</head>
+  <body class="backend_simple">
+    <!-- /// HEADER /// -->
+    {% include "backend/includes/header.html" %}
+    {% block content %}
+    {% endblock %}
+    
+    {# % include "backend/includes/footer.html" % #}
+    
+  </body>
+</html>

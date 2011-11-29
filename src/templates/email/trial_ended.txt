@@ -1,0 +1,12 @@
+{% extends "email/_base.txt"%}
+
+{%block content%}
+    Estimado usuario de DirectoDueño.
+
+    Su período de prueba en DirectoDueño ha finalizado.
+    Las propiedades publicadas han sido desactivadas de los resultados de búsqueda hasta que efectúe el pago de la factura correspondiente al mes en curso.
+
+    Para abonar la factura ingrese en "Mi Cuenta" en el panel de control de DirectoDueño.
+    Para acceder al panel ahora ingrese en http://www.directodueno.com/admin/account/status.
+    
+{% endblock %}

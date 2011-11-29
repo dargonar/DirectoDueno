@@ -1,0 +1,27 @@
+<div id="gallery" class="ad-gallery">
+  <div class="ad-image-wrapper"></div>
+  <div class="ad-controls"></div>
+  <div class="ad-nav">
+    <div class="ad-thumbs">
+      <ul class="ad-thumb-list">
+        {% set _width  = 616 %}
+        {% set _height = 462 %}
+        {% for img in images %}
+          {% if img.title %}
+          <li>
+            <a href="{{img.title}}=s{{_width}}" wh="_width,_height">
+              <img id="image_{{loop.index}}" src="{{img.title}}=s72" wh="72,55" style="max-height:55px;" title="" alt="" class="popupimg class{{loop.index}}"> 
+            </a>
+          </li>
+          {% endif %}
+        {% else %}
+          <li class="nophoto">
+            <a href="/img/picturebox/nophoto_{{_width}}x{{_height}}.jpg"> 
+              <img id="image_no" src="/img/picturebox/nophoto_115x86.jpg" />
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>

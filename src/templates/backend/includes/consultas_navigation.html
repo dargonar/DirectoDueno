@@ -1,0 +1,21 @@
+<!-- NAV PROP LIST-->
+<div class="uibutton-toolbar picture">
+    <div class="actions">
+        <span class="label" title="De la consulta más reciente a la más vieja">Ordenadas por fecha descendiente</span>
+        <div class="uibutton-group">
+        </div>
+    </div>
+       
+    <ul class="uibutton-group navbar">
+        <li class="prop_qty">
+            <div><b>{{ page_size*(page-1)+1 }}  - {{ page_size*(page-1)+loop.length }} </b></div>
+        </li>
+        {% set prevurl = url_for('backend/consultas/list/page', page=page-1) if page > 1 else '#' %}
+        {% set prevena = 'disable' if prevurl == '#' else '' %}
+        {% set nexturl = url_for('backend/consultas/list/page', page=page+1) if consultas|length == page_size else '#' %}
+        {% set nextena = 'disable' if nexturl == '#' else '' %}
+
+        <li><a class="uibutton icon prev {{prevena}}" href="{{prevurl}}"></a></li>
+        <li><a class="uibutton icon next {{nextena}}" href="{{nexturl}}"></a></li>
+    </ul>
+</div>

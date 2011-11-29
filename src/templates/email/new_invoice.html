@@ -1,0 +1,25 @@
+{% extends "email/_base.html"%}
+{%block content%}
+  <tr>
+    <td style="font-family:Arial, Helvetica, sans-serif; padding:20px;">
+      <h1 style="font-size:18px; font-weight:normal;">Estimado usuario de DirectoDueño.</h1>
+      <div style="border-bottom:solid 3px #cccccc; border-right:solid 4px #cccccc;">
+        <div style="border:solid 1px #cccccc; padding:20px; padding-top:25px; height:120px;">
+          <table width="100%" border="0">
+            <tr>
+              <td valign="top" width="300">
+                Le enviamos la factura {{invoice.trx_id}} del mes {{invoice.date.strftime('%m')}} de {{invoice.date.strftime('%Y')}}.<br/>
+                <span style="font-size:15px; font-weight:bold;"></span>
+              </td>
+              <td valign="top" align="right"><a href="http://www.directodueno.com/admin/account/status" style="background-color: #5cb039; border: 1px solid #559f32; color: #FFFFFF; display: inline-block; font-size: 13px; font-weight: bold; padding: 10px 50px; text-decoration: none; white-space: nowrap; margin-bottom:15px;" title="Ir al Panel de control">Ir al Panel de control</a><br /></td>
+            </tr>
+          </table>
+          <p style="font-size:12px; margin-bottom:10px;">
+            Puede realizar el pago de la factura ingresando en "<b>Mi Cuenta</b>" en el panel de control de DirectoDueño.<br />
+            Para acceder al panel ahora haga <a href="http://www.directodueno.com/admin/account/status" style="font-size:12px;">click aquí</a> o presione en "Ir al Panel de control".
+          </p>
+        </div>
+      </div>
+    </td>
+  </tr>
+{% endblock %}

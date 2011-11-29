@@ -1,0 +1,7 @@
+    {%block content%}
+    {%endblock%}  
+
+    Saludos
+    www.directodueno.com
+    
+    Por favor, no responda a este mensaje; fue enviado desde una cuenta de correo electrónico no monitoreada. Este mensaje es un correo electrónico relacionado con el uso de  DirectoDueño. Para peticiones generales o solicitar soporte para tu cuenta de DirectoDueño, por favor contactanos en Soporte DirectoDueño <{{support_url}}>.

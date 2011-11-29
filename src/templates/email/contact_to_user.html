@@ -1,0 +1,27 @@
+{% extends "email/_base.html"%}
+
+{%block content%}
+  <tr>
+    <td style="font-family:Arial, Helvetica, sans-serif; padding:20px;">
+      <h1 style="font-size:18px; font-weight:normal;">
+      ¡Hola {{sender_name}}!
+      </h1>
+      <p style="font-size:13px; margin-bottom:20px;"> 
+        Has enviado una consulta a <a href="{{realestate_website}}" style="font-size:12px;"><b>{{realestate_name}}</b></a>.
+      </p>
+      <div style="border-bottom:solid 3px #cccccc; border-right:solid 4px #cccccc;">
+        <div style="border:solid 1px #cccccc; padding:20px; padding-top:25px; height:120px;">
+          <p style="font-size:12px; margin-bottom:10px;">
+            Datos de tu consulta<br/>
+            &nbsp;&nbsp;&nbsp;Nombre: <b>{{sender_name}}</b><br/>
+            &nbsp;&nbsp;&nbsp;Correo electrónico: <b>{{sender_email}}</b><br/>
+            &nbsp;&nbsp;&nbsp;Teléfono: <b>{{sender_telephone}}</b><br/>
+            &nbsp;&nbsp;&nbsp;Consulta: "<b>{{sender_comment}}<b/>"
+          </p>
+          <p style="font-size:12px;">A la brevedad <a href="{{realestate_website}}" style="font-size:12px;" target="_blank">{{realestate_name}}</a> se estará comunicando contigo.
+          </p>
+        </div>
+      </div>
+    </td>
+  </tr>
+{% endblock %}

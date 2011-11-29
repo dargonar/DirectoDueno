@@ -1,0 +1,92 @@
+    {% set prop_address = prop|addressify %}
+    <div class="compare_box" id="comparebox_{{prop.key()|string}}">
+      <div class="head">
+          <!-- div class="letter">&nbsp;</div -->
+          <div class="address">&nbsp;&nbsp;&nbsp;<a href="#" onclick="return onShowFicha(this, '{{prop.key()}}');" title="Ver ficha de '{{prop_address}}' y contactar agente">{{prop_address}}</a></div>
+          <div class="close" onclick="jQuery('#comparebox_{{prop.key()|string}}').remove();return false;" title="Quitar de la comparación"></div>
+      </div>
+      
+      <div class="picturebox">
+          <!-- BOTONES SLIDE PHOTO -->
+          <div class="buttonsSlide">
+              <input class="btnSlide prev" name="" type="button" onclick="return getNextImage('{{prop.key()|string}}', -1);"/>
+              <input class="btnSlide next" name="" type="button" onclick="return getNextImage('{{prop.key()|string}}', 1);"/>
+          </div>
+      
+<!-- BOX PHOTO -->
+        <div class="picbox">
+              {% for img in images[prop.key()|string] %}
+                {% if loop.index == 1 %}
+                  <div class="qty">foto <font class="qty_font">1</font> de {{ loop.length }}</div>
+                  <center>
+                {% endif %}
+                <img id="image_{{loop.index}}" class="thumblnk" style="max-width:190px; max-height:142px; {%if loop.index != 1 %} display:none {%endif%}" src="{{img.title}}=s190" wh="190,142" onerror="this.src='/img/picturebox/nophoto_306x230.jpg';" />
+              {% else %}
+              <div class="qty">No hay imagenes.</div>
+              <center>
+              <img id="image_no" style="max-width:190px; max-height:142px;" src="/img/picturebox/nophoto_306x230.jpg" />
+              {% endfor %}
+            </center>
+          </div>
+      </div> 
+         
+      <!-- PRICE -->
+      <div class="subhead">
+          <div class="type">{{ operation|operationfy }}</div>
+          <div class="price">{{ prop|pricefy(operation_type=operation, small=True) }}</div>
+      </div>
+      
+      <!-- LOGO -->
+      <!-- wh="133,47" -->
+      {% set realestate_logo = (prop.realestate.logo_url+'=s133') if prop.realestate.logo else '/img/picturebox/realestate_ficha_nophoto.jpg'%}
+      <div class="logo"><img src="{{realestate_logo}}" style="max-width:133px; max-height:47px;" title="{{prop.realestate.name}}"/></div>
+      
+      <!-- PROPERTIES -->
+      <dl class="properties">
+        <div class="{{'act' if data['price']['value']==prop[price_field] else ''}}">
+          <dt>Precio:</dt>
+          <dd class="{{'act' if data['price']['value']==prop[price_field] else ''}}">{{ prop|pricefy(operation_type=operation, small=False) }}</dd>
+        </div>
+        {% if operation|int == Property._OPER_RENT %}
+          <div class="alt">
+            <dt>Expensas:</dt>
+            <dd>{{ prop|expensasfy(operation_type=operation, small=False)}}</dd>
+          </div>
+        {% endif %}
+        <div class="alt {{'act' if data['area_total']['value']==prop.area_total else ''}}">
+          <dt>Sup. Total:</dt>
+          <dd>{{ prop|totalareafy }}</dd>
+        </div>
+        <div class="alt {{'act' if data['area_indoor']['value']==prop.area_indoor else ''}}">
+          <dt>Sup. Cubierta:</dt>
+          <dd>{{(prop.area_indoor)|currencyfy}}m²</dd>
+        </div>
+        <div  class="{{'act' if data['area_outdoor']['value']==prop.area_outdoor else ''}}">  
+          <dt>Sup. Desc.:</dt>
+          <dd>{{(prop.area_outdoor)|currencyfy}}m²</dd> 
+        </div>
+        <div  class="alt {{'act' if data['rooms']['value']==prop.rooms else ''}}">   
+          <dt>Habitaciones:</dt>
+          <dd>{{prop.rooms}}</dd>
+        </div>
+        <div class="{{'act' if data['bathrooms']['value']==prop.bathrooms else ''}}">  
+          <dt>Baños</dt>
+          <dd>{{prop.bathrooms}}</dd>
+        </div>
+        <div class="alt {{'act' if data['prop_state_id']['value']==prop.prop_state_id else ''}}">  
+          <dt>Estado:</dt>
+          <dd>{{prop.getPropState()}}</dd>
+        </div>
+        <div class="{{'act' if data['year_built']['value']==prop.year_built else ''}}" style="min-height:42px;">  
+          <dt>Antigüedad</dt>
+          <dd>{{prop.getAge()}}</dd>
+       </div>  
+     </dl>  
+          <div class="extra">
+            <p>Extras:</p>
+            {% set binary_properties = config_array['binary_values_properties'] %}
+            {% for key in extra_fields if (prop[key] > 0) %}
+              {{ binary_properties[key]['description'] }}{{ ',' if loop.index<loop.length else '.' }}
+            {% endfor%}
+          </div>
+    </div>

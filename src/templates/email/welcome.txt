@@ -1,0 +1,10 @@
+{% extends "email/_base.txt"%}
+
+{%block content%}
+    !Bienvenido a DirectoDueño, {{realestate_name}}!
+    Estamos contentos por contar con su membrecía, esperamos que encuentre en DirectoDueño una herramienta indispensable para concretar sus negocios inmobiliarios. Esa es nuestra misión.
+    
+    Comienza a utilizar DirectoDueño ingresando a este enlace {{validate_user_link}} para validar su cuenta.
+    
+    Recuerde completar su perfil, es indispensable para que los usuarios lo contacten.
+{% endblock %}

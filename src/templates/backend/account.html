@@ -1,0 +1,159 @@
+{% extends "backend/_base.html" %}
+
+{% block headscript %}
+  <script type="text/javascript">
+  $(document).ready(function() {
+    init_account();
+  });
+  </script>
+{% endblock %}
+{% block content %}
+
+<div id="msg1" class="bg_popup" style="display:none">&nbsp;</div>
+<div id="msg2" class="dialog account" style="display:none">
+<div class="btnClose"></div>
+<div align="center" style="margin-top:40px;"><img src="/img/logos/dm.gif" /></div>
+  <div class="loading_dm">Aguarde un instante, iniciando aplicación
+    <img class="loading_square" src="/img/pixel-transp.gif" />
+  </div>
+    <p style="background:#e2f2ff; padding:14px 20px;">
+    DineroMail es la aplicación que le permite imprimir su factura y realizar pagos mediante págofacil, rapipago, pagomiscuentas o realizar transferencias online.
+    </p>
+</div>
+
+
+<div style="overflow:hidden; margin-bottom:20px;">
+		<h1>Mi Cuenta</h1>
+  </div>
+  {% if flash %}
+    <div class="msg_{{flash.type}}"><b>{{flash.message}}</b></div>
+  {% endif %}
+  
+  <h2 class="title">Mis Facturas</h2>
+<table class="tbl_billing" width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <th class="status">Estado</th>
+        <th class="number">Factura #</th>
+        <th class="date">Fecha</th>
+        <th class="expiration">Vencimiento</th>
+        <th class="amount">Monto</th>
+        <th class="action">&nbsp;</th>
+    </tr>
+</table> 
+
+{# % for invoice in invoices if (not re.is_in_trial()) % #}
+{% for invoice in invoices %}
+<table class="tbl_billing" width="100%" border="0" cellpadding="0" cellspacing="0">  
+    <tr class="{{invoice.str_state()}}">
+    	<td class="status"><span class="icon"></span><span>{{invoice.str_state(css=False)}}</span></td>
+        <td class="number">{{invoice.trx_id}}</td>
+        <td class="date">{{invoice.date.strftime('%d/%m/%Y')}}</td>
+        <td class="expiration">{{(invoice.date|add_days(15)).strftime('%d/%m/%Y')}}</td>
+        
+        {% if plan.type == 3 %}
+        <td class="amount">${{ invoice.amount | currencyfy}}</td>
+        {% else %}
+        <td class="amount">${{ (invoice.amount * 1.21) | currencyfy}}</td>
+        {% endif %}
+        
+        
+        <td class="action">
+          <form action="https://checkout.dineromail.com/CheckOut" method="post" > 
+            <!--data nuestra-->
+            {% if plan.type == 3 %}    
+            <input type="hidden" name="merchant" value="2321817" />
+            {% else %}
+            <input type="hidden" name="merchant" value="2267637" />
+            {% endif %}
+            
+            <input type="hidden" name="country_id" value="1" /> 
+            <input type="hidden" name="payment_method_available" value="7,13,4" /> 
+            <input type="hidden" name="item_name_1" value="Abono mensual {{invoice.date.strftime('%m/%Y')}}" />
+            <input type="hidden" name="item_quantity_1" value="1" /> 
+
+            {% if plan.type == 3 %}
+            <input type="hidden" name="item_ammount_1" value="{{"%.02f"|format(invoice.amount)}}" />
+            {% else %}
+            <input type="hidden" name="item_ammount_1" value="{{"%.02f"|format(invoice.amount * 1.21)}}" />
+            {% endif %}
+            
+            <input type="hidden" name="seller_name" value="DirectoDueño" /> 
+            <input type="hidden" name="header_image" value="https://directodueno.appspot.com/img/logo.gif"/>
+            <input type="hidden" name="transaction_id" value="{{invoice.trx_id}}"/>
+            <input type="hidden" name="error_url" value="{{url_for('billing/payment/cancel', invoice=invoice.key()|string, _full=True)}}"/>
+            <input type="hidden" name="ok_url" value="{{url_for('billing/payment/done', invoice=invoice.key()|string, _full=True)}}"/>
+            <input type="hidden" name="pending_url" value="{{url_for('billing/payment/pending', invoice=invoice.key()|string, _full=True)}}"/>
+            <input type="hidden" name="url_redirect_enabled" value="1"/>
+            <input type="hidden" name="change_quantity" value="0"/>
+            
+            <input type="submit" class="btnWizard" name="" value="{{'Pagar Ahora' if invoice.state == Invoice._NOT_PAID else ' Reimprimir cupón '}}">
+          </form>
+        </td>
+    </tr>
+</table>
+
+{% else %}
+
+<table class="tbl_billing" width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr class="approved">
+    	<td class="status"><span class="icon"></span><span>Al día</span></td>
+        <td>No registra facturas impagas</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+</table> 
+   
+{% endfor %}
+<br/>
+<div class="invoice_help">
+<a href="mailto:ayuda@directodueno.com"><span class="ico"></span>Necesita ayuda con el pago de su factura? Haga click aqui!</a>
+</div>
+
+<div class="divider"></div> 
+<h2 class="title">Información de cuenta</h2>
+<table class="tbl_account" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="235">
+    	<h3>Titular</h3>
+        <p><b>{{re.name}}</b></p>
+        <p style="width:220px;">
+        	{{re.address}}<br />
+          {{re.email}}
+        </p>
+    </td>
+    <td width="225">
+   	  <h3>Facturación</h3>
+        <p>
+        	Facturas impagas<br />
+            {# % if re.is_in_trial() % #}
+            {% if 1==0 %}
+              <b>$0.00</b>
+            {% else %}
+              {% if plan.type == 3 %}
+              <b>${{total_debt|float|currencyfy}}</b>
+              {% else %}
+              <b>${{(1.21*total_debt)|float|currencyfy}}</b>
+              {% endif %}
+            {% endif %}
+        </p>
+    </td>
+    <td width="225">
+    <h3>Plan</h3>
+        <p>
+        	{{plan.name}}
+          <br/>({{plan.description}})
+        </p>
+    </td>
+  </tr>
+</table>
+
+
+  <!--table border="1">
+    <tr><td>Nombre</td><td>Mensual</td><td>Dias gratis</td></tr>
+    <tr><td>{{plan.description}}</td><td>{{plan.amount}}</td><td>{{plan.free_days}}</td></tr>
+  </table-->
+  
+    
+{% endblock  %}

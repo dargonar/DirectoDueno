@@ -1,0 +1,32 @@
+{% extends "email/_base.html"%}
+
+{%block content%}
+  <tr>
+    <td style="font-family:Arial, Helvetica, sans-serif; padding:20px;">
+      <h1 style="font-size:18px; font-weight:normal;">
+      ¡Hola {{realestate_name}}!
+      </h1>
+      <p style="font-size:13px; margin-bottom:20px;"> 
+        {{sender_name}} ha solicitado información por <a href="{{realestate_property_link}}" style="font-size:12px;">esta propiedad</a> y ha enviado este mensaje:<br/> 
+        <b>"{{sender_comment}}"<b/>
+      </p>
+      <div style="border-bottom:solid 3px #cccccc; border-right:solid 4px #cccccc;">
+        <div style="border:solid 1px #cccccc; padding:20px; padding-top:25px; height:120px;">
+          <p style="font-size:12px; margin-bottom:10px;">
+            Datos de contacto del usuario<br/>
+            &nbsp;&nbsp;&nbsp;Nombre: <b>{{sender_name}}</b><br/>
+            &nbsp;&nbsp;&nbsp;Correo electrónico: <b>{{sender_email}}</b><br/>
+            {% if sender_telephone is defined %}
+              {% if sender_telephone %}
+            &nbsp;&nbsp;&nbsp;Teléfono: <b>{{sender_telephone}}</b><br/>
+              {% endif %}
+            {% endif %}
+          </p>
+          <p style="font-size:12px;">Brinda una respuesta rápida y cordial a los interesados en el inmueble. <br/>
+            Esto te ayudará a aumentar tus operaciones.
+          </p>
+        </div>
+      </div>
+    </td>
+  </tr>
+{% endblock %}

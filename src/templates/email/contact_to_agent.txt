@@ -1,0 +1,17 @@
+{% extends "email/_base.txt"%}
+{%block content%}
+  Consulta por inmueble desde DirectoDueño.
+    
+    ¡Hola {{realestate_name}}!
+    {{sender_name}} ha solicitado información y ha enviado este mensaje: 
+    "{{sender_comment}}".
+    
+    Datos de contacto del usuario
+    Nombre: {{sender_name}}
+    Correo electrónico: {{sender_email}}
+    Teléfono: {{sender_telephone}}
+    
+    Brinda una respuesta rápida y cordial a los interesados en el inmueble. 
+    Esto te ayudará a aumentar tus operaciones.
+    
+{% endblock %}

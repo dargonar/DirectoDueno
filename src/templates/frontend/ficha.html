@@ -1,0 +1,42 @@
+  {% extends "frontend/_base.html"%}  
+  
+  {%block metas%}
+    <title>DirectoDueño - {{property|headlinify}}</title>
+    <meta name="description" content="{{property|headlinify}}, {{property|addressify}}, {{ property | descriptify(cols=['rooms','bedrooms','bathrooms','area_indoor','area_outdoor']) }} " />
+    <meta name="keywords" content="" />
+  {%endblock%}
+  
+  {%block js%}
+    <script src="/js/jquery.ketchup.js?v={{app_version_id}}" type="text/javascript"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      doKetchup(null);
+      
+      var iNoPhoto = jQuery('#detailBox li.nophoto').length;
+      var galleries = jQuery('.ad-gallery').adGallery({width: '616px',height: '463px'});
+      $('#detailBox #switch-effect').change(
+        function() {
+          galleries[0].settings.effect = $(this).val();
+          return false;
+        }
+      );
+      
+      //Hackeo si no tiene fotos (oculto).
+      if(iNoPhoto>0)
+      {
+        jQuery('div.ad-thumbs').css('display', 'none');
+      }
+    });
+    </script>
+  {% endblock %}  
+  
+  {% block body %}
+  
+    <body class="frontend_search" style="overflow-y:auto;">
+      {% set ficha = 1 %}
+      {%include "frontend/templates/header.html"%}
+      <div id="content" class="ficha_content" > 
+        {%include "frontend/templates/_ficha_robot.html"%}
+      </div>
+    </body>
+  {% endblock %}

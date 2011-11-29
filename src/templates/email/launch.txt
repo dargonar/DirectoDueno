@@ -1,0 +1,17 @@
+Hola {{realestate_name}},
+
+
+  Estimado usuario de DirectoDueño, hemos actualizado el sistema para brindarle un mejor servicio.
+  Este correo es para informarle los datos de ingreso al nuevo sistema de administración.
+  
+  Dirección:  http://www.directodueno.com/admin
+  Usuario:    {{user_email}}
+  Password:   {{user_password}}
+  
+  
+  Una vez que haya ingresado, podrá cambiar su contraseña y modificar sus datos personales en la solapa de USUARIO.
+  
+  Ante cualquier inconveniente, duda o sugerencia de mejora, no dude en enviarnos un correo a la dirección ayuda@directodueno.com.
+  
+  
+  Por favor, no responda a este mensaje; fue enviado desde una cuenta de correo electrónico no monitoreada. Este mensaje es un correo electrónico relacionado con el uso de  DirectoDueño. Para peticiones generales o solicitar soporte para tu cuenta de DirectoDueño, por favor contactanos en {{support_url}} <Soporte DirectoDueño>

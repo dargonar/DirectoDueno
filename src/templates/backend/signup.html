@@ -1,0 +1,205 @@
+{% extends "backend/_base2.html" %}
+
+{%- macro form_field(field, label='', class='') -%}
+	<div class="field">
+    {% if label != '' %}
+    <div class="input_label">{{label}}</div>
+    {% endif %}
+    {{ field(class=class+(' error' if field.errors else '')  , **kwargs) }}
+    {% if field.name == 'confirm' %}
+      <a href="#" class="btnIcon" id="password_unequal" style="display:none;position:absolute;top:13px;right:0px;" title="Verifique que las contraseñas sean iguales">
+        <img src="/img/icons/delete.png" />
+      </a>
+    {% endif %}
+    {% if field.name == 'accept_terms' %}
+    Acepto los <a target="_blank" href="{{url_for('frontend/terms')}}">términos y condiciones</a>    
+    {% endif %}
+  </div> 
+  {% if field.errors %}
+    <p style="margin-left:6px;" class="error">{{ field.errors.0 }}</p>
+  {% endif %}
+{%- endmacro -%}
+
+{% block headscript %}
+<script type="text/javascript">
+$(document).ready(function() {
+  init_signup();
+  doKetchup(null);
+});
+</script>
+{% endblock %}
+
+{% block content %}
+
+
+<div style="width:960px; margin:auto;">
+
+  <!--ul class="three_columns">
+    <li>
+      <h3>1 mes</h3>
+      <img src="/img/email/map.jpg" />
+      <b>$50</b>
+    </li>
+    
+    <li>
+    	<h3>3 meses</h3>
+   	  <img src="/img/email/admin.jpg" />
+      <b>$120</b>
+    </li>
+    
+    <li class="last">
+    	<h3>6 meses</h3>
+    	<img src="/img/email/site.jpg" />
+      <b>$200</b>
+    </li>
+  </ul-->
+
+  <table width="960" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="50%" align="center" style="padding-top:20px;" valign="top">
+        <img src="/img/frontend.jpg"/>
+        <ul class="skills">
+          <li class="pictures"><p>Subí fotos ilimitadas</p></li>
+          <li class="web"><p>Te localizan por mapa</p></li>
+          <li class="email"><p>Las consultas llegan a tu email</p></li>
+        </ul>
+      </td>
+      <td align="center" valign="top" style="padding-top:20px; border-left: dotted 1px #000; " >
+      <!-- INICIA EL FORM -->
+        <div id="login_container" class="login_window" style="padding-top:0;">
+          <div class="popup" style="border:none; width: 400px; text-align:left;">
+            <div id="login" class="popup_box" style="padding:0;"> 
+              <h1 style="font-size:24px; margin-left:5px;">Comience a Publicar Ahora!</h1>
+              <h2 style="color:#0A5278; font-weight:normal; margin-left:5px;">Utilize la plataforma sin cargo por un período de 7 días.</h2>
+              {% set post_url = url_for('backend/auth/signup/promo',promo=promo ) if promo else url_for('backend/auth/signup') %}
+              <form id="signup_form" action="{{post_url}}" method="post" style="margin-right:15px;width:400px;">
+                <!-- ///// IDENTITY ///// -->    
+                <!--div class="first {# { 'errorbox' if form.name.errors else '' } #}"> 
+                  {# {{ form_field(form.name, label='nombre' , class="xg long", placeholder="Nombre de la Inmobiliaria") }} #}
+                </div -->
+                <div class="{{ 'errorbox' if form.email.errors else '' }}"> 
+                  {{ form_field(form.email, label='email', class="xg long", placeholder="Correo electrónico") }}
+                </div>
+                <!-- div class="{# { 'errorbox' if form.telephone_number.errors else '' } #}"> 
+                  {# {{ form_field(form.telephone_number, label='telefono', class="xg long", placeholder="Teléfono") }} #}
+                </div-->
+                <div class="{{ 'errorbox' if form.password.errors else '' }}"> 
+                  {{ form_field(form.password, label='contraseña',  class="xg long", placeholder="Contraseña", id="password") }}
+                </div>
+                <div class="last {{ 'errorbox' if form.confirm.errors else '' }}"> 
+                  {{ form_field(form.confirm, label='repetir', class="xg long", placeholder="Repetir contraseña", id="confirm_password") }}
+                </div>
+                
+                <div id="gallery" class="signup">
+                  <ul>
+                    {% for plan in planes %}
+                      <li class="theme_box {{ 'selected' if loop.index0==1}} plan{{loop.index0}}" key='{{plan.key()|string}}' style="text-align:center;">
+                        <h3>{{plan.name}}</h3>
+                        <p>
+                          <b>{{plan.description}}</b>.<br/>
+                          Precio: <b>${{plan.amount}}<sup>00</sup></b>
+                        </p>
+                        
+                        <div class="buttons">
+                          <a class="uibutton special" href="#" onclick="jQuery('.theme_box').removeClass('selected'); jQuery('.plan{{loop.index0}}').addClass('selected'); jQuery('#plan').val('{{plan.key()|string}}'); return false;">&nbsp;&nbsp;&nbsp;Seleccionar&nbsp;&nbsp;&nbsp;</a>
+                        </div>
+                      </li>
+                      {% if loop.index0==1 %}
+                        {% set default_plan = plan.key|string %}
+                      {% endif %}
+                    {% endfor %}
+                    <!--li class="theme_box" style="text-align:center;">
+                        <h3>Plan Chapa</h3>
+                        <p>
+                          Aviso publicado durante <b>1 mes</b>.<br/>
+                          Precio: <b>$50<sup>00</sup></b>
+                        </p>
+                        
+                        <div class="buttons">
+                          <a class="uibutton special" href="#">&nbsp;&nbsp;&nbsp;Seleccionar&nbsp;&nbsp;&nbsp;</a>
+                        </div>
+                    </li>
+                    
+                    <li class="theme_box selected" style="text-align:center;">
+                        <h3>Plan Madera</h3>
+                        <p>
+                          Aviso publicado durante <b>3 meses</b>.<br/>
+                          Precio: <b>$100<sup>00</sup></b>
+                        </p>
+                        
+                        <div class="buttons">
+                          <a class="uibutton special" href="#">&nbsp;&nbsp;&nbsp;Seleccionar&nbsp;&nbsp;&nbsp;</a>
+                        </div>
+                    </li>
+                    
+                    <li class="theme_box" style="text-align:center;">
+                        <h3>Plan Ladrillo</h3>
+                        <p>
+                          Aviso publicado durante <b>6 meses</b>.<br/>
+                          Precio: <b>$150<sup>00</sup></b>
+                        </p>
+                        <div class="buttons">
+                          <a class="uibutton special" href="#">&nbsp;&nbsp;&nbsp;Seleccionar&nbsp;&nbsp;&nbsp;</a>
+                        </div>
+                    </li-->
+                  </ul>
+                </div>
+                
+                <div class="last {{ 'errorbox' if form.accept_terms.errors else '' }}" style="clear:both;"> 
+                  {{ form_field(form.accept_terms) }}
+                </div>
+                {{form.ketchup(id='ketchup')}}
+                <input type="hidden" name="plan" id="plan" value="{{default_plan}}" />
+                <input type="submit" value="COMENZAR A PUBLICAR!" name="" class="btnWizard start">
+                <!--div class="navButtons" style="text-align:left;">
+                  <a href="#" class="fancy_button start"><input type="submit" value="COMENZAR!" name="" class="btnWizard"></a>
+                </div--> 
+              </form>  
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+
+
+<div class="skill_detail">
+	<h1>Diferente!</h1>
+	<div class="col_left">
+		<h3>¿Cómo funciona?</h3>
+    	<p>
+        A diferencia de los demás portales inmobiliarios, DirectoDueño es el primero en su tipo en utilizar un Sistema de Geolocalización Real, eso quiere decir que con sólo ubicar una zona de interés en el mapa, automáticamente se muestra la oferta disponible en esa zona y alrededores.<br />
+        </p>
+        <br />
+        <h3>Búsquedas más simples:</h3>
+        <p>Otros portales combinan infinidad de filtros dificultando las búsquedas que terminan por frustrar al usuario. En DirectoDueño solamente hay que seleccionar la zona de interés en el mapa para conocer la oferta disponible.</p>
+    </div>
+    
+    <div class="col_right">
+   		<h3>Más contactos</h3>
+        <p>
+En DirectoDueño queremos que recibas la mayor cantidad de contactos posibles, por eso solamente le pedimos a los usuarios los datos mínimos para establecer contacto contigo, sin exigir suscripciones ni extensos formularios de registro, porque a mayor cantidad de contactos mayor cantidad de negocios concretados.
+</p>
+	<br />
+
+		<h3>Sin Límites:</h3>
+        <p>Publique toda su oferta inmobiliaria, DirectoDueño No limita la cantidad de avisos ni la cantidad de fotos por propiedad.</p>
+    </div>
+</div>
+
+
+<!-- Foot -->
+
+  <div class="foot">
+    <img class="logo_foot" src="/img/pixel-transp.gif" alt="DirectoDueño" />
+    <p>El uso de este sitio web implica la aceptación de los Términos y Condiciones y la Política de Privacidad de directodueno.com.ar.<br/>
+    Copyright © 2011 - Todos los derechos reservados. Protección de Datos Personales.</p>       
+  </div>
+  
+  
+
+
+</div>  
+
+{% endblock  %}

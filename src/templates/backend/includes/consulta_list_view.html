@@ -1,0 +1,31 @@
+	<div class="list_box" style="position: relative;height:auto;overflow-x:hidden;overflow-y:auto;">
+      <div style="clear:both;height:auto;width:30px;min-height: 105px;float:left;position:absolute;">
+          <p class="price">
+          {% set item_index = page_size*(page-1)+loop.index %}
+          <span class="value price">
+            {{item_index}}.-
+          </span>
+        </p>
+      </div>
+      <!-- div style="height:auto;float:left;overflow-x: hidden;margin-left: 50px;margin-right: 25px;position:absolute;"-->
+        <div style="margin-left:50px;margin-right:25px;position:relative;height:auto;width:95%;">
+          {% if consulta.property %}
+            <h3>Consulta por {{consulta.property.prop_operation_id|operationfy}} de  
+              <a href="{{url_for('realestate/ficha', key=consulta.property.key()|string, oper=consulta.property.prop_operation_id|string , realestate=consulta.property.realestate.key()|string)}}" target="_blank" title="Ver ficha en nueva ventana">esta propiedad</a>.
+            </h3>
+          {% else %}
+            <h3>Consulta de contacto</h3>  
+          {% endif %}
+          <p style="margin-bottom:10px;">
+            Nombre: <b>{{consulta.sender_name}}</b><br/>
+            Email: <b>{{consulta.sender_email}}</b><br/>
+            Consulta: <b>{{consulta.sender_comment}}</b><br/>
+            Teléfono: <b>{{consulta.sender_telephone if consulta.sender_telephone else 'N/D'}}</b><br/>
+            {% if consulta.property %}
+            Propiedad consultada: <a href="{{url_for('realestate/ficha', key=consulta.property.key()|string, oper=consulta.property.prop_operation_id|string , realestate=consulta.property.realestate.key()|string)}}" target="_blank" title="Ver ficha en nueva ventana">Ver ficha</a>.<br/>
+            {% endif %}
+            Consulta enviada desde DirectoDueño el día {{ consulta.created_at.strftime('%d/%m/%Y')}}
+          </p>
+        </div>
+      <!--/div-->
+    </div>

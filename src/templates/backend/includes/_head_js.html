@@ -1,0 +1,13 @@
+{% if is_debug or 'test' in app_version %}
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.8.7.custom.min.js"></script>
+<script type="text/javascript" src="/js/jquery.addplaceholder.js"></script>
+<script type="text/javascript" src="/js/swfupload.js"></script>
+<script type="text/javascript" src="/js/plugins/swfupload.cookies.js"></script>
+<script type="text/javascript" src="/js/jquery.ketchup.js"></script>
+<script type="text/javascript" src="/js/jquery.listnav.pack-2.1.js"></script>
+<script type="text/javascript" src="/js/backend.js"></script>
+
+{% else %}
+<script type="text/javascript" src="/js/backend.min-{{app_version}}.js"></script>
+{% endif %}

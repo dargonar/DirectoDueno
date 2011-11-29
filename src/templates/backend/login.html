@@ -1,0 +1,69 @@
+{% extends "backend/_base2.html" %}
+
+{% block content %}
+  <div id="login_container" class="login_window" align="center" style="overflow:hidden; width:900px; margin:auto;">
+    {% if flash %}
+      <div class="msg_{{flash.type}}"><b>{{flash.message}}</b></div>
+    {% endif %}
+    <div class="popup" style="float:left; width:435px;">
+      <div id="login" class="popup_box" align="left" style="min-height:232px;"> 
+        <div class="header" style="font-size:14px; font-weight:bold; color:#3E8924;">Usuario Registrado</div>
+        <form action="{{url_for('backend/auth/login')}}" method="post">
+          <p class="first"> 
+            <span class="field">
+              <input class="xg long" type="text" value="" placeholder="Ingrese su Email" title="Ingrese su Email" tabindex="1" name="useremail" id="useremail">
+            </span> 
+          </p>
+          <p class="last"> 
+            <span class="field">
+              <input class="xg medium" type="password" value="" placeholder="Ingrese su Contraseña" title="Ingrese su Contraseña" tabindex="2" name="userpass" id="userpass" />
+              <a id="btnForgotPass" href="#" onclick="jQuery('#login').hide();jQuery('#restore_pass').show(); return false;" class="small">Olvidó su contraseña?</a> 
+            </span> 
+          </p>
+          <a href="#" class="fancy_button login"><input type="submit" value="INGRESAR" name=""></a>
+        </form>
+        <!--div jqtransform="true">
+          <div class="ex-label"> 
+            <input type="checkbox" checked="checked" id="" name="">
+            &nbsp;Recordarme en este equipo 
+          </div>
+        </div-->
+      </div>
+      
+      <form action="{{url_for('backend/auth/restore/request')}}" method="post" id="restore_pass">
+        <div class="popup_box" align="left"> 
+            <div class="header"><b>¿Olvidó su contraseña?</b> Le enviaremos un email para recuperarla.</div>
+            <p class="first">
+                <span class="field">
+                    <input class="xg long" type="input" value="" placeholder="Ingrese su Email" title="Ingrese su Email" tabindex="1" name="useremail" id="useremail">
+                </span> 
+            </p>
+            <a href="#" class="fancy_button restore"><input type="submit" value="MODIFICAR CONTRASEÑA" name="" style="*width:250px !important;"></a>
+            <a id="btnLogin" style="float:left; height:42px; display:inline; margin-top:10px; line-height:42px; margin-left:10px;" href="#" onclick="jQuery('#restore_pass').hide();jQuery('#login').show(); return false;">Volver a Login</a> 
+        </div>
+      </form>
+    </div>
+    <div class="popup" style="float:right; width:435px;">
+      <div id="login" class="popup_box" align="center" style="min-height:232px;"> 
+        <div class="header">
+        	<a style="font-size:14px; font-weight:bold;" href="{{url_for('backend/auth/signup')}}">¿No estas registrado?</a>				 		</div>
+            
+        <p style="margin-top: 40px; margin-bottom:15px;">Regístrese ahora y comience a vender, es fácil y rápido.</p>
+            
+        <div style="background:#EEEEEE; border-radius: 5px; -webkit-border-radius: 5px;	-moz-border-radius: 5px; overflow:hidden; padding:20px;">
+        
+        
+        <form method="get" action="{{ url_for('backend/auth/signup') }}">
+            <a class="fancy_button login" href="#" style="margin-left:57px;">
+                	<input style="width:235px" type="submit" name="" value="Registrarme Ahora!">
+            </a>
+        </form>
+
+        </div>
+
+
+      </div>       
+    </div>
+    <!--div class="bgpopup"></div-->
+  </div>
+{% endblock %}

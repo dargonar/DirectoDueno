@@ -1,0 +1,9 @@
+{% extends "email/_base.txt"%}
+
+{%block content%}
+    Estimado,
+      
+    Un usuario de DirectoDueño ha compartido una vista de propiedades con vos.
+    Para acceder ingresá a {{link}}.
+      
+{%endblock%}  

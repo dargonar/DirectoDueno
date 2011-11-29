@@ -1,0 +1,55 @@
+{%- macro select_option(key, value) -%}
+  {% if preset and preset[key] and preset[key]==value %}
+    selected="selected"
+  {% endif %}
+{%- endmacro -%}
+
+  <!-- LOADER -->
+  <div class="side_loadebox" id="loading_sidebar" style="display:none;" title="Aguarde...">
+    <div class="content" title="Aguarde...">
+      <p class="number">!</p>
+      <p class="label">Cargando propiedades</p>
+      <img title="Aguarde..." class="loader" src="/img/misc/loader_s.gif" />
+    </div>
+  </div>
+    
+  <!-- ACTIONS BAR -->
+  <!--div class="r_actions_bar">
+    <div class="r_asb save"><a></a>Salvar Búsqueda</div>
+  </div-->
+  
+<!-- ORDER BY -->
+  <div id="r_actions_bar" class="r_actions_bar order">
+    <label>Ordenar por</label>
+    <select name="sort" id="sort" >
+      <optgroup label="Precio">
+        <option value="sort_price"       {{ select_option('sort', 'sort_price') }} >menor a mayor</option>
+        <option value="-sort_price"        {{ select_option('sort', '-sort_price') }} >mayor a menor</option>
+      </optgroup>
+      <!--optgroup label="Ambientes">
+        <option value="-rooms"            {{ select_option('sort', '-rooms') }}>menor a mayor</option>
+      </optgroup>
+      <optgroup label="Dormitorios">
+        <option value="-bedrooms"         {{ select_option('sort', '-bedroom') }}>menor a mayor</option>
+      </optgroup>
+      <optgroup label="Superficie cubierta">
+        <option value="-area_indoor"      {{ select_option('sort', '-area_indoor') }}>menor a mayor</option>
+      </optgroup>
+      <optgroup label="Fecha de publicación">
+        <option value="-published_at"     {{ select_option('sort', '-published_at') }}>menor a mayor</option>
+      </optgroup>
+      <optgroup label="Fecha de cambio de precio">
+        <option value="-price_changed_at" {{ select_option('sort', '-price_changed_at') }} >menor a mayor</option>
+      </optgroup-->
+    </select>
+  </div>
+  
+<!-- LISTA DE PROPIEDADES -->
+<div class="prop_container" id="prop_container">
+  {{ html_property_list if html_property_list is defined and html_property_list else ''}}
+</div>
+
+<div class="foot_prop_list">
+    <div class="qty">Viendo <b id="tab_viewing_count">0</b> propiedades. Página <b id="tab_viewing_page">0</b>.</div>
+     <a onclick="return onShowCompare();" href="#" id="btnCompare" class="btnCompare">Comparar</a>
+</div>

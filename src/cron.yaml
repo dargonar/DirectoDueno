@@ -1,0 +1,12 @@
+cron:
+- description: Baja los pagos (Tuti) de DM mediante IPN y asigna los pagos a facturas
+  url: /tsk/run_ipn/tuti
+  schedule: every day 04:00
+
+- description: Baja los pagos (Emi) de DM mediante IPN y asigna los pagos a facturas
+  url: /tsk/run_ipn/emi
+  schedule: every day 04:00
+  
+- description: Generador de facturas y actualizador de estados
+  url: /tsk/run_invoicer
+  schedule: every day 05:00

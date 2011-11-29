@@ -1,0 +1,33 @@
+
+<!-- NAV PROP LIST-->
+<div class="uibutton-toolbar picture">
+    <div class="actions">
+        <span class="label">Seleccionar:</span>
+        <div class="uibutton-group">
+            <a class="selall uibutton" href="#">Todo</a>
+            <a class="dselall uibutton" href="#">Nada</a>
+        </div>
+        {% if form.status.data == Property._DELETED %}
+        <a class="ressel uibutton" href="#">Recuperar</a>
+        {% else %}
+        <a class="delsel uibutton icon delete" href="#">Eliminar</a>
+        {% endif %}
+    </div>
+       
+    <ul class="uibutton-group navbar">
+        <li class="prop_qty">
+            <div><b>{{ page_size*(page-1)+1 }}  - {{ page_size*(page-1)+loop.length }} </b></div>
+            <!--<ul class="mnu">
+                <li>Primera página</li>
+                <li>Última página</li>
+            </ul>-->
+        </li>
+        {% set prevurl = url_for('property/listpage', page=page-1) if page > 1 else '#' %}
+        {% set prevena = 'disable' if prevurl == '#' else '' %}
+        {% set nexturl = url_for('property/listpage', page=page+1) if properties|length == page_size else '#' %}
+        {% set nextena = 'disable' if nexturl == '#' else '' %}
+
+        <li><a class="uibutton icon prev {{prevena}}" href="{{prevurl}}"></a></li>
+        <li><a class="uibutton icon next {{nextena}}" href="{{nexturl}}"></a></li>
+    </ul>
+</div>

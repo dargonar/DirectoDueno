@@ -1,0 +1,71 @@
+{% extends "backend/_base.html" %}
+
+{% block menuleft %}
+{% include "backend/includes/property_list_menu_left.html" %}
+{% endblock %}
+
+{% block headscript %}
+<script type="text/javascript">
+$(document).ready(function() {
+  init_property_list('{{url_for('property/new')}}');
+});
+</script>
+{% endblock %}
+
+{% block content %}
+	<h1>Propiedades {{ form.status.data | statusfy }}</h1>
+  {% if form.status.data == Property._DELETED %}
+  <p class="msg_warning" align="center"><span class="title">
+  Las propiedades eliminadas tienen una vigencia de 30 días, luego serán definitivamente borradas.
+  </span>
+  </p>
+  {% endif %}
+  {% if flash %}
+  <div class="msg_{{flash.type}}">{{flash.message}}</div>
+  {% endif %}
+
+    
+  <!-- PROP LIST-->  
+  {% for property in properties %}
+  {% if loop.first %} 
+  
+	<div id="sort_by">
+    <div class="sortbox">
+       <label>Ordenar por</label> 
+       {{ form.sort(id='fake_sort') }}
+    </div>
+    <div class="button add" id="nprop"><a href="{{url_for('property/new')}}"></a>Nueva Propiedad</div>
+  </div>
+  <form id="remove" method="POST" action="{{url_for('property/bulkremove')}}">
+  <input id="newstatus" type="hidden" name="newstatus" value="0"/>
+  <input type="hidden" name="page" value="{{page}}"/>
+  {% include "backend/includes/nav_prop_list.html" %}
+  {% endif %}
+  {% include "backend/includes/prop_list.html" %}
+  {% if loop.last %} 
+  </form>
+  <div class="h_last"></div>
+  {% include "backend/includes/nav_prop_list.html" %}
+  {% endif %}
+  {% else %}
+  <div class="divider"></div>
+  <div class="noelement proplist txt">
+  	<span>No se encontraron propiedades</span>
+  </div>
+  {% if form.status.data == Property._PUBLISHED %}
+  <div class="divider_h"></div>
+  <div class="btnBig" onclick="location.href='{{url_for('property/new')}}'"><a href="#"></a>Nueva Propiedad</div>
+  {% endif %}
+  {% endfor %}
+  
+  
+  <!-- NAV BUTTONS -->
+  <!--div class="btnUpload" style="width:180px;" onclick="location.href='index.php'">
+  <a href="#"></a>
+  Nuevo Inmueble
+  </div-->
+  
+  
+
+  
+{% endblock %}

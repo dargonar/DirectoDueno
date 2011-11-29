@@ -1,0 +1,30 @@
+{% extends "backend/_base.html" %}
+ 
+{% block content %}
+    <div style="overflow:hidden; margin-bottom:20px;">
+      <h1 style="float:left;">{{title}}</h1>
+    </div>
+      
+    <ul class="tabs_admin">
+        <li {% if current_tab == 'type' %} class="active" {% endif %} ><a {% if current_tab == 'pictures' %} href="{{url_for('property/edit', key=key)}}" {% else %} href="#" {% endif %}>Características</a></li>
+        <li {% if current_tab == 'pictures' %} class="active" {% endif %} >
+        {% if key %}
+        <a href="{{url_for('property/images',key=key)}}">Fotos</a>
+        {% else %}
+        <a href="javascript:alert('Debe guardar la propiedad para subir las fotos')">Fotos</a>
+        {% endif %}
+        </li>
+    </ul>
+
+    <!-- FLASH MESSAGE -->
+    {% if flash %}
+    <div class="msg_{{flash.type}}">{{flash.message}}</div>
+    {% endif %}
+    
+    <!-- TAB CONTENT TYPE -->
+    <div id="{{current_tab}}" class="tab_content_admin">
+        {% block tab_content %}
+        {% endblock %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,252 @@
+  {% extends "frontend/_base.html"%}
+  
+  {%block metas%}
+    <title>DirectoDueño - Alquiler y Venta de Casas, Departamentos, Locales y Lotes en La Plata y Buenos Aires Zona Norte</title>
+    <meta name="description" content="Encuentre su propiedad en La Plata y el Gran buenos Aires. Ubique casa, departamento, ph, oficina, local, galpón, consultorio, country, quinta, lote, terreno, cochera o campo en venta y en alquiler." />
+    <meta name="keywords" content="DirectoDueño, búsqueda de inmuebles por mapa, casa, departamento, ph, oficina, local, galpón, consultorio, country, quinta, lote, terreno, cochera, campo, en alquiler, en venta" />
+  {%endblock%}
+  
+  {%block head%}
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600&v2' rel='stylesheet' type='text/css'>
+  {%endblock%}  
+  
+  {%block js%}
+    <script type="text/javascript">
+      var OPER_SELL             = {{ _OPER_SELL }};
+      var OPER_RENT             = {{ _OPER_RENT }};
+      
+      {% set price_ranges = config_array['multiple_values_properties']['prop_operation_id']['ranges'][preset['prop_operation_id']] %}
+      var default_slider_step   = {{ price_ranges['step'] }};
+      var default_slider_min    = {{ price_ranges['min'] }};
+      var default_slider_max    = {{ price_ranges['max'] }};
+
+      {% set price_ranges = config_array['multiple_values_properties']['prop_operation_id']['ranges']['1'] %}
+      var default_slider_step1  = {{ price_ranges['step'] }};
+      var default_slider_min1   = {{ price_ranges['min'] }};
+      var default_slider_max1   = {{ price_ranges['max'] }};
+
+      {% set price_ranges = config_array['multiple_values_properties']['prop_operation_id']['ranges']['2'] %}
+      var default_slider_step2  = {{ price_ranges['step'] }};
+      var default_slider_min2   = {{ price_ranges['min'] }};
+      var default_slider_max2   = {{ price_ranges['max'] }};
+      
+      jQuery(document).ready(function(){
+        direct_zone_links                     = new Array();
+        direct_zone_links['la_plata']           = new Array('-34.921127', '-57.954626', 13);
+        direct_zone_links['gonnet']             = new Array('-34.888536', '-58.02259', 14);
+        direct_zone_links['city_bell']          = new Array('-34.879453', '-58.061228', 14);
+        direct_zone_links['bsas_zona_norte']    = new Array('-34.51469',  '-58.486061', 13);
+      });
+      
+      function onDirectLink(key)
+      {
+        var data = direct_zone_links[key];
+        jQuery('#center_lat').val(data[0]);
+        jQuery('#center_lon').val(data[1]);
+        if(data[2]>0)
+        {
+          jQuery('#zoom_level').val(data[2]);
+        } 
+        checkForm();
+        jQuery('#home_search_form').submit();
+        return false;
+      }
+      
+      $(document).ready( function() {
+        init_home();
+      });
+    </script>
+  {%endblock%}  
+  
+  {% block body %}
+    
+  <body class="frontend_home">
+    <div id="container" align="center">
+        <!-- /// Container 960 /// -->
+        <div id="content" align="left">
+          <!-- /// HEADER /// -->
+          <div id="header">
+            <a href="/" title="Página de inicio de DirectoDueño"><img class="logo" src="/img/pixel-transp.gif" /></a>
+            {%include "frontend/templates/header_links.html"%}
+          </div>
+            <div id="search">
+              <div class="home_title">
+                <div class="first">
+                  DirectoDueño donde 
+                </div>
+                <div class="second">
+                  vendés y alquilás 
+                </div>
+                <div class="first">
+                  sin intermediarios
+                </div>
+                <div class="third">
+                  Miles de Inmuebles te están esperando, 
+encontrá el tuyo de la forma más Simple.
+                </div>
+              </div>
+              <div class="box">
+                <form action="{{ url_for('frontend/map') }}" method="post" name="home_search_form" id="home_search_form" >
+                  <input name="price_min" id="price_min" type="hidden" value="0" />
+                  <input name="price_max" id="price_max" type="hidden" value="0" />
+                  <input name="center_lat" id="center_lat" type="hidden" value="0" />
+                  <input name="center_lon" id="center_lon" type="hidden" value="0" />
+                  <input name="zoom_level" id="zoom_level" type="hidden" value="14" />
+                  <div id="searchbox">
+                    <input class="search" name="searchmap" id="searchmap" placeholder="ej: La Plata, Buenos Aires, Argentina" type="text" value="" />                    
+                    <input type="button" id="btnSearchHome" value="Buscar" style="border:none;"/>
+                    <ul id="locations">
+                      <li><a href="/mapa/casas-departamentos-ph-en-venta-en-la-plata/75004" onClick="return onDirectLink('la_plata');" title="La Plata (centro)">La Plata,</a></li>
+                      <li><a href="/mapa/casas-departamentos-ph-en-venta-en-gonnet/72009" onClick="return onDirectLink('gonnet');" title="Manuel B. Gonnet">Gonnet,</a></li>
+                      <li><a href="/mapa/casas-departamentos-ph-en-venta-en-city-bell/71004" onClick="return onDirectLink('city_bell');" title="City Bell">City Bell,</a></li>
+                      <li><a href="/mapa/casas-departamentos-ph-en-venta-en-zona-norte/76006" onClick="return onDirectLink('bsas_zona_norte');" title="Vicente López, Florida, Olivos, La Lucila, Martínez, Acasusso, San Isidro">Buenos Aires Zona Norte</a></li>
+                    </ul>
+                    <div class="hr"></div>
+                  </div>
+                  <div id="filterbox">
+                    <ul>
+                      <li class="type">
+                        <h4>ver sólo:</h4>
+                        <div jqtransform="true">
+                          {% set in_home = config_array['cells']['prop_type_id']['in_home'] %}
+                          {% set type_descriptions = config_array['cells']['prop_type_id']['descriptions'] %}
+                          {% set short_type_descriptions = config_array['cells']['prop_type_id']['short_descriptions'] %}
+                          {% for item in type_descriptions %}
+                            {% set index = loop.index0 %} 
+                            {% if index>0 and in_home[index]==1 %}
+                              <div class="ex-label" title="{{ item }}">
+                                <input type="checkbox" checked="checked" name="prop_type_id[{{ index }}]" id="prop_type_id[{{ index }}]" title="{{ item }}" />
+                                &nbsp;{{ short_type_descriptions[index] }}
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+                          <div>
+                            <a class="more" href="{{url_for('frontend/map')}}?filtro_extendido=1">más &raquo;</a>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="oper">
+                      <h4>para:</h4>
+                        <div id="prop_operation_id_container">
+                          {% set key = 'prop_operation_id' %}
+                          {% set descriptions = config_array['multiple_values_properties'][key]['descriptions'] %}
+                          {% for item in descriptions %}
+                            {% set index = loop.index0 %}
+                            {% if index>0 %}
+                              <label class="ex-label" style="{{ 'padding-right:15px;' if index==1 else ''}}">
+                                <input type="radio" {{'checked="checked"' if index==_OPER_SELL else ''}} id="prop_operation_id{{index}}" name="prop_operation_id" value="{{index}}" />{{item}}
+                              </label>
+                            {% endif %}
+                          {% endfor %}
+                          <input type="hidden" id="prop_operation_id" value="{{_OPER_SELL}}">
+                          <div>
+                            <a style="display:none;" class="more" href="#">más &raquo;</a>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="hr"></div>
+                    <div class="price_option_item">
+                      <label>Precio</label>
+                      <div class="slider" id="price_slider"></div>
+                      <span id="price_display">0 <span class="to">hasta</span> 150</span>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div id="features">
+              <div class="col">
+                  <img class="icon" src="/img/icons/map.gif" style="position:relative;margin-left:-5px;" />
+                    <div class="data">
+                        <!--<h3>Buscá por mapa</h3>-->
+                    <h3>Buscá en el mapa</h3>
+                        <p>
+                            ¿Cerca de la autopista? ¿Cerca de la terminal, un parque o una plaza? <br/> 
+                            Encontrá la propiedad que estás buscando de la forma más simple.
+                      </p>
+                    </div>
+                </div>
+                
+              <div class="col">
+                  <img class="icon" src="/img/icons/share.png" style="margin-left:-10px;" /> <!-- alert.gif -->
+                    <div class="data">
+                        <!--<h3>Compartí tu búsqueda</h3>-->
+                    <h3>Comparte tu búsqueda</h3>
+                        <p>
+                          Copiá y compartí tus búsquedas.<br/>
+                          No necesitas recordar la ficha de cada propiedad como tampoco su ubicación: <b>lo tienes en el link</b>.<br/>
+                          <!-- Compartila con tu pareja así te da el <i>OK</i> con la propiedad que elegiste! -->
+                        </p>
+                    </div>
+                </div>
+              <div class="comingsoon" style="text-align:right;">
+                <!--div id="highlights">
+                  <ul style="list-style:none;display:block;">
+                    <li>
+                      <em class="highlight">
+                        <span>
+                          <img src="/img/backgorunds/stars.png" width="50" height="20" alt="" style="top:10px; left:4px; position:absolute;">
+                        </span>
+                      </em>
+                    Mirá en lo que estamos trabajando y si querés, danos feedbak!</li>
+                    <li>
+                      <em class="highlight">
+                        <span>
+                          <img src="/img/icons/map_icons_0008_iphone.png" height="30" alt="" style="top:6px; left:11px; position:absolute;">
+                        </span>
+                      </em>
+                    Pronto para iPhone y Android. Dejanos tu mail y te avisamos.</li>
+                  </ul>
+                </div-->
+                <!--img class="icon" src="/img/zone.gif" style="margin-top:-15px; margin-left:30px;" /-->
+                <a href="admin/signup"><img src="/img/banners/publicar.gif" /></a>
+              </div>
+    <!-- SEGUNDA LINEA -->
+              <h1>¿Cómo utilizar la aplicación?</h1>
+              <div class="col">
+                <div class="step">1</div>
+                <div class="data">
+                  <!--<h3>Ubicá el mapa</h3>-->
+                  <h3>Localizá el mapa</h3>
+                  <p>
+                    Ubicá el mapa en la zona en que estás buscando propiedades.<br/>
+                      Podés hacerlo <b>arrastrando el mapa</b>, o <b>escribiendo la dirección deseada en la caja de búsqueda</b>.<br/>
+                      Por defecto, localizamos tu ubicación y buscamos entorno a ella.
+                  </p>
+                </div>
+              </div> 
+                
+              <div class="col">
+                <div class="step">2</div>
+                <div class="data">
+                  <!--<h3>Ajustá el filtro</h3>-->
+                  <h3>Ajustá tus preferencias</h3>
+                  <p>
+                    El filtro principal sobre el mapa te permite ajustar los <b>tipos de propiedad</b> más buscados, la <b>operación</b> que querés realizar y el <b>valor</b> que tenés pensado gastar.<br/>
+                    Podés ajustar tu búsqueda haciendo click en <b>+ opciones</b>. 
+                  </p>
+                </div>
+              </div> 
+              <div class="col">
+                <div class="step">3</div>
+                <div class="data">
+                  <h3>Contactá al dueño</h3>
+                  <p>
+                    Luego de navegar el mapa y elegir las propiedades de tu agrado, comunicate con el dueño.<br/>
+                    <b>No necesitás registrarte.</b>.<br/>
+                  </p>
+                    <!--a href="{{ url_for('frontend/map')}}" title="A buscar mi propiedad!" class="fancy_button find"> 
+                        <span>Encontrá tu propiedad!<img src="/img/pixel-transp.gif" /></span> 
+                    </a-->
+                </div>
+              </div> 
+              <br/>
+            </div>
+        </div>
+       {% set footer_extended=1 %} 
+       {% include "frontend/templates/footer.html" %}
+    </div>
+    {% include "frontend/help.html" %}
+  </body>
+{% endblock %}

@@ -1,0 +1,62 @@
+<!-- Contenido TAB 2 -->
+    <dl class="mySearchHead">
+        <dt>Busquedas</dt>
+        <dd>Estado</dd>
+    </dl>
+    
+    
+<div class="accContainer"> 
+
+    <div id="accordion">
+        <h3>
+            <div class="name">Casa quinta verano 2010</div>
+            <div class="actions">
+                <a>Editar</a>| 
+                 <a>Eliminar</a>
+             </div>
+            <div class="icon"><img src="/img/icons/bell.png"/></div>
+        </h3>
+        
+        <div class="propCont">
+            {# 
+            include "frontend/templates/prop.html"
+            #}
+        </div>
+        
+        <h3>
+            <div class="name">Depto para estudio</div>
+            <div class="actions">
+                <a>Editar</a>| 
+                 <a>Eliminar</a>
+             </div>
+            <div class="icon"><img src="/img/icons/bell.png"/></div>
+        </h3>
+        <div class="propCont">
+            {# 
+            include "frontend/templates/prop.html"
+            #}
+        </div>
+        
+        <h3>
+            <div class="name">Casa en alquiler</div>
+            <div class="actions">
+                <a>Editar</a>| 
+                 <a>Eliminar</a>
+             </div>
+            <div class="icon"><img src="/img/icons/bell.png"/></div>
+            
+        </h3>
+        <div class="propCont">
+            {# include "frontend/templates/prop.html" #}
+        </div>
+    </div>
+
+
+
+</div>
+<!-- FIN Contenido TAB 2 -->
+
+<div class="foot_prop_list">
+    <div class="qty"></div>
+     <input onclick="location.href='{{ url_for('compare') }}'" id="btnCompare" class="btnCompare" type="button" value="Comparar" style="display:none;"/>
+</div>

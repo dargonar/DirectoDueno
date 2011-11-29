@@ -1,0 +1,24 @@
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&v2' rel='stylesheet' type='text/css'>
+<style type="text/css">
+	body.backend_simple #content,
+	body.backend_simple .content_data { width:auto !important;}
+	body.backend_simple #content { height:auto !important;}
+	body {
+    	*background: #D7E9F5;
+	}
+</style>
+
+
+{% extends "backend/_base2.html" %}
+
+
+{% block content %} 
+<div class="errorserv">
+  <p class="number">{{code}}</p>
+  <span class="init">{</span> 
+  <span class="info">{{text}}</span> <span class="end">}</span>
+</div>
+
+<div class="bgpopup"></div> 
+{% endblock %}
+

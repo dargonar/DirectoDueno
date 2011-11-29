@@ -1,0 +1,137 @@
+{% extends "backend/_base.html" %}
+
+{%- macro form_field(field, class='') -%}
+		{% if field.errors %}
+      {{field(class=class+' error', **kwargs)}}
+    {% else %}
+      {{field(class=class, **kwargs)}}
+    {% endif %}
+{%- endmacro -%}
+
+{%- macro form_field2(field) -%}
+  <dd {% if field.errors %} class="errorbox" {% endif %} >
+    {{ form_field(field, **kwargs)}}
+    {{ form_error(field) }}
+  </dd>  
+{%- endmacro -%}
+
+{%- macro form_error(field) -%}
+    {% if field.description != '' %}<span class="m2">{{field.description}}</span>{% endif %}
+    {% if field.errors %} <p class="error">{{ field.errors.0 }}</p> {% endif %}
+{%- endmacro -%}
+
+
+{%- macro form_field2_container_double(field1, field2) -%}
+  <dd {% if field1.errors or field2.errors %} class="errorbox" {% endif %} >
+{%- endmacro -%}
+
+{%- macro form_field2_container(field) -%}
+  <dd {% if field.errors %} class="errorbox" {% endif %} >
+{%- endmacro -%}
+
+{% block headscript %}
+<script type="text/javascript">
+jQuery(document).ready(function() {
+  init_user();
+});
+</script>
+{% endblock %}
+
+{% block content %}
+
+	<div style="overflow:hidden; margin-bottom:20px;">
+		<h1>Perfil de Usuario</h1>
+  </div>
+  {% if flash %}
+  <div class="msg_{{flash.type}}"><b>{{flash.message}}</b></div>
+  {% endif %}
+  
+    <h2 class="title">Cambio de contraseña</h2>
+      <form id="cp_form" action="{{url_for('backend/user/change_password')}}" method="post" >
+        <dl style="display:none;"class="form">     
+          <dt>
+            Contraseña
+          </dt>
+          <dd>
+            <a id="btnChangePassword" href="#" class="uibutton">Cambiar Contraseña</a>
+          </dd>
+        </dl>
+        
+        <dl class="form">   
+            <dt>Nueva Contraseña</dt>
+            {{ form_field2(password_form.password, value='', placeholder="Contraseña", id="password") }}
+        </dl>
+        <dl class="form">   
+            <dt>Repita nueva contraseña</dt>
+            {{ form_field2_container(password_form.confirm) }}
+              {{ form_field(password_form.confirm, value='', placeholder="Repita contraseña", id="confirm_password") }}
+              <a href="#" class="btnIcon" id="password_unequal" style="display:none;" title="Verifique que las contraseñas sean iguales">
+                <img src="/img/icons/delete.png" />
+              </a><br />
+            </dd>
+        </dl>
+        <dl class="form">   
+          <dt class="gray">Nivel de Seguridad</dt>
+            <dd>
+                <div class="progressbar password">
+                    <p>Muy Bajo</p>
+                    <div class="point level1"></div>
+                </div>
+            </dd>
+        </dl>  
+        
+        <dl class="form">
+          <dt></dt>
+            <dd>
+              <div class="navButtons" style="text-align:left;">
+                <input type="submit" value="Cambiar Contraseña" name="" class="btnWizard">
+              </div>
+            </dd>
+        </dl>  
+      </form>  
+      {{ form.rol(style="display:none;") }}
+      <!-- ///// CONTACT DATA ///// -->
+    <h2 class="title">Información Personal</h2>
+    <form id="signup_form" action="{{url_for('backend/user/edit')}}" method="post" >
+      <input type="hidden" name="key" value="{{key}}" />
+      <dl class="form">
+        <dt>Nombre de Usuario <small>(email)</small></dt>
+        {{ form_field2_container(form.email) }}
+          <!-- placeholder="Email", class="hint", hint="Email", -->
+          {{ form_field(form.email, class="hint", readonly="readonly", id="user_name") }}
+          <a href="#" id="btnChangeEmail" class="uibutton icon edit">Editar</a>
+          {{ form_error(form.email) }}
+        </dd>
+      </dl>
+      
+      
+      <dl class="form">
+          <dt>Nombre</dt>
+          {{ form_field2(form.first_name, placeholder="Nombre") }}
+      </dl>
+      <dl class="form">
+        <dt>Apellido</dt>
+        {{ form_field2(form.last_name, placeholder="Apellido") }}
+      </dl>
+      <dl class="form">
+        <dt>Género</dt>
+        {{ form_field2(form.gender) }}
+      </dl>    
+      <dl class="form">
+        <dt>Teléfono móvil</dt>
+        {{ form_field2(form.mobile_number, placeholder="Cód. Area + Número (Interno)") }}
+      </dl>  
+      <dl class="form">
+        <dt>Teléfono</dt>
+        {{ form_field2(form.telephone_number, placeholder="Cód. Area + Número (Interno)") }}
+      </dl>
+      <dl class="form">
+        <dt></dt>
+        <dd>
+          <div class="navButtons" style="text-align:left;">
+            <input type="submit" value="Guardar Usuario" name="" class="btnWizard">
+          </div>
+        </dd>
+      </dl>  
+    </form>  
+{% endblock  %}

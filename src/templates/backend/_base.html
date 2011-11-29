@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DirectoDueño Administración</title>
+    {% include "backend/includes/_head_css.html" %}
+    {% include "backend/includes/_head_js.html" %}
+    {% block headscript %}
+    {% endblock %}
+    <style type="text/css">
+    td { vertical-align: top; }
+    </style>
+</head>
+
+<body class="backend">
+  {% if is_no_payment %}
+    {% include "backend/includes/header_payment_advice.html" %}
+  {% endif %}
+  {% include "backend/includes/header.html" %}
+  
+  <ul id="mnuTop" class="tabs">
+    <li class="{{ 'active' if mnutop == 'propiedades' else '' }}"><a href="{{ url_for('property/list') if not is_no_payment else '#'}}">Mi/s Propiedad/es</a></li>
+    
+    <li class="{{ 'active' if mnutop == 'cuenta' else '' }}"><a href="{{url_for('backend/account/status')}}">Mi Cuenta</a></li>
+    <li class="{{ 'active' if mnutop == 'usuarios' else '' }}"><a href="{{url_for('backend/user/edit') if not is_no_payment else '#' }}">Perfil de Usuario</a></li>
+    
+    <li class="{{ 'active' if mnutop == 'consultas' else '' }}"><a href="{{url_for('backend/consultas/list')}}">Consultas</a></li>
+    <li class="{{ 'active' if mnutop == 'help' else '' }}"><a href="{{url_for('backend/help') }}">Ayuda</a></li>
+  </ul>
+
+{% if mnutop == 'propiedades' %}
+<ul class="SubMnuTop">
+    <li><a href="{{url_for('property/list')}}"><span></span>Listado de propiedades</a></li>
+    <li><a href="{{url_for('property/new')}}"><span></span>Cargar nueva propiedad</a></li>
+</ul>
+{% endif %}
+ 
+<div class="container" id="container">       
+   
+     <table width="100%" border="0">
+      <tr>
+        <td class="colLeft">
+            {% block menuleft %}
+            {% endblock %}
+        </td>
+        <td>
+            {% block content %}
+            {% endblock %}   
+        </td>
+      </tr>
+    </table>
+    {% include "backend/includes/footer.html" %}
+</div>
+
+</body>
+</html>

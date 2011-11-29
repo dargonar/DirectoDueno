@@ -1,0 +1,66 @@
+{%- macro select_option2(key, value) -%}
+  {% if preset and preset[key] and preset[key]==value %}
+    selected="selected"
+  {% endif %}
+{%- endmacro -%}
+
+{%- macro select_checkbox2(key) -%}
+  {% if (preset and preset[key]) or not preset %}
+    checked="checked"
+  {% endif %}
+{%- endmacro -%}
+
+<form id="main_filter_options_form" action="#" method="get" >
+  <ul id="filters_bar">
+    <li class="important">
+      {% set type_descriptions = config_array['cells']['prop_type_id']['descriptions'] %}
+      {% set short_type_descriptions = config_array['cells']['prop_type_id']['short_descriptions'] %}
+      {% set groups = config_array['cells']['prop_type_id']['generated_attributes'].keys() %}
+      {% set in_home = config_array['cells']['prop_type_id']['in_home'] %}
+      <div class="block" jqtransform="true" group="{{groups[0]}}" style="margin:7px 9px;">
+        {% for item in type_descriptions %}
+          {% set index = loop.index0 %} 
+          {% if in_home[index]==1 %}
+            <div class="ex-label" title="{{ item }}">
+              <input type="checkbox" group_item="{{groups[0]}}" {{ select_checkbox2('prop_type_id['+(index|string)+']') }} name="prop_type_id[{{ index }}]" id="prop_type_id_{{ index }}" title="{{ item }}" />
+              {{ short_type_descriptions[index] }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </li>
+    <li class="important">
+      <div class="block" title="Tipo de operación">
+        <select name="prop_operation_id" id="prop_operation_id" style="margin:7px 9px;" title="Tipo de operación">
+        {% set key = 'prop_operation_id' %}
+        {% set descriptions = config_array['multiple_values_properties'][key]['descriptions'] %}
+        {% for item in descriptions %}
+          {% set index = loop.index0 %}
+          {% if index>0 %}
+            <option {{ select_option2('prop_operation_id', index|string) }} value="{{index}}">{{item}}</option>
+          {% endif %}
+        {% endfor %}
+        </select>
+      </div>
+    </li>
+    <li class="important">
+      <div class="block price_option_item" title="Rango de precios">
+          <label title="Rango de precios" id="currency_selector">
+            <font style="display:none;" id="currency_title">Precio</font>
+            <select name="currency" id="currency" title="Moneda">
+              <option value="ars" select_option2('currency', 'ars') }} >Pesos</option>
+              <option value="usd" select_option2('currency', 'usd') }} >Dólares</option>
+            </select>
+          </label>
+          
+          <div class="slider" title="Rango de precios">
+            <div id="price_slider" class="filter-slider" title="Rango de precios"></div>
+          </div>
+          <span id="price_display">0 <span class="to">hasta</span> 150</span>
+      </div><!-- block -->
+    </li>
+    <li class="none">
+      <a class="btnDefault link" href="#" onclick="copyLink(); return false;" title="Copiar link de lo que estás viendo" >Copiar Link</a>
+    </li>
+  </ul>
+</form>

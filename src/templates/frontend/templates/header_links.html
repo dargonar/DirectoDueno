@@ -1,0 +1,15 @@
+<ul class="mnuTop"> 
+    <!-- ///// INICIO ///// -->
+    {% if in_map is defined %}
+    <!--li><a href="{{ url_for('frontend/home') }}" title="Inicio">Inicio</a></li-->
+    {% endif %}
+    
+	<!-- ///// PUBLICAR ///// -->
+{% if in_map is not defined %}
+    <li class="btnLight"><a href="{{ url_for('property/list') }}" title="Publicar mi propiedad">Soy Dueño</a></li>
+    <li style=""><a href="mailto:ayuda@directodueno.com" title="Ayuda">Ayuda</a></li>
+    
+    <!--li><a href="http://www.youtube.com/watch?v=QTIXl9ZKyUs" onclick="jQuery('#help_video').show(); return false;" title="Ver video de ayuda">Video</a></li-->
+{% endif %}
+    
+</ul>

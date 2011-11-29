@@ -1,0 +1,58 @@
+	<div class="list_box" jqtransform="true">
+    <!--h2 style="color:#000; margin-bottom:10px; font-size:14px; background:#eee; padding:8px;">Scalabrini Ortiz Raul Av. 3600 Piso 4º, San Cristobal</h2-->
+    <!-- CHECKBOX -->
+    <input name="{{property.key()|string}}" class="chkprop" id="{{property.key()|string}}" type="checkbox" />
+        
+    <!-- PICTURE -->
+        {% if property.main_image_url %}
+        <a href="{{url_for('property/images',key=property.key())}}">
+        	<img title="{{property.images_count}} fotos" class="pic" src="{{property.main_image_url}}=s140" style="max-width:140px;max-height:105px;" /> 
+        </a>
+        {% else %}  
+        <a href="{{url_for('property/edit',key=property.key())}}" class="noelement proplist pic"><span>Sin Fotos</span></a>
+        {% endif %}
+        
+        <!-- DATA -->
+        <div class="data">
+        	<h3>{{property | headlinify }}<span>- {{property | addressify }}</span></h3>
+            <p class="price">
+                <span class="label">Precio</span>
+                {% if session['request.data'].prop_operation_id == Property._OPER_SELL %}
+                <span class="value price"><small>{{ property.price_sell_currency }}</small> {{property.price_sell|currencyfy}}</span>
+                {% elif session['request.data'].prop_operation_id == Property._OPER_RENT %}
+                <span class="value price"><small>{{ property.price_rent_currency }}</small> {{property.price_rent|currencyfy}}</span>
+                {% else %}
+                <span class="value price">
+                  {% if property.prop_operation_id == Property._OPER_RENT %}
+                  <small>{{property.price_rent_currency}}</small> {{property.price_rent|currencyfy}}
+                  {% elif property.prop_operation_id == Property._OPER_SELL %}
+                  <small>{{ property.price_sell_currency }}</small> {{property.price_sell|currencyfy}}
+                  {% else %}
+                  <small>{{property.price_rent_currency}}</small> {{property.price_rent|currencyfy}} /
+                  <small>{{ property.price_sell_currency }}</small> {{property.price_sell|currencyfy}}
+                  {% endif %}
+                </span>
+                {% endif %}
+            </p>
+            <p class="sup">
+                <span class="label">Superficie</span>
+                <span class="value sup">{{property.area_indoor}} m2</span>
+            </p>
+            <p class="detail" title="Visitas computadas desde el 28 de octubre de 2011.">{{property.main_description|truncate(120)}}<br/>&raquo; Ficha de propiedad vista <b>{{property.visits}}</b> veces.</p>
+            
+        </div>
+        
+        <!-- -->
+        <div class="actions">
+          <a class="uibutton" href="{{url_for('realestate/ficha', key=property.key()|string, oper=property.prop_operation_id|string , realestate=session['account.realestate.key'])}}" target="_blank" title="Ver ficha en nueva ventana">Ver ficha &raquo;</a>
+        	{% if session['account.realestate.key'] == property.realestate.key()|string %}
+            {% if property.is_deleted() %}
+            <a class="restorer uibutton" href="{{url_for('property/restore',key=property.key())}}" title="Recuperar de la papelera de reciclaje. Quedará como 'No publicada'.">Recuperar</a>
+            {% else %}
+            <a class="uibutton icon edit" href="{{url_for('property/edit',key=property.key())}}">Editar</a>
+            <a published="{{property.status}}" class="publisher uibutton icon delete" href="{{url_for('property/publish',key=property.key(), yes='0' if property.is_published() else '1')}}">{{'Desactivar' if property.is_published() else 'Publicar'}}</a>
+            {% endif %}
+          {% endif %}
+        </div>
+        
+    </div>

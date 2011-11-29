@@ -1,0 +1,116 @@
+  {% extends "frontend/_base.html"%}
+  
+  {%block metas%}
+    <title>DirectoDueño - Mapa {{'- '+title_description if title_description is defined else ''}}</title>
+    <meta name="description" content="Búsqueda por mapa" />
+    <meta name="keywords" content="" />
+  {%endblock%}
+  
+  {%block head%}
+    <style type="text/css"> 
+        html { width:100%; heigh:100%; overflow:hidden;}
+    </style>
+    <link href="/css/mapa_tabs{{app_version_id}}.css" rel="stylesheet" type="text/css" /> 
+  {%endblock%}  
+  
+  {%block js%}
+    <script type="text/javascript">
+      var config_array          = {{ config_arrayJSON }};
+      var max_results           = {{ max_results }};
+      var preset                = {{ presetJSON if preset else 'null' }};
+      var default_lat           = {{ preset['center_lat'] if preset and preset['center_lat'] and preset['center_lat'] != '0' else 'null' }};
+      var default_lon           = {{ preset['center_lon'] if preset and preset['center_lon'] and preset['center_lon'] != '0' else 'null' }};
+      var default_zoom_level    = {{ preset['zoom_level'] if preset and preset['zoom_level'] else '13' }};
+      
+      {% set price_ranges = config_array['multiple_values_properties']['prop_operation_id']['ranges'][preset['prop_operation_id']] %}
+      var default_slider_step   = {{ price_ranges['step'] }};
+      var default_slider_min    = {{ price_ranges['min'] }};
+      var default_slider_max    = {{ price_ranges['max'] }};
+      var default_min_value     = {{ preset['price_min'] if preset and preset['price_min'] else price_ranges['min'] }};
+      var default_max_value     = {{ preset['price_max'] if preset and preset['price_max'] else price_ranges['max'] }};
+      
+      {% set operation1_config = config_array['multiple_values_properties']['prop_operation_id']['ranges']['1'] %}
+      var default_slider_step1  = {{ operation1_config['step'] }};
+      var default_slider_min1   = {{ operation1_config['min'] }};
+      var default_slider_max1   = {{ operation1_config['max'] }};
+      {% set operation2_config = config_array['multiple_values_properties']['prop_operation_id']['ranges']['2'] %}
+      var default_slider_step2  = {{ operation2_config['step'] }};
+      var default_slider_min2   = {{ operation2_config['min'] }};
+      var default_slider_max2   = {{ operation2_config['max'] }};
+      
+      var show_extended_filter  = {{ preset['show_extended_filter'] if preset and preset['show_extended_filter'] else '0' }};
+      
+      var realestate_key        = {{ "'"+preset['map.filter.realestate']+"'" if preset and preset['map.filter.realestate'] else 'null'}};
+      
+      var OPER_SELL             = {{ _OPER_SELL }};
+      var OPER_RENT             = {{ _OPER_RENT }};
+      var markers_coords        = {{ markers_coords if markers_coords is defined and markers_coords else 'null' }};
+      
+      //Marku lo puso aca
+      var MAX_PROXIMITY_SEARCH_RESULTS = max_results;
+      var MAX_BOUNDS_SEARCH_RESULTS = max_results;
+
+      jQuery(document).ready(function() {
+        init_index();
+      });
+    </script>
+    
+  {%endblock%}  
+
+  {% block body %}
+    <body class="frontend_search">
+      <div class="geolocation_overlay" id="geolocation_overlay" style="display:none;"></div>
+      <div class="geoBox top" id="geolocation_advice" style="display:none;">
+        <div class="pointer"></div>
+        <div class="message">
+          <div class="btnClose close" onclick="return onGeolocationOverlayClose();"></div>
+          <h1>Haga click en "Permitir"</h1>
+            <p>Para que podamos ofrecerle propiedades próximas a su ubicación actual.</p>
+        </div>
+      </div>
+      
+      <!-- HEADER -->
+      {%include "frontend/templates/header.html"%}
+      <!-- CONTENT -->
+
+      <div id="content"> 
+        {%block sidebar%}
+        <!-- LEFT COLUMN -->
+        <div id="sidebar">
+          <ul class="tabs">
+            <li class="active"><a href="#results"  title="Resultados de la búsqueda de propiedades filtradas en la vista del mapa"> Resultados</a></li>
+            <!--li><a href="#tab2" title="Mis búsquedas guardadas">Mis búsquedas</a></li-->
+            <!--li class="none">
+              <div class="btnDefault alert" title="Alertarme por mail cuando una propiedad nueva cumpla con los parámetros de búsqueda y locaclización de la vista" onclick="location.href='#3'">Conf. Alerta</div>
+            </li-->
+          </ul>
+          
+          <!-- TAB1 CONTENT -->
+          <div id="results" class="tab_content"> 
+            {%include "frontend/templates/tab1.html"%}
+          </div>
+        </div>
+        {%endblock%}
+        <!-- RIGHT COLUMN -->
+        {%block main%}
+        <div id="main">
+          {%include "frontend/templates/link_popup.html"%}
+          {%include "frontend/templates/filters.html"%}
+          <div class="mainContent" id="tabs_container">
+            {%include "frontend/templates/wintabs.html" %}
+            {%include "frontend/templates/messages.html" %}
+            <!-- LOADING -->
+            <div id="loading_map" style="display:none;" class="loadingmap" title="Aguarde...">
+              <img src="/img/misc/loader_b.gif" title="Aguarde..." />
+            </div>
+            <!-- div id="shadow-h"></div -->
+            <div id="shadow-v"></div>
+            {%include "frontend/templates/map.html" %}
+          </div>
+        </div>
+        {%endblock%}  
+      </div>
+      <img src="/img/ultraprop_ui_sprite.png" title="hack para IE" style="display:none;" />
+      {% include "frontend/help.html" %}
+    </body>
+  {% endblock %}

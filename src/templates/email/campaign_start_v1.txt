@@ -1,0 +1,8 @@
+{% extends "email/_base.txt"%}
+{%block content%}
+
+  ULTRAPROP, La mejor opción para publicar en La Plata y Gran La Plata.
+
+    Si no puede visualizar correctamente este email ingrese a http://www.ultraprop.com.ar/admin/signup .
+
+{% endblock %}

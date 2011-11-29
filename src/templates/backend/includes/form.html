@@ -1,0 +1,196 @@
+{% extends "backend/property.html" %}
+
+{% block headscript %}
+<script type="text/javascript">
+$(document).ready(function() {
+  init_new_property();
+});
+</script>
+{% endblock %}
+
+{% import 'backend/_form_fields.html' as ff %}
+{% block tab_content %}
+<form id="new_property_form" action="{{url_for('property/new')}}" method="post">
+  <input name="key" type="hidden" value="{% if key %}{{key}}{% endif %}"/>
+  <input name="goto" type="hidden" value=""/>
+  <!-- type.html -->
+  <div class="typearea">
+      <dl class="form">
+          <dt>
+              <p class="h2">Tipo de propiedad</p>
+              {{form.prop_type_id}}
+          </dt>
+          {{form.prop_operation_id(type='hidden')}}
+          <dd class="operation {% if form.prop_operation_id.errors %}errorbox{% endif %}">
+              <p class="h2">Tipo de Operación</p>
+              {{ ff.field_operation(form.rent_yes, form.price_rent_currency, form.price_rent, form.price_expensas) }}
+              {{ ff.field_operation(form.sell_yes, form.price_sell_currency, form.price_sell) }}
+              {% if form.prop_operation_id.errors %}
+              <p class="error">{{form.prop_operation_id.errors.0}}</p>
+              {% endif %}
+          </dd>
+      </dl>
+  </div>
+  
+  <!-- features.html -->
+  <h2 class="title">Características de la Propiedad</h2>
+  <dl class="form">
+    {{ ff.field(form.rooms, class='short') }}
+    {{ ff.field(form.bedrooms, class='short') }}
+    {{ ff.field(form.bathrooms, class='short') }}
+    {{ ff.field(form.building_floors, class='short') }}
+    {{ ff.field(form.year_built) }}
+    {{ ff.field(form.area_indoor, class='short') }}
+    {{ ff.field(form.area_outdoor, class='short') }}
+    {{ ff.field(form.prop_state_id) }}
+  </dl>
+
+  <!-- more_features.html -->
+  <h2 class="title">Detalles de la Propiedad</h2>
+  <ul class="services">
+    {{ ff.field_feature(form.appurtenance) }}
+    {{ ff.field_feature(form.balcony) }}
+    {{ ff.field_feature(form.doorman) }}
+    {{ ff.field_feature(form.elevator) }}
+    {{ ff.field_feature(form.fireplace) }}
+    {{ ff.field_feature(form.furnished) }}
+    {{ ff.field_feature(form.garage) }}
+    {{ ff.field_feature(form.garden) }}
+    {{ ff.field_feature(form.grillroom) }}
+    {{ ff.field_feature(form.gym) }}
+    {{ ff.field_feature(form.live_work) }}
+    {{ ff.field_feature(form.luxury) }}
+    {{ ff.field_feature(form.pool) }}
+    {{ ff.field_feature(form.terrace) }}
+    {{ ff.field_feature(form.washer_dryer) }}
+    {{ ff.field_feature(form.sum) }}
+  </ul>
+
+  <h2 class="title">Descripción de la propiedad</h2>
+  <div>
+    {% if form.main_description.errors %}
+    <!--{{ form.main_description(style='width: 760px;height: 100px;', class='errorbox') }}-->
+    {{ form.main_description(class='location errorbox') }}
+    <p class="error">{{form.main_description.errors.0}}</p>
+    {% else %}
+    <!--{{ form.main_description(style='width: 760px;height: 100px;') }}-->
+    {{ form.main_description(class='location') }}
+    {% endif%}
+  </div>
+  
+  <!-- location.html -->
+  <div id="locate_prop_in_map"></div>
+  
+  <h2 class="title">Ubique la propiedad completando los siguientes pasos</h2>
+  {% if form.location.errors %}
+  <div class="msg_error">Debe ubicar la propiedad</div>
+  {% endif %}
+  
+  <dl class="location">
+  	<dt><div class="step">1</div></dt>
+    <dd>
+        <div id="searchbox2">
+          <input id="searchmap" class="search ui-autocomplete-input" type="text" value="" autocomplete="off" placeholder="Escriba: Calle, Número, Localidad, Provincia"/>
+          <!-- SEARCH BUTTON -->
+          <div id="btnSearch2" class="btnSearch">Ubicar</div>
+          <a href="#locate_prop_in_map" style="float:right; line-height:40px;" onclick="jQuery('#locate_in_map_help_video').show();">Video de ayuda</a>
+        </div>
+
+        <div class="example_box">
+          <div id="locate_in_map_help_video" style="display:none;">
+            <a class="close" href="#locate_prop_in_map" onclick="jQuery('#locate_in_map_help_video').hide();" title="Ocultar video"></a>
+            <div style="padding:20px 0px 10px 0px;opacity:1;height:auto;width:auto;min-height:575px;min-width:700px;">
+              <object width="700" height="575">
+                <param name="movie" value="http://www.youtube.com/v/WQ0CI2h3aIs&rel=0"></param>
+                <param name="wmode" value="direct"></param>
+                <embed src="http://www.youtube.com/v/WQ0CI2h3aIs&rel=0" type="application/x-shockwave-flash" wmode="direct" width="700" height="575"></embed>
+              </object>
+            </div>
+          </div>
+            Ejemplo: <b>Av 44 1100, La Plata, Buenos Aires.</b><br />
+            Si no encuentra la dirección, busque una zona familiar próxima a la propiedad (en el ejemplo: <b> La Plata, Buenos Aires, Argentina</b>).
+        </div>
+	</dd>
+  </dl>
+
+
+  <dl class="location">
+  	<dt><div class="step">2</div></dt>
+    <dd>
+        <div id="location_box">
+        	<div class="location_head">
+            	<span class="indication">Ajuste la ubicación de la propiedad arrastrando el icono que aparece en el mapa.</span>
+            	<a href="#" id="btnMaximize" class="icon16 maximize" title="Maximizar/minimizar mapa"></a>
+            </div>
+        	<div id="map_canvas" style="width:740px; height: 300px"></div>
+        </div>
+    </dd>
+  </dl>
+  
+  <dl class="location">
+  	<dt><div class="step">3</div></dt>
+    <dd>
+    	<div id="location_glass" title="Antes de este paso, debe ubicar la propiedad."></div>
+        <div class="location_head border">
+            <span class="indication">De ser necesario, modifique los campos de la dirección que considere oportuno.</span>
+        </div>
+        <dl class="form x2col">
+{{ ff.field(form.country, style='width:200px;') }}
+{{ ff.field(form.state, style='width:200px;') }}
+{{ ff.field(form.city, style='width:200px;') }}
+{{ ff.field(form.neighborhood, style='width:200px;') }}
+
+{{ form.location(type="hidden") }}
+</dl>
+        <dl class="form x2col"> 
+          <dt>Dirección</dt>
+          <dd class="clear">
+              <div>
+                  <p>Calle</p>
+                  {{form.street_name}}
+              </div>
+              
+              <div class="edit {{ 'errorbox' if form.street_number.errors or form.floor_number.errors else '' }}">
+                  <div class="short">
+                      <p>Número</p>
+                      {{form.street_number}}
+                      {% if form.street_number.errors %} <p class="error">{{ form.street_number.errors.0 }}</p> {% endif %}
+                   </div>
+                   <div class="short">   
+                      <p>Piso / Dpto.</p>
+                      {{form.floor_number}}
+                      {% if form.floor_number.errors %} <p class="error">{{ form.floor_number.errors.0 }}</p> {% endif %}
+                  </div>
+              </div>
+          </dd>
+      </dl>
+    </dd>
+  </dl>
+
+  <!-- services.html -->
+  <h2 class="title">Servicios</h2>
+  <h3 class="title">Servicios Básicos</h3>
+  <ul class="services">
+    {{ff.field_services(form.agua_corriente)}}
+    {{ff.field_services(form.gas_natural)}}
+    {{ff.field_services(form.gas_envasado)}}
+    {{ff.field_services(form.luz)}}
+    {{ff.field_services(form.cloacas)}}
+    {{ff.field_services(form.telefono)}}
+  </ul>
+  
+  <h3 class="title">Servicios Adicionales</h3>
+  <ul class="services">
+    {{ff.field_services(form.tv_cable)}}
+    {{ff.field_services(form.internet)}}
+    {{ff.field_services(form.vigilancia)}}
+    {{ff.field_services(form.monitoreo)}}
+  </ul>
+    
+  <!-- NAV BUTTONS -->
+  <div class="navButtons">
+      <input class="btnWizard prev" name="" type="submit" value="Guardar" title="Guardar y volver al listado de propiedades" />
+      <input id="toimages" class="btnWizard next" name="" type="submit" value="Guardar y Cargar Fotos" title="Guardar y cargar fotos de la propeidad"/>
+  </div>
+</form>
+{% endblock %}
