@@ -301,23 +301,15 @@ class RealEstateForm(Form):
   name                = TextField('',[validators.Required(message=u'Debe ingresar un nombre de Inmobiliaria.')])
   email               = TextField('',[validators.email(message=u'Debe ingresar un correo válido.')
                                       , validators.Required(message=u'Debe ingresar un correo electrónico.')], default='')
-  title               = TextField()
-  fax_number          = TextField('')
-  telephone_number    = TextField('',[validators.Required(message=u'Debe ingresar un número de teléfono.')])
+  telephone_number    = TextField('')
   telephone_number2   = TextField('')
   open_at             = TextField('')
-  address             = TextField('',[validators.Required(message=u'Debe ingresar una dirección.')])
-  zip_code            = TextField('',[validators.Required(message=u'Debe ingresar un código postal.')])
   
   def update_object(self, rs):
     rs.name               = self.name.data
     rs.email              = self.email.data
-    rs.title              = self.title.data
-    rs.fax_number         = self.fax_number.data
     rs.telephone_number   = self.telephone_number.data
     rs.telephone_number2  = self.telephone_number2.data
-    rs.address            = self.address.data
-    rs.zip_code           = self.zip_code.data
     rs.open_at            = self.open_at.data
     return rs
     

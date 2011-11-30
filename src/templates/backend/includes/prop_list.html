@@ -44,7 +44,9 @@
         
         <!-- -->
         <div class="actions">
-          <a class="uibutton" href="{{url_for('realestate/ficha', key=property.key()|string, oper=property.prop_operation_id|string , realestate=session['account.realestate.key'])}}" target="_blank" title="Ver ficha en nueva ventana">Ver ficha &raquo;</a>
+          {% set address  = property|addressify %}
+          {% set headline = property|headlinify %}
+          <a class="uibutton" href="{{url_for('frontend/ficha', key=property.key()|string, oper=property.prop_operation_id|string , slug=(headline+'-'+address)|slugify)}}" target="_blank" title="Ver ficha en nueva ventana">Ver ficha &raquo;</a>
         	{% if session['account.realestate.key'] == property.realestate.key()|string %}
             {% if property.is_deleted() %}
             <a class="restorer uibutton" href="{{url_for('property/restore',key=property.key())}}" title="Recuperar de la papelera de reciclaje. Quedará como 'No publicada'.">Recuperar</a>

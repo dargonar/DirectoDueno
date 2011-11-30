@@ -21,8 +21,7 @@
           {%include "frontend/templates/_prop_details.html"%}
           <!-- LOGO / BTN CONTACT -->
           <div class="agent">
-              <img class="logo" src="{{realestate_logo}}" style="max-width:133px;max-height:47px;" title="{{property.realestate.name}}" />
-               <a class="btnContact" title="Ver información del agente inmobiliario" href="#" onclick="return scrollFichaToBottom('ficha_{{property.key()}}');">Contactar Agente</a -->
+            <a class="btnContact" title="Ver información del dueño" href="#" onclick="return scrollFichaToBottom('ficha_{{property.key()}}');">Contactar al dueño</a>
           </div>
         </div>
       </div>
@@ -63,11 +62,9 @@
           </div>
           <h2>Información de Contacto</h2>
           <!-- AGENT INFO -->
-          <div id="agent_info" class="agentbox">
-          
-              <img class="logo" src="{{realestate_logo_big}}" style="max-width:230px;max-height:80px;" title="{{property.realestate.name}}"/>
-              {% if property.realestate %}  
-              <div class="data">
+          <div id="agent_info" class="agentbox" style="margin-top:0px;">
+            {% if property.realestate %}  
+              <div class="data" style="padding-left:10px;">
                 <h1>{{property.realestate.name}}</h1>
                 <span>{{property.realestate.telephone_number}}</span><br/>
                 <span>{{property.realestate.email}}</span><br/>

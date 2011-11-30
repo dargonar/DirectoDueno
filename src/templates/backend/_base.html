@@ -23,7 +23,8 @@
     
     <li class="{{ 'active' if mnutop == 'cuenta' else '' }}"><a href="{{url_for('backend/account/status')}}">Mi Cuenta</a></li>
     <li class="{{ 'active' if mnutop == 'usuarios' else '' }}"><a href="{{url_for('backend/user/edit') if not is_no_payment else '#' }}">Perfil de Usuario</a></li>
-    
+    <li class="{{ 'active' if mnutop == 'inmobiliaria' else '' }}"><a href="{{url_for('backend/realestate/edit') if not is_no_payment else '#' }}">Perfil Público</a></li>
+        
     <li class="{{ 'active' if mnutop == 'consultas' else '' }}"><a href="{{url_for('backend/consultas/list')}}">Consultas</a></li>
     <li class="{{ 'active' if mnutop == 'help' else '' }}"><a href="{{url_for('backend/help') }}">Ayuda</a></li>
   </ul>

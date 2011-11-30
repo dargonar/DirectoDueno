@@ -1,0 +1,102 @@
+{% extends "backend/_base.html" %}
+
+{%- macro form_field(field, class='') -%}
+		{% if field.errors %}
+      {{field(class=class+' error', **kwargs)}}
+    {% else %}
+      {{field(class=class, **kwargs)}}
+    {% endif %}
+{%- endmacro -%}
+
+{%- macro form_field2(field) -%}
+  <dd {% if field.errors %} class="errorbox" {% endif %} >
+    {{ form_field(field, **kwargs)}}
+    {{ form_error(field) }}
+  </dd>  
+{%- endmacro -%}
+
+{%- macro form_error(field) -%}
+    {% if field.description != '' %}<span class="m2">{{field.description}}</span>{% endif %}
+    {% if field.errors %} <p class="error">{{ field.errors.0 }}</p> {% endif %}
+{%- endmacro -%}
+
+
+{%- macro form_field2_container_double(field1, field2) -%}
+  <dd {% if field1.errors or field2.errors %} class="errorbox" {% endif %} >
+{%- endmacro -%}
+
+{%- macro form_field2_container(field) -%}
+  <dd {% if field.errors %} class="errorbox" {% endif %} >
+{%- endmacro -%}
+
+{% block headscript %}
+  <script type="text/javascript">
+  $(document).ready(function() {
+    init_realestate();
+  });
+  </script>
+{% endblock %}
+
+{% block content %}
+
+	<div style="overflow:hidden; margin-bottom:20px;">
+		<h1>Perfil Público</h1>
+  </div>
+  {% if flash %}
+    <div class="msg_{{flash.type}}"><b>{{flash.message}}</b></div>
+  {% endif %}
+    
+  <form id="signup_form" action="{{url_for('backend/realestate/edit')}}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="key" value="{{key}}" />
+    <!-- ///// IDENTITY ///// -->    
+    <h2 class="title">Datos a mostrar junto a su propiedad</h2>
+    <dl class="form">
+        <dt>Nombre</dt>
+        
+        {{ form_field2(form.name, placeholder="nombre/nombre y apellido", title="nombre/nombre y apellido") }}
+    </dl> 
+    <dl class="form">
+      <dt>Teléfono</dt>
+      {{ form_field2_container(form.telephone_number) }}
+        {{ form_field(form.telephone_number, placeholder="área+número (interno)", title="área+número (interno)") }}
+        <a href="#" class="btnIcon">
+          <img id="btnAddPhone" src="/img/icons/add.png" />
+        </a>
+        {{ form_error(form.telephone_number) }}
+      </dd>
+    </dl>
+    <dl id="phone2" class="form" style="{{ 'display:none;' if not form.telephone_number2.data and not form.telephone_number2.errors else '' }}">    
+      <dt>Teléfono 2</dt>
+      {{ form_field2_container(form.telephone_number2) }}
+        {{ form_field(form.telephone_number2, title="área+número (interno)", placeholder="área+número (interno)") }}
+        <a href="#" class="btnIcon">
+          <img id="btnDeletePhone" src="/img/icons/delete.png" />
+        </a><br />
+        {{ form_error(form.telephone_number2) }}
+      </dd>
+    </dl>
+      <dl class="form">
+        <dt>Correo electrónico</dt>
+        {{ form_field2(form.email, placeholder="correo electrónico", title="correo electrónico") }}
+    </dl>  
+    </dl>
+      <dl class="form">
+        <dt>Días y horarios que lo pueden llamar</dt>
+        {{ form_field2(form.open_at, placeholder="Lun. a Vier. de 9:00 a 18:00 y Sab. de 10:00 a 13:00", title="Días y horarios de atención") }}
+    </dl>
+    
+    <dl class="form">
+      <dt></dt>
+      <dd>
+          <input name="goto" type="hidden" value=""/>
+          <input type="submit" value="Guardar Cambios" name="" class="btnWizard">
+      </dd>
+    </dl>  
+  </form>
+<br/>  
+<br/>
+<br/>
+ 
+ 
+  
+{% endblock  %}

@@ -12,6 +12,10 @@ from webapp2_extras import jinja2, sessions, json
 from myfilters import do_currencyfy, do_statusfy, do_pricefy, do_addressify, do_descriptify, do_headlinify, do_slugify, do_operationfy, do_totalareafy, do_expensasfy, do_add_days, do_ownerify
 
 from models import Link, Property, RealEstate
+
+def get_property_slug(property):
+  return do_slugify(do_headlinify(property)+'-'+do_addressify(property))
+
 # ================================================================================ #
 # Funciones para manejo de Links: guardar y recuperar busqueda en mapa =========== #
 # ================================================================================ #

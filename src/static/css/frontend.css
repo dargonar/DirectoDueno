@@ -1752,7 +1752,8 @@ body.frontend_search .contactBox .btnSend {
 	display:inline-block;
 }
 body.frontend_search .dataCol .agent .btnContact {
-	float:right;
+	/*float:right;*/
+  display:block;margin:0 auto;
 }
 body.frontend_search .mnuActions {
 	border:1px solid #65A33A;

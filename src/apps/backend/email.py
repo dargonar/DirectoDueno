@@ -8,7 +8,7 @@ from webapp2 import abort, get_app, uri_for as url_for
 
 from models import Property, Consulta, Invoice
 
-from utils import get_bitly_url, MyBaseHandler
+from utils import get_bitly_url, MyBaseHandler, get_property_slug
 
 class SendTask(MyBaseHandler):
   
@@ -136,8 +136,9 @@ class SendTask(MyBaseHandler):
       contact_from_map = False
     
     #property_link  = '%s/propiedades.html#%s/%s' % (realestate.website, key, prop_operation_id)
-    property_link  = url_for('realestate/ficha', realestate=str(realestate.key()), key=key, oper= prop_operation_id, _full=True) 
+    property_link  = url_for('frontend/ficha', slug=get_property_slug(property), key=key, oper= prop_operation_id, _full=True) 
     
+
     if contact_from_map:
       str_query                 = params['query_string'] 
       property_link             = get_bitly_url(str_query)
@@ -183,7 +184,8 @@ class SendTask(MyBaseHandler):
       contact_from_map = False
     
     # realestate_property_link  = '%s/propiedades.html#%s/%s' % (realestate.website, key, prop_operation_id)
-    realestate_property_link  = url_for('realestate/ficha', realestate=str(realestate.key()), key=key, oper=prop_operation_id,  _full=True) 
+    # realestate_property_link  = url_for('realestate/ficha', realestate=str(realestate.key()), key=key, oper=prop_operation_id,  _full=True) 
+    realestate_property_link    = url_for('frontend/ficha', slug=get_property_slug(property), key=key, oper= prop_operation_id, _full=True) 
     
     # if contact_from_map:
       # if realestate.website is None or realestate.website.strip()=='': # Deben tener ptopiedades.html y rever tema #if realestate.managed_domain==1 :
