@@ -160,7 +160,7 @@ class NewEdit(BackendHandler):
       kwargs['title'] = 'Editando Propiedad'
       kwargs['form']  = PropertyForm(obj=self.mine_or_404(kwargs['key']))
     else:
-      if len(Property.all().filter('realestate = ',self.get_realestate_key()).fetch(10))>=1:
+      if len(Property.all().filter('realestate = ',db.Key(self.get_realestate_key())).fetch(10))>=1:
         self.set_error(u'Comuníquese con DirectoDueño si desea publicar más de una propiedad.')
         return self.redirect_to('property/list')
       kwargs['title'] = 'Nueva Propiedad'
@@ -174,6 +174,11 @@ class NewEdit(BackendHandler):
     
     editing = 'key' in self.request.POST and len(self.request.POST['key'])
     
+    if not editing:
+      if len(Property.all().filter('realestate = ',db.Key(self.get_realestate_key())).fetch(10))>=1:
+        self.set_error(u'Comuníquese con DirectoDueño si desea publicar más de una propiedad.')
+        return self.redirect_to('property/list')
+        
     if not self.form.validate():
       kwargs['title'] = 'Editando Propiedad' if editing else 'Nueva Propiedad'
       kwargs['form']  = self.form
