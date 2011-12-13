@@ -27,8 +27,8 @@ class Plan(db.Model):
   type                = db.IntegerProperty()
   amount              = db.IntegerProperty()
   free_days           = db.IntegerProperty()
-  payd_days           = db.IntegerProperty()
-  online              = db.IntegerProperty()
+  payd_days           = db.IntegerProperty() # Si es _ONE_TIME
+  online              = db.IntegerProperty() # Lo mostramos en SignUp
   
   def __repr__(self):
     return 'PLAN: ' + self.name
