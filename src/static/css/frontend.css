@@ -2411,18 +2411,15 @@ body.frontend_search .dialog .search_meddium.link {
 /* ==================================================================== */
 body.frontend_home #search {
 	position:relative;
-	background:#336b9e url(/img/backgrounds/home.jpg);
-	height:258px;
-	border-top:solid 1px #fff;
-	border-bottom:solid 1px #fff;
+	background:url(/img/backgrounds/home.gif) bottom left no-repeat;
+	height:425px;
 }
 body.frontend_home #search .box {
-	/*width:507px;*/
 	width:457px;
 	height:162px;
 	background:#dfeeb7;
 	position:absolute;
-	margin-top:-22px;
+	margin-top:36px;
 	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll 0 0 transparent;
 	padding:25px;
 	padding-top:28px;
@@ -2445,10 +2442,10 @@ body.frontend_home input.search {
 	width:300px;
 }
 body.frontend_home input.search:-moz-placeholder {
- color:#cccccc;
+ color:#1F3F45;
 }
 body.frontend_home input.search::-webkit-input-placeholder {
- color:#cccccc;
+ color:#1F3F45;
 }
 body.frontend_home #btnSearchHome {
 	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -336px -435px transparent;
@@ -2461,7 +2458,7 @@ body.frontend_home #btnSearchHome {
 	height: 42px;
 	line-height: 42px;
 	text-align: center;
-	text-shadow: 0 -1px 0 #4B9528;
+	text-shadow: 0 -1px 0 #047a91;
 	width: 130px;
 	font-family:Arial, Helvetica, sans-serif;
 }
@@ -2476,7 +2473,7 @@ body.frontend_home #locations {
 	padding: 5px 0px 10px 10px;
 }
 body.frontend_home #locations a {
-	color:#0099cc;
+	color:#047a91;
 	text-decoration: none;
 	padding-right:5px;
 }
@@ -2484,8 +2481,7 @@ body.frontend_home #locations a:hover {
 	text-decoration:underline;
 }
 body.frontend_home .hr {
-	border-top:solid 1px #cadd98;
-	border-bottom:solid 1px #f9ffe8;
+	border-bottom:solid 1px #ffffff;
 	margin-top:0;
 	margin-bottom:4px;
 }
@@ -2494,7 +2490,7 @@ body.frontend_home #filterbox {
 }
 body.frontend_home #filterbox h4 {
 	text-transform:uppercase;
-	color:#777;
+	color:#1F3F45;
 	font-size:11px;
 	font-weight:normal;
 	margin-bottom:3px;
@@ -2514,7 +2510,7 @@ body.frontend_home label.ex-label {
 body.frontend_home #filterbox a.more {
 	padding-left:10px;
 	line-height: 20px;
-	color:#0099cc;
+	color:#047a91;
 	text-decoration: none;
 }
 body.frontend_home #filterbox a.more:hover {
@@ -2555,7 +2551,7 @@ body.frontend_home .price_option_item .slider {
 	width: 190px;
 }
 body.frontend_home .price_option_item span {
-	color: #0099cc;
+	color: #047a91;
 	float: left;
 	padding-left: 5px;
 	vertical-align: text-bottom;
@@ -2631,30 +2627,31 @@ body.frontend_home #slider .ui-widget-header {
 }
 body.frontend_home .home_title {
 	position:absolute;
-	top:42px;/*  left:30px;*/
+	top:52px;
 }
 body.frontend_home .home_title .first {
-	color: #FFFFFF;
-	font-size: 32px;
-	line-height:32px;
-	font-weight: normal;
-	letter-spacing: -1px;
-	text-shadow: 2px 2px 0 #264b76;
-	font-family: 'Open Sans', sans-serif;
-	font-weight:400;
-}
-body.frontend_home .home_title .second {
-	color: #FFFFFF;
+	color: #1f3f45;
 	font-size: 38px;
 	line-height:32px;
 	font-weight: normal;
 	letter-spacing: -1px;
-	text-shadow: 2px 2px 0 #264b76;
+	text-shadow: 1px 1px 0 #d0eff6;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:400; 
+	margin-bottom:3px;
+}
+body.frontend_home .home_title .second {
+	color: #1f3f45;
+	font-size: 32px;
+	line-height:32px;
+	font-weight: normal;
+	letter-spacing: -1px;
+	text-shadow: 1px 1px 0 #d0eff6;
 	font-family: 'Open Sans', sans-serif;
 	font-weight:400;/*  
   text-align:right;*/
 }
-body.frontend_home .home_title .third {
+/*body.frontend_home .home_title .third {
 	color: #fff;
 	font-size: 21px;
 	line-height:21px;
@@ -2665,7 +2662,7 @@ body.frontend_home .home_title .third {
 	text-shadow: 1px 1px 0 #264b76;
 	font-family: 'Open Sans', sans-serif;
 	font-weight:300;
-}
+}*/
 body.frontend_home #highlights {
 	left:30px;
 	top:15px;
@@ -2758,7 +2755,7 @@ body.frontend_home #price_slider.ui-slider-horizontal {
 	height: 7px;
 }
 body.frontend_home #price_slider .ui-widget-header {
-	background: #65A33A;
+	background: #1E3E44;
 	border: 0px;
 	color: #222;
 	font-weight: bold;

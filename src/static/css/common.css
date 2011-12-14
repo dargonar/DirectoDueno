@@ -65,35 +65,26 @@ body.frontend_home #content, body.frontend_common #content, body.backend_simple 
 	overflow:hidden;
 }
 body.backend_simple #content {
-	/*	position:relative;*/
   height:100%;
 }
 body.frontend_home #header, body.frontend_common #header, body.backend_simple #header {
-	/*	background:#bed8f1;*/
-	height:92px;/*	padding:0 15px;*/
+	height:88px;
 }
 
 body.frontend_common #header {
-	/*background: url("/img/backgrounds/inner_header.gif") repeat-x scroll 0 0 transparent; */ 
 	border-bottom:solid 2px #cadf93;
 	margin-bottom:15px;}
 
 body.frontend_home #header .logo, body.frontend_common #header .logo {
-	float: left;
-	margin-top: 20px;
-	height:55px;
-	width:220px;
-	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -470px -435px transparent;
+	position:absolute;
+	height:114px;
+	width:228px;
+	background:url(/img/logo_sprite.png) no-repeat scroll -171px 0px transparent;
 	border:0;
+	z-index:999; 
+	top:10px;
 }
 body.backend #header .logo, body.backend_simple #header .logo, body.frontend_search #header .logo {
-/*	float: left;
-	height:52px;
-	width:195px;
-	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -470px -491px transparent;
-	margin-left:16px !important;
-	margin-top:17px;
-	border:none;*/ 
 	height:85px; 
 	width:171px; 
 	position:absolute; 
@@ -107,14 +98,12 @@ body.backend a img, body.backend_simple a img, body.frontend_search a img {
 body.frontend_home #header .mnuTop, body.frontend_common #header .mnuTop, body.frontend_search #header .mnuTop, body.backend_simple #header .mnuTop, body.backend #header .mnuTop {
 	float:right;
 	padding-top:3px;
-	/*  	margin-right:10px; */
 	overflow:hidden;
 }
 body.backend_simple #header .mnuTop {
 /*margin-top:20px; */
 }
 body.backend #header .mnuTop li, body.frontend_home #header .mnuTop li, body.frontend_common #header .mnuTop li, body.backend_simple #header .mnuTop li {
-	/*	border-left:solid 1px #fff;*/
 	border-left:solid 1px #e7e7e7;
 }
 
@@ -127,10 +116,11 @@ body.backend #header .mnuTop li:first-child, body.frontend_home #header .mnuTop 
 	border:none;
 }
 body.backend #header .mnuTop li a, body.frontend_home #header .mnuTop li a, body.frontend_common #header .mnuTop li a, body.backend_simple #header .mnuTop li a {
-	color:#006ca8;
+	color:#69c9e0;
 	padding:0 10px;
-	font-size:12px;
-	text-decoration:none;/*	text-shadow: 0 1px 0 #d5e7f8;*/
+	font-size:12px; 
+	font-weight:bold;
+	text-decoration:none;
 }
 body.backend_simple #header .mnuTop li a, body.backend #header .mnuTop li a {
 	padding:0 5px;
@@ -975,9 +965,6 @@ body.frontend_search #searchbox input.search, body.backend #searchbox input.sear
 	-moz-border-radius-bottomleft: 5px;
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
-	-moz-box-shadow: 0 1px 0.1em #CCCCCC inset;
-	-webkit-box-shadow: 0 1px 0.1em #CCCCCC inset;
-	box-shadow: 0 1px 0.1em #CCCCCC inset;
 	font-size:16px;
 	color:#47698e;
 	font-weight:bold;
@@ -986,16 +973,16 @@ body.frontend_search #searchbox input.search, body.backend #searchbox input.sear
 	float:left;
 }
  body.frontend_search #searchbox input.search::-webkit-input-placeholder {
- color:#cccccc;
+ color:#1F3F45;
 }
 body.frontend_search #searchbox input.search:-moz-placeholder {
- color:#cccccc;
+ color:#1F3F45;
 }
 body.backend #searchbox2 input.search::-webkit-input-placeholder {
- color:#cccccc;
+ color:#1F3F45;
 }
 body.backend #searchbox2 input.search:-moz-placeholder {
- color:#cccccc;
+ color:#1F3F45;
 }
 /* STEPS */
 .step {
