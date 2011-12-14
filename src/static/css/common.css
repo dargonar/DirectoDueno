@@ -87,13 +87,19 @@ body.frontend_home #header .logo, body.frontend_common #header .logo {
 	border:0;
 }
 body.backend #header .logo, body.backend_simple #header .logo, body.frontend_search #header .logo {
-	float: left;
+/*	float: left;
 	height:52px;
 	width:195px;
 	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -470px -491px transparent;
 	margin-left:16px !important;
 	margin-top:17px;
-	border:none;
+	border:none;*/ 
+	height:85px; 
+	width:171px; 
+	position:absolute; 
+	left:14px;
+	background:url(/img/logo_sprite.png) no-repeat transparent; 
+	z-index:999;
 }
 body.backend a img, body.backend_simple a img, body.frontend_search a img {
 	border:none;
