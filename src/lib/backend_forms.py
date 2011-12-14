@@ -84,7 +84,7 @@ def validate_domain_id(domain_id, mykey=None):
     if domain_id.strip()=='':
       return {'result':'used','msg':u'El nombre no puede ser vacío'}
     
-    if domain_id.strip()in['mapa', 'admin', '']:
+    if domain_id.strip()in['mapa', 'admin', 'red-ultraprop', '']:
       return {'result':'used','msg':u'Este nombre está restringido'}
       
     # Primero validamos que sea tipo regex
@@ -177,11 +177,12 @@ class PropertyForm(Form):
     prop.internet             = to_int(self.internet.data)
     prop.vigilancia           = to_int(self.vigilancia.data)
     prop.monitoreo            = to_int(self.monitoreo.data)
-
+    
     #TODO: Sacar de donde va
-    prop.prop_operation_state_id = 1
+    prop.prop_operation_state_id = to_int(self.prop_operation_state_id.data)
     prop.prop_owner_id           = 1
 
+    prop.cardinal_direction     = self.cardinal_direction.data
     return prop
     
   def __init__(self, formdata=None, obj=None, **kwargs):
@@ -249,6 +250,21 @@ class PropertyForm(Form):
   area_indoor     = TextField('Superficie Cubierta', description=u'm²')
   area_outdoor    = TextField('Superficie Descubierta', description=u'm²')
   prop_state_id   = SelectField(u'Estado General' , coerce=int, choices=[(0,'Sin Datos')]+[( features['prop_state_id']['rangos'][i], features['prop_state_id']['descriptions'][i]) for i in range(1, len(features['prop_state_id']['rangos'])-1)])
+  
+  #cardinal_direction      =  SelectField(u'Orientación', choices=[(1, 'Norte'), (2, 'Noreste'), (3, 'Este'), (4, 'Sureste'), (5, 'Sur'), (6, 'Suroeste'), (7, 'Oeste'), (8, 'Noroeste')])
+  cardinal_direction      =  SelectField(u'Orientación', choices=[('', 'No disponible'), ('Norte', 'Norte'), ('Noreste', 'Noreste'), ('Este', 'Este'), ('Sureste', 'Sureste'), ('Sur', 'Sur'), ('Suroeste', 'Suroeste'), ('Oeste', 'Oeste'), ('Noroeste', 'Noroeste')])
+  
+  prop_operation_state_id =  SelectField(u'Etiqueta' , coerce=int, choices=[(Property._OPER_STATE_NADA, '-ninguna-'),
+      (Property._OPER_STATE_RESERVADO, 'Reservado'),
+      (Property._OPER_STATE_SUSPENDIDO, 'Suspendido'),
+      (Property._OPER_STATE_VENDIDO, 'Vendido'),
+      (Property._OPER_STATE_ALQUILADO, 'Alquilado'),
+      (Property._OPER_STATE_OPORTUNIDAD, 'Oportunidad'),
+      (Property._OPER_STATE_DE_POZO, 'De pozo'),
+      (Property._OPER_STATE_APTO_CREDITO, u'Apto Crédito'),
+      (Property._OPER_STATE_IMPECABLE, 'Impecable'),
+      (Property._OPER_STATE_INVERSION, u'Inversión')])
+      
   
   # --- more_features.html
   appurtenance    = BooleanField('Dependencia')
@@ -461,9 +477,9 @@ class SignUpForm(KetchupForm):
     # if name:
       # raise ValidationError(u'Ese teléfono ya esta siendo utilizado.')
 
-  #name                = TextField('',[validators.Required(message=u'Debe ingresar un nombre de Inmobiliaria.')])
-  #telephone_number    = TextField('',[validators.Required(message=u'Debe ingresar un número de teléfono.')])
+  name                = TextField('',[validators.Required(message=u'Debe ingresar un nombre de Inmobiliaria.')])
   email               = TextField('',[validators.email(message=u'Debe ingresar un correo válido.')], default='')
+  telephone_number    = TextField('',[validators.Required(message=u'Debe ingresar un número de teléfono.')])
   password            = PasswordField(u'Contraseña', [
                             validators.Length(message=u'La contraseña debe tener al menos %(min)d caracteres.', min=6),
                             validators.Required(message=u'Debe ingresar una contraseña.'),

@@ -43,8 +43,13 @@ $(document).ready(function() {
     {{ ff.field(form.area_indoor, class='short') }}
     {{ ff.field(form.area_outdoor, class='short') }}
     {{ ff.field(form.prop_state_id) }}
+    {{ ff.field(form.cardinal_direction) }}
   </dl>
-
+  
+  <h2 class="title">Características de la operación</h2>
+  <dl class="form">
+    {{ ff.field(form.prop_operation_state_id) }}
+  </dl>
   <!-- more_features.html -->
   <h2 class="title">Detalles de la Propiedad</h2>
   <ul class="services">

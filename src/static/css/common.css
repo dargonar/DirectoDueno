@@ -1231,3 +1231,34 @@ box-shadow:0px 0px 0px 8px #000000;*/
 	text-align: center;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.45);
 }
+
+img.operation_state{position:absolute;top:0px;left:0px;z-index:99;}
+
+img.operation_state.medium_state_1{background:none;}
+
+img.operation_state.medium_state_2{  background:url(/img/banners/estados/status_sm.png) no-repeat scroll 0px 1px transparent; }
+img.operation_state.small_state_2{   background:url(/img/banners/estados/status_sm.png) no-repeat scroll 0px -104px transparent; }
+
+img.operation_state.medium_state_4{  background:url(/img/banners/estados/status_sm.png) no-repeat scroll -306px 1px transparent; }
+img.operation_state.small_state_4{   background:url(/img/banners/estados/status_sm.png) no-repeat scroll -243px -104px transparent; }
+
+img.operation_state.medium_state_8{  background:url(/img/banners/estados/status_sm.png) no-repeat scroll -102px 1px transparent; }
+img.operation_state.small_state_8{   background:url(/img/banners/estados/status_sm.png) no-repeat scroll -81px -104px transparent; }
+  
+img.operation_state.medium_state_16{  background:url(/img/banners/estados/status_sm.png) no-repeat scroll -204px 1px transparent; }
+img.operation_state.small_state_16{   background:url(/img/banners/estados/status_sm.png) no-repeat scroll -162px -104px transparent; }
+
+img.operation_state.medium_state_32{  background:url(/img/banners/estados/status_sm.png) no-repeat scroll -612px 1px transparent; }
+img.operation_state.small_state_32{   background:url(/img/banners/estados/status_sm.png) no-repeat scroll -486px -104px transparent; }
+
+img.operation_state.medium_state_64{  background:url(/img/banners/estados/status_sm.png) no-repeat scroll -714px 1px transparent; }
+img.operation_state.small_state_64{   background:url(/img/banners/estados/status_sm.png) no-repeat scroll -567px -104px transparent; }
+
+img.operation_state.medium_state_128{  background:url(/img/banners/estados/status_sm.png) no-repeat scroll -408px 1px transparent; }
+img.operation_state.small_state_128{   background:url(/img/banners/estados/status_sm.png) no-repeat scroll -324px -104px transparent; }
+
+img.operation_state.medium_state_256{  background:url(/img/banners/estados/status_sm.png) no-repeat scroll -816px 1px transparent; }
+img.operation_state.small_state_256{   background:url(/img/banners/estados/status_sm.png) no-repeat scroll -648px -104px transparent; }
+
+img.operation_state.medium_state_512{  background:url(/img/banners/estados/status_sm.png) no-repeat scroll -510px 1px transparent; }
+img.operation_state.small_state_512{   background:url(/img/banners/estados/status_sm.png) no-repeat scroll -405px -104px transparent; }

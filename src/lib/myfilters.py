@@ -14,6 +14,16 @@ _slugify_hyphenate_re = compile(r'[-\s]+')
 def do_add_days(date, days):
   return date + timedelta(days=days)
 
+  
+def do_operationify(property, size=0):
+  sizes         = ['height:82px; width:81px;','width:102px; height:104px;']
+  sizes_class   = ['small_state_' , 'medium_state_']
+  
+  if property.prop_operation_state_id is None or property.prop_operation_state_id==Property._OPER_STATE_NADA:
+    return ''
+  
+  return '<img class="operation_state %s%s" style="%s" alt="" src="/img/misc/transparent.png" />' % (sizes_class[size], str(property.prop_operation_state_id), sizes[size])
+  
 def do_slugify(value):
   """
   Normalizes string, converts to lowercase, removes non-alpha characters,

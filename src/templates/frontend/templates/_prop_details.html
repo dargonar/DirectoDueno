@@ -34,4 +34,9 @@
     
     <dt>Sup. Descubierta:</dt>
     <dd>{{ "%.1f"|format(property.area_outdoor) }} m²</dd> 
+    
+    {% if property.cardinal_direction %}
+      <dt>Orientación:</dt>
+      <dd>{{ property.cardinal_direction }}</dd> 
+    {% endif %}
 </dl>  
