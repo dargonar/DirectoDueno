@@ -2565,18 +2565,30 @@ body.frontend_home .price_option_item font.to, body.frontend_home .price_option_
 	font-size:11px;
 }
 body.frontend_home #features {
-	padding-top:35px;
-	padding-bottom:30px;
-	min-height:355px;
+	padding-top:20px;
+	padding-bottom:30px; 
+	overflow:hidden;
 }
 body.frontend_home #features .col {
 	float:left;
 	width:300px;
 	margin:0 10px;
 	font-size:12px;
-	height:200px;
-	height:150px;
 }
+
+body.frontend_home #features .col .incol { overflow:hidden; margin-bottom:10px;}
+
+body.frontend_home #features .col h4,
+body.frontend_home #features .col h5{
+    color: #1F3F45;
+    font-family: 'Open Sans',sans-serif; 
+		margin:0;
+}
+
+body.frontend_home #features .col h4 { font-size:21px; line-height: 21px; margin-top: 13px;}
+body.frontend_home #features .col h5 { font-size:16px; font-weight:normal;}
+
+
 body.frontend_home #features .col .icon {
 	float:left;
 }
@@ -2585,13 +2597,14 @@ body.frontend_home #features .col .data {
 	margin-right:10px;
 }
 body.frontend_home #features h1 {
-	/*	color:#063c5a; */
-	color:#0a5278;
+	color:#1F3F45;
+	font-family: 'Open Sans',sans-serif;
 	font-weight:normal;
-	font-size:24px;
+	font-size:28px;
 	letter-spacing:-1px;
 	margin-bottom:10px;
 }
+body.frontend_home #features h1 span { font-weight:bold;}
 body.frontend_home #features .col .data h3 {
 	/*	color:#063c5a; */
 	color:#0a5278;
@@ -2599,8 +2612,9 @@ body.frontend_home #features .col .data h3 {
 	font-weight:normal;
 	margin-bottom:10px;/*	letter-spacing:-1px;*/
 }
-body.frontend_home #features .col .data p {
-	line-height:1.5em;
+body.frontend_home #features .col p.air {
+	line-height:18px; 
+	color:#666666;
 }
 /* ///// HACK SLIDER ///// */
 
@@ -2937,7 +2951,7 @@ body.frontend_search .messagebox .close {
 }
 /* HOME FOOTER */
 body.frontend_home #footer {
-	border-top:dotted 1px #ccc;
+	border-top:dashed 1px #ccc;
 	font-size: 12px;
 	width: 960px;
 }
@@ -2963,7 +2977,7 @@ body.frontend_home #footer .inner a:hover {
 	padding:20px;
 	text-align:left;
 	overflow:hidden;
-	padding-top:24px;
+	padding-top:24px; 
 }
 .top_search h3 {
 	color: #0A5278;

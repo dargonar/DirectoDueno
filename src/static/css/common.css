@@ -986,16 +986,20 @@ body.backend #searchbox2 input.search:-moz-placeholder {
 }
 /* STEPS */
 .step {
-	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -554px -63px transparent;
-	height:30px;
-	width:30px;
+	height:72px;
+	width:72px;
 	float:left;
 	font-size:18px;
-	line-height:30px;
 	color:#fff;
-	text-align:center;
-	margin-left:20px;
+	text-align:center; 
+	margin-right:15px;
 }
+
+.step.one { background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -471px -435px transparent;}
+.step.two {	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -544px -435px transparent;}
+.step.three {	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -616px -435px transparent;}
+
+
 /* ICONS */
 .icon16 {
 	height:16px;
@@ -1084,9 +1088,10 @@ ul.three_columns img {
 	margin-right:20px;
 }
 .foot .logo_foot {
-	width:168px;
-	height:41px;
-	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -544px -547px transparent;
+	width:123px;
+	height:61px;
+	background:url(/img/logo_sprite.png) no-repeat scroll -399px 0 transparent; 
+	margin-top:-10px;
 }
 /* ///// POPUP ///// */
 .bg_popup {
