@@ -114,7 +114,7 @@ class InvoicerMapper(Mapper):
         invoice.realestate = re
         invoice.trx_id     = create_transaction_number(next_date, re)
         invoice.amount     = re.plan.amount
-        invoice.state      = Invoice._NOT_PAID
+        invoice.state      = Invoice._NOT_PAID if re.plan.amount > 0 else Invoice._INBANK
         invoice.date       = next_date
         invoice.put()
         
