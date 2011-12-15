@@ -79,12 +79,14 @@
                 </div>
               </div>
               <div class="box">
+              	
                 <form action="{{ url_for('frontend/map') }}" method="post" name="home_search_form" id="home_search_form" >
                   <input name="price_min" id="price_min" type="hidden" value="0" />
                   <input name="price_max" id="price_max" type="hidden" value="0" />
                   <input name="center_lat" id="center_lat" type="hidden" value="0" />
                   <input name="center_lon" id="center_lon" type="hidden" value="0" />
                   <input name="zoom_level" id="zoom_level" type="hidden" value="14" />
+                  <h1>Busco inmueble en</h1>
                   <div id="searchbox">
                     <input class="search" name="searchmap" id="searchmap" placeholder="ej: La Plata, Buenos Aires, Argentina" type="text" value="" />                    
                     <input type="button" id="btnSearchHome" value="Buscar" style="border:none;"/>
@@ -147,7 +149,15 @@
                   </div>
                 </form>
               </div>
+            
+              <div class="btnPublish" onClick="location.href='admin/signup'">
+                <p class="first_line">SOY DUEÑO</p>
+                <p class="second_line">QUIERO PUBLICAR</p>
+              </div>
+            
             </div>
+            
+            
             <div id="features">
     <!-- SEGUNDA LINEA -->
               <h1 style="margin-bottom:20px; border-bottom:dashed 1px #cccccc; padding-bottom:20px;"><span>Publique ahora</span> y comience a recibir ofertas</h1>

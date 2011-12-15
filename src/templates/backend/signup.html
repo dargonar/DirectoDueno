@@ -72,7 +72,7 @@ $(document).ready(function() {
               <h1 style="font-size:24px; margin-left:5px;">Comience a Publicar Ahora!</h1>
               <h2 style="color:#0A5278; font-weight:normal; margin-left:5px;">Utilize la plataforma sin cargo por un período de 7 días.</h2>
               {% set post_url = url_for('backend/auth/signup/promo',promo=promo ) if promo else url_for('backend/auth/signup') %}
-              <form id="signup_form" action="{{post_url}}" method="post" style="margin-right:15px;width:400px;">
+              <form id="signup_form" action="{{post_url}}" method="post" style="margin-right:15px; width:400px; margin-top:15px;">
                 <!-- ///// IDENTITY ///// -->    
                 <!--div class="first {# { 'errorbox' if form.name.errors else '' } #}"> 
                   {# {{ form_field(form.name, label='nombre' , class="xg long", placeholder="Nombre de la Inmobiliaria") }} #}
@@ -95,10 +95,9 @@ $(document).ready(function() {
                     {% for plan in planes %}
                       <li class="theme_box {{ 'selected' if loop.index0==1}} plan{{loop.index0}}" key='{{plan.key()|string}}' style="text-align:center;">
                         <h3>{{plan.name}}</h3>
-                        <p>
-                          <b>{{plan.description}}</b>.<br/>
-                          Precio: <b>${{plan.amount}}<sup>00</sup></b>
-                        </p>
+                        <p>{{plan.description}}.</p>
+                        <p style="margin-top:8px;">Precio: <b>${{plan.amount}}<!--sup>00</sup--></b></p>
+                        
                         
                         <div class="buttons">
                           <a class="uibutton special" href="#" onclick="jQuery('.theme_box').removeClass('selected'); jQuery('.plan{{loop.index0}}').addClass('selected'); jQuery('#plan').val('{{plan.key()|string}}'); return false;">&nbsp;&nbsp;&nbsp;Seleccionar&nbsp;&nbsp;&nbsp;</a>
