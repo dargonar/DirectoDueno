@@ -135,15 +135,7 @@ class List(BackendHandler, PropertyPaginatorMixin):
 
   def add_extra_filter(self, base_query):
     if not self.has_role('ultraadmin'):
-      #base_query.filter('realestate =', db.Key( self.get_realestate_key() ) )
-      
-      rs_filter = self.form.realestate_network.data
-      if rs_filter is None or rs_filter.strip()=='' or rs_filter.strip().lower()=='none': 
-        rs_filter = self.get_realestate_key()
-      if rs_filter.strip().lower()=='all': 
-        base_query.filter('location_geocells = ', self.get_realestate_key() )
-      else:
-        base_query.filter('realestate =', db.Key( rs_filter ) )
+      base_query.filter('realestate =', db.Key( self.get_realestate_key() ) )
       
     base_query.filter('status =', self.form.status.data)
       

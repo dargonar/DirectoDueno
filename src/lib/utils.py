@@ -191,7 +191,7 @@ class BackendMixin(object):
     self.session['account.realestate.status']       = user.realestate.status
     self.session['account.roles']                   = map(lambda s: s.strip(), user.rol.split(','))
     
-    self.session['account.plan.allow_website']                = user.realestate.plan.allow_website
+    #self.session['account.plan.allow_website']                = user.realestate.plan.allow_website
     
     if self.is_ultraadmin:
       self.session['account.realestate.status'] = RealEstate._ENABLED

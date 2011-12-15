@@ -115,10 +115,7 @@ class PropertyFilterForm(Form):
   sort               = SelectField(choices=[(order_opts[i][0],order_opts[i][1]) for i in range(0,len(order_opts))], default='-sort_price')
   status             = SelectField(u'Estado de publicación', coerce=int, choices=status_choices, default=Property._PUBLISHED)
   #haslocation        = BooleanField(u'Listar Todas')
-  realestate_network = SelectField(u'Inmobiliaria')
   
-  def validate_realestate_network(form, field):
-    pass
   
   
 #Form to edit/create a new property
