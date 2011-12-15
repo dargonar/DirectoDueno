@@ -18,7 +18,8 @@ li {
 	float:left;
 }
 body.backend #header {
-	height:80px;
+	height:80px;	
+	background:#1E3E44;
 }
 body.backend #content {
 	top:80px;
@@ -54,23 +55,23 @@ body.backend .mainContent {
 /* ///// TABS ///// */
 body.backend ul.tabs {
 	float:left;
-	background:#CADF93;
+	background:#69C9E0;
 	height: 33px;
-	border-bottom: 1px solid #63A23C;
-	border-left: 1px solid #63A23C;
+	border-bottom: 1px solid #666666;
+	border-left: 1px solid #666666;
 	border-right:solid 1px #fff;
 	width:338px;
 }
 body.backend ul.tabs li {
 	height: 28px;
 	line-height: 28px;
-	border: 1px solid #EDF4D9;
+	border: 1px solid #666666;
 	border-bottom:transparent;
 	margin-bottom: -1px;
 	overflow: hidden;
 	/*	position: relative;*/
 	/*background: #CADF93;*/
-	background: #EDF4D9;
+	background: #c2eef9;
 	font-weight:bold;
 	-webkit-border-top-left-radius: 4px;
 	-webkit-border-top-right-radius: 4px;
@@ -86,7 +87,7 @@ body.backend ul.tabs li {
 }
 body.backend ul.tabs li.active {
 	background: #fff;
-	border: 1px solid #63A23C;
+/*	border: 1px solid #63A23C;*/
 	border-bottom: 1px solid #fff;
 }
 body.backend ul.tabs li a {
@@ -1354,7 +1355,7 @@ body.backend .mapButtons span.selected {
 body.backend ul.tabs_admin {
 	/*background: none repeat scroll 0 0 #CADF93;*/
 	background: none repeat scroll 0 0 #fff;
-	border-bottom: 1px solid #63A23C;
+	border-bottom: 1px solid #666666;
 	height: 33px;
 	list-style: none outside none;
 	padding-left:7px;
@@ -1367,8 +1368,8 @@ body.backend ul.tabs_admin li {
 	-moz-box-shadow: 0px 0px 0px #fff;
 	-webkit-box-shadow: 0px 0px 0px #fff;
 	box-shadow: 0px 0px 0px #fff;
-	background: none repeat scroll 0 0 #CADF93;
-	border-color: #CADF93 #CADF93 transparent;
+	background: none repeat scroll 0 0 #C2EEF9;
+	border-color: #666666 #666666 transparent;
 	border-style: solid solid none;
 	border-width: 1px 1px medium;
 	height: 28px;
@@ -1386,7 +1387,7 @@ body.backend ul.tabs_admin li a {
 }
 body.backend ul.tabs_admin li.active {
 	background: none repeat scroll 0 0 #FFFFFF;
-	border-color: #63A23C #63A23C #FFFFFF;
+	border-color: #666666 #666666 #FFFFFF;
 	border-style: solid;
 	border-width: 1px;/*	-moz-box-shadow: 0px 1px 1px #fff;*/
 }
@@ -1948,7 +1949,7 @@ body.backend .list_box p.price, body.backend .list_box p.sup {
 	margin-right:25px;
 }
 body.backend .list_box p.price {
-	color: #65A33A;
+	color: #0099CC;
 }
 body.backend .list_box p.price span.label, body.backend .list_box p.sup span.label {
 	width:80px;
@@ -2152,7 +2153,7 @@ body.backend .SubMnuTop {
 	height:32px;
 	background:#fff;
 	/*	width:100%;*/
-	border-bottom:solid 1px #63A23C;
+	border-bottom:solid 1px #666666;
 	margin-top:1px;
 	-moz-box-shadow:0px 1px 1px #ccc;
 	-webkit-box-shadow:0px 1px 1px #ccc;

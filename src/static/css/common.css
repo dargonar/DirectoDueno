@@ -55,7 +55,8 @@ body.backend_simple .content_data {
 	padding: 20px 10px;
 }
 body.frontend_home h1, body.backend_simple h1, body.backend h1 {
-	color: #0a5278;
+/*	color: #0a5278; */
+	color:#1F3F45;
 	font-size: 28px;
 	letter-spacing:-1px;
 }
@@ -68,7 +69,8 @@ body.backend_simple #content {
   height:100%;
 }
 body.frontend_home #header, body.frontend_common #header, body.backend_simple #header {
-	height:88px;
+	height:88px; 
+	background:#1E3E44;
 }
 
 body.frontend_common #header {
@@ -104,7 +106,7 @@ body.backend_simple #header .mnuTop {
 /*margin-top:20px; */
 }
 body.backend #header .mnuTop li, body.frontend_home #header .mnuTop li, body.frontend_common #header .mnuTop li, body.backend_simple #header .mnuTop li {
-	border-left:solid 1px #e7e7e7;
+	border-left:solid 1px #666666;
 }
 
 body.backend_simple #header .mnuTop li { 
@@ -1192,8 +1194,7 @@ box-shadow:0px 0px 0px 8px #000000;*/
 
 
 .btnLight { 
-	/*background:#5fb440; */
-	background:#9dc742; 
+	background:#69C9E0; 
 	padding:6px; 
 	border-left: none !important;
 	margin-top:-4px;
