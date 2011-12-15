@@ -44,21 +44,22 @@ body.frontend_search #header {
 	overflow:hidden;
 }*/
 body.frontend_search #header .mnuTop li {
-	border-left:solid 1px #ccc;
+	border-left:solid 1px #666666;
 }
 body.frontend_search #header .mnuTop li:first-child {
 	border:none;
 }
 body.frontend_search #header .mnuTop li a {
 	/*color:#006ca8;*/
-/*  	color:#333;*/
-	color: #006CA8;
+	color:#efefef; 
+	font-weight:bold;
 	padding:0 10px;
 	font-size:12px;
 	text-decoration:none;
 }
 body.frontend_search #header .mnuTop li a:hover {
-	text-decoration:underline;
+/*	text-decoration:underline;*/
+	color: #ffffff;
 }
 body.frontend_search #content {
 	top:80px;
@@ -548,26 +549,29 @@ body.frontend_search .btnDefault:active {
 body.frontend_search .btnDefault.link {
 	margin-top:5px;
 	margin-right:8px;
-	border:1px solid transparent;
-	background:#EDF4D9 url(/img/icons/link.png) 5px no-repeat;
+/*	border:1px solid #cccccc;*/
+	background:#ffffff url(/img/icons/link.png) 5px no-repeat;
 	padding-left:24px;
 	padding-right:8px;
 	font-size:11px;
 	cursor:pointer;
 }
 body.frontend_search a.btnDefault.link {
-	/*display:block;*/
   display:inline-block;
 	text-decoration:none;
 	color:#000000;
+
+  border-color: #CCCCCC #CCCCCC #AAAAAA;
 }
 body.frontend_search .btnDefault.link:hover {
-	border:1px solid #BACF83;
-	background:#fff url(/img/icons/link.png) 5px no-repeat;
+/*	border:1px solid #cccccc;*/
+	border-color: #999999;
+	background:#ffffff url(/img/icons/link.png) 5px no-repeat;
 }
 body.frontend_search .btnDefault.link:active {
-	border:1px solid #BACF83;
-	background:#EDF4D9 url(/img/icons/link.png) 5px no-repeat;
+/*	border:1px solid #999999;*/
+	border-color: #999999;
+	background:#efefef url(/img/icons/link.png) 5px no-repeat;
 }
 body.frontend_search .btnDefault.refresh {
 	background:#EDF4D9 url(/img/icons/arrow_refresh.png) 5px no-repeat;
@@ -769,7 +773,8 @@ body.frontend_search .prop_content .prop_box .head .address, body.frontend_searc
 }
 body.frontend_search .prop_content .prop_box .head .address a, body.frontend_search .compare_box .head .address a {
 	text-decoration:none;
-	color:#0099cc;
+/*	color:#0099cc;*/
+	color:#000000;
 	font-weight:bold;
 	font-size:13px;
 }
@@ -995,7 +1000,7 @@ body.frontend_search #map_canvas {
 }
 body.frontend_search .foot_map {
 	height:30px; /*28px*/
-	border-top:solid 1px #65A33A;
+	border-top:solid 1px #999999;
 	width:100%;
 	background:#fff;
 	text-align:center;
@@ -1286,9 +1291,8 @@ body.frontend_search .buttonsSlide {
 	overflow:hidden;
 	width:306px;
 	height:31px;
-	padding-top:99px;
-	/*left:13px;*/
-  /*z-index:9998;*/
+	/*padding-top:99px;*/
+	top:99px;
   z-index:102;
 }
 body.frontend_search .btnSlide {
@@ -2342,7 +2346,7 @@ body.frontend_search .dialog .search_meddium.link {
 /* ///// Link Box ///// */
 body.frontend_search .dialog {
 	background: none repeat scroll 0 0 #FFFFFF;
-	border: 1px solid #63A23C;
+	border: 1px solid #999999;
 	-moz-box-shadow:0px 0px 0px 5px rgba(0, 0, 0, 0.25);
 	-webkit-box-shadow:0px 0px 0px 5px rgba(0, 0, 0, 0.25);
 	box-shadow:0px 0px 0px 5px rgba(0, 0, 0, 0.25);
@@ -2372,8 +2376,8 @@ body.frontend_search .w1024less {
 	position:absolute;
 }
 body.frontend_search .dialog .inner {
-	background:#EDF4D9;
-	padding:8px 12px;
+	background:#efefef;
+	padding:12px;
 }
 body.frontend_search .dialog.link .inner {
 	width:400px;
@@ -2383,6 +2387,7 @@ body.frontend_search .dialog .inner .label {
 	font-weight:bold;
 	text-shadow:0 1px 0 white;
 	margin-bottom:3px;
+	font-size: 12px;
 }
 body.frontend_search .search_meddium {
 	border: 1px solid #9CACBF;
@@ -2928,7 +2933,7 @@ body.frontend_search .uibutton.icon16.filters {
 	filter: none !important;
 	background-color: transparent !important;
 	border:  none !important;
-	color:#000;
+	color:#ffffff !important;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
@@ -2940,6 +2945,8 @@ body.frontend_search .uibutton.icon16.filters {
 	line-height:16px;
 	font-size:12px;
 }
+body.frontend_search .uibutton.icon16.filters.hide {	color:#000000 !important;}
+
 body.frontend_search .uibutton.filters:before {
 	background-position: -78px 0px;
 }

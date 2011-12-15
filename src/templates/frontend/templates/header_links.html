@@ -1,7 +1,9 @@
 <ul class="mnuTop"> 
     <!-- ///// INICIO ///// -->
     {% if in_map is defined %}
-    <!--li><a href="{{ url_for('frontend/home') }}" title="Inicio">Inicio</a></li-->
+    <li><a href="{{ url_for('frontend/home') }}" title="Inicio">Inicio</a></li>
+    <li><a href="admin/login" title="Ingresar">Ingresar</a></li>
+    <li><a href="admin/signup" title="Regístrese">Regístrese</a></li>
     {% endif %}
     
 	<!-- ///// PUBLICAR ///// -->
@@ -9,7 +11,8 @@
     <!--li class="btnLight"><a href="{{ url_for('property/list') }}" title="Publicar mi propiedad">Soy Dueño</a></li-->
     
     <li style="margin-top:30px; border-left:none;"><a href="admin/signup" title="Publique su propiedad">SOY DUEÑO, QUIERO PUBLICAR</a></li>
-    <li style="margin-top:30px;"><a href="admin/signup" title="Ingresar / Registrarse">Ingresar</a></li>
+    <li style="margin-top:30px;"><a href="admin/login" title="Ingresar">Ingresar</a></li>
+    <!--li class="btnLight"><a href="admin/signup" title="Regístrese">Regístrese</a></li-->
     <!--li><a href="http://www.youtube.com/watch?v=QTIXl9ZKyUs" onclick="jQuery('#help_video').show(); return false;" title="Ver video de ayuda">Video</a></li-->
 {% endif %}
     
