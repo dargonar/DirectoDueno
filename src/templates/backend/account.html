@@ -119,7 +119,7 @@
     	<h3>Titular</h3>
         <p><b>{{re.name}}</b></p>
         <p style="width:220px;">
-        	{{re.address}}<br />
+        	{{re.address if re.address else '<i>Dirección no disponible</i>'}}<br />
           {{re.email}}
         </p>
     </td>
