@@ -18,8 +18,8 @@
   {% endif %}
   {% include "backend/includes/header.html" %}
   
-  <ul id="mnuTop" class="tabs">
-    <li class="{{ 'active' if mnutop == 'propiedades' else '' }}"><a href="{{ url_for('property/list') if not is_no_payment else '#'}}">Mi/s Propiedad/es</a></li>
+  <ul id="mnuTop" class="tabs" style="border-right: none;">
+    <li class="{{ 'active' if mnutop == 'propiedades' else '' }}"><a href="{{ url_for('property/list') if not is_no_payment else '#'}}">Mis Propiedades</a></li>
     
     <li class="{{ 'active' if mnutop == 'cuenta' else '' }}"><a href="{{url_for('backend/account/status')}}">Mi Cuenta</a></li>
     <li class="{{ 'active' if mnutop == 'usuarios' else '' }}"><a href="{{url_for('backend/user/edit') if not is_no_payment else '#' }}">Perfil de Usuario</a></li>

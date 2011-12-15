@@ -118,7 +118,7 @@ body.backend #header .mnuTop li:first-child, body.frontend_home #header .mnuTop 
 	border:none;
 }
 body.backend #header .mnuTop li a, body.frontend_home #header .mnuTop li a, body.frontend_common #header .mnuTop li a, body.backend_simple #header .mnuTop li a {
-	color:#69c9e0;
+	color:#EFEFEF;
 	padding:0 10px;
 	font-size:12px; 
 	font-weight:bold;
@@ -492,13 +492,9 @@ body.backend_simple .noneBox, body.backend .noneBox {
 	text-align: center;
 	text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.25);
 }
-/*body.backend_simple .inputlogo{
-  width: 145px;
-  height:45px;
-  padding:15px 0px 0px 0px;}*/
 
 body.backend_simple a, body.backend a {
-	color: #3E8924;
+	color: #0099CC;
 	text-decoration: none;
 }
 body.backend_simple a img, body.backend a img, body.frontend_search a img, body.frontend_home a img {
@@ -988,6 +984,18 @@ body.backend #searchbox2 input.search:-moz-placeholder {
 }
 /* STEPS */
 .step {
+    background: url("/img/ultraprop_ui_sprite.png") no-repeat scroll -554px -63px transparent;
+    color: #FFFFFF;
+    float: left;
+    font-size: 18px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 20px;
+    text-align: center;
+    width: 30px;
+}
+
+.stepshome {
 	height:72px;
 	width:72px;
 	float:left;
@@ -997,9 +1005,9 @@ body.backend #searchbox2 input.search:-moz-placeholder {
 	margin-right:15px;
 }
 
-.step.one { background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -471px -435px transparent;}
-.step.two {	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -544px -435px transparent;}
-.step.three {	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -616px -435px transparent;}
+.stepshome.one { background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -471px -435px transparent;}
+.stepshome.two {	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -544px -435px transparent;}
+.stepshome.three {	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -616px -435px transparent;}
 
 
 /* ICONS */

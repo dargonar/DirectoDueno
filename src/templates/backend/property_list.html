@@ -49,12 +49,13 @@ $(document).ready(function() {
   {% endif %}
   {% else %}
   <div class="divider"></div>
-  <div class="noelement proplist txt">
-  	<span>No se encontraron propiedades</span>
+  <div class="noelement proplist txt" style="height: auto; padding:25px 0;">
+  	<!--span>No se encontraron propiedades</span-->
+    <div class="btnBig" onclick="location.href='{{url_for('property/new')}}'"><a href="#"></a>Nueva Propiedad</div>
   </div>
   {% if form.status.data == Property._PUBLISHED %}
   <div class="divider_h"></div>
-  <div class="btnBig" onclick="location.href='{{url_for('property/new')}}'"><a href="#"></a>Nueva Propiedad</div>
+  <!--div class="btnBig" onclick="location.href='{{url_for('property/new')}}'"><a href="#"></a>Nueva Propiedad</div-->
   {% endif %}
   {% endfor %}
   

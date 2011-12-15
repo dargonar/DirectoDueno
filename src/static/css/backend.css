@@ -324,8 +324,8 @@ body.backend .btnSearch {
 	text-align:center;
 	float:left;
 	color:#fff;
-	text-shadow:0 -1px 0 #4b9528;
-	font-size:16px;
+	text-shadow:0 -1px 0 #1691A7;
+	font-size:15px;
 	font-weight:bold;
 	cursor:pointer;
 }
@@ -919,28 +919,8 @@ body.backend h3 {
 	/*	color: #65A33A;*/
 	font-size: 14px;
 }
-/*h2.title {
-	border-bottom: 1px solid #EFEFEF;
-	font-weight: bold !important;
-	margin-top: 30px;
-	padding-bottom: 3px;
-}*/
-/*
-HACK: este estilo ahora esta en common.css
-body.backend h2.title {
-	border: 1px solid #ccc;
-	background:#f9f9f9;
-	font-weight: bold !important;
-	padding: 3px 10px;
-	margin-bottom:5px;
-	margin-top:10px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	clear:both;
-}*/
+
 body.backend p.h2 {
-	/*color: #65A33A;*/
 	color: #333;
 	font-size: 16px;
 	margin-bottom:6px;
@@ -949,33 +929,13 @@ body.backend p.h2 {
 body.backend h3.title {
 	clear:both;
 	padding:5px 10px;
-	background:#65A33A;
+	background:#999;
 	font-size:12px;
 	color:#fff;
 }
-/*body.backend dl.form {
-	width: inherit;
-	max-width:800px;
-	overflow:hidden;
-	padding:5px;
-}*/
-/*body.backend dl.form dt, body.backend dl.form dd {
-	float:left;
-	padding:3px;
-	font-weight:bold;
-}*/
-/*body.backend dl.form dt {
-	clear:both;
-}
-body.backend dl.form dt {
-	width:240px;
-}*/
-/*body.backend dl.form dd {
-	width:440px;
-}*/
+
 body.backend dl.form.x2col {
 	float:left;
-	/*	width:374px;*/
 	width:360px;
 	margin:10px 0;
 }
@@ -994,9 +954,6 @@ body.backend dl.form.x2col .edit {
 	width:283px;
 	border:solid 1px #ccc;
 }
-/*body.backend dl.form input[type="text"] {
-	width:300px;
-}*/
 
 body.backend dl.form textarea.location_detail {
 	width:300px;
@@ -1011,17 +968,12 @@ body.backend dl.form div.short {
 	float:left;
 	margin-right:10px;
 }
-/*body.backend input.short, body.backend dl.form div.short input {
-	width:80px !important;
-}*/
+
 body.backend dl.form div.short p {
 	margin-top:5px;
 }
-/*body.backend dl.form div {
-	font-weight:normal;
-}*/
+
 body.backend dl.form a.other {
-	/*	color: #3E8924;*/
 	font-size: 11px;
 	font-weight: normal;
 	text-decoration: none;
@@ -1040,12 +992,10 @@ body.backend ul.features {
 body.backend ul.features li {
 	float:left;
 	width:350px;
-	/*	width:790px;*/
 	min-height:22px;
 	padding:3px 20px;
 	padding-left:10px;
 	overflow:hidden;
-	/*	margin-right:20px;*/
 	margin-right:1px;
 	border-bottom:solid 1px #eee;
 	cursor:pointer;
@@ -1058,9 +1008,6 @@ body.backend ul.features li.header {
 	font-weight:bold;
 	color:#fff;
 	line-height:20px;
-	/*	padding:2px 12px;*/
-/*	width:336px;*/
-/*	width:778px;*/
 	width:350px;
 	margin-right:1px;
 }
@@ -1089,7 +1036,6 @@ body.backend ul.features li input {
 /* ///// JQUERY TRANSFORM ///// */
 body.backend div .ex-label {
 	float: left;
-	/*line-height: 20px;*/
   line-height:36px;
 	margin-right: 10px;
 }
@@ -1254,6 +1200,10 @@ body.backend .btnBig {
 	display:inline-block;
  *display:block;
  *width:180px;
+ 
+	font-size: 22px; 
+	padding: 18px 34px 20px; 
+	margin-top:0;
 }
 body.backend .btnBig.disable {
 	cursor:default;
@@ -1407,27 +1357,23 @@ body.backend .operation .typebox {
 	cursor:pointer;
 }
 body.backend .operation .typebox:hover {
-	/*border: 1px solid #CCE1CC;*/
 	border: 1px solid #ccc;
 }
 body.backend .operation .typebox.selected {
-	border: 1px solid #transparent;
-	background:#dfeeb7;
+	border: 1px solid #cccccc;
+	background:#ffffff;
 }
 body.backend .operation .typebox .chkname {
 	clear:both;
 	height:28px;
 	margin-bottom:1px;
 	float:left;
-	/*width:200px;*/
   width:125px;
 }
 body.backend .operation .pricebox {
 	float:left;
-	/*width:205px;*/
   width:395px;
 	margin-left:20px;
-	color: #3E8924;
 	font-size: 18px;
 	font-weight: bold;
 }
@@ -1440,7 +1386,6 @@ body.backend .operation .pricebox span.small {
 	margin: 0px 5px 0px 10px;
 }
 body.backend .operation .pricebox select {
-	color: #3E8924;
 	font-size: 16px;
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight: bold;
@@ -1449,8 +1394,6 @@ body.backend .operation .pricebox select {
 body.backend .operation .pricebox input {
 	width:120px !important;
 	padding:0px 5px;
-	/*	text-shadow: 0 1px 0 #FFFFFF;*/
-	color: #3E8924;
 	font-size: 18px;
 	font-weight: bold;
 	font-family:Arial, Helvetica, sans-serif;
@@ -2643,7 +2586,7 @@ td.status span {
 	margin:2px;
 }
 .contactbox a {
-	color:#006CA8 !important;
+	color:#0099CC !important;
 }
 
 
