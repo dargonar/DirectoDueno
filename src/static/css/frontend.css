@@ -273,30 +273,28 @@ body.frontend_search ul.tabs li.none.active {
 
 body.frontend_search #searchbox {
 	width:648px;
-	height:35px;
-	padding:20px;
-	padding-right:0;
+	height:40px;
+	padding:0 0 0 20px;
 	position:absolute;
 	left:340px;
-	top:3px;
+	top:24px;
 	z-index:51;
 }
 body.frontend_search #searchbox.filters {
-	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll 0px -215px transparent;
+	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll 0px -236px transparent;
 }
 body.frontend_search #filterbox {
-	-webkit-border-bottom-right-radius: 15px;
-	-webkit-border-bottom-left-radius: 15px;
-	-moz-border-radius-bottomright: 15px;
-	-moz-border-radius-bottomleft: 15px;
-	border-bottom-right-radius: 15px;
-	border-bottom-left-radius: 15px;
+-moz-border-radius:8px 0px 8px 8px;
+-webkit-border-radius:8px 0px 8px 8px;
+border-radius:8px 0px 8px 8px;
+
 	width:666px;
-	border:1px solid #63A23C;
+	border:1px solid #666666;
 	border-top:none;
 	position:absolute;
 	left:340px;
-	top:78px;
+/*	top:78px;*/
+	top:64px;
 	z-index:50;
 	background:#fff;
 	display:none;
@@ -304,7 +302,7 @@ body.frontend_search #filterbox {
 }
 body.frontend_search #filterbox .buttons {
 	clear:both;
-	border-top:1px solid #E6F0C7;
+	border-top:1px solid #EDEDED;
 	padding-top:8px;
 }
 body.frontend_search #filterbox .buttons .noncancel {
@@ -434,8 +432,7 @@ body.frontend_search #box-options .block {
 	float: left;
 	margin: 10px 0 0;
 	padding: 5px;
-	border-right: 1px solid #E6F0C7;
-	/*height:225px;*/
+	border-right: 1px solid #EDEDED;
   height:265px;
 }
 body.frontend_search #box-options .block.block-1 {
@@ -476,7 +473,7 @@ body.frontend_search #box-options .sub_options {
 	width:108px;
 	margin-left:-6px;
 	border-top:solid 1px transparent;
-	border-bottom: solid 1px #ddd;
+	border-bottom: solid 1px #EDEDED;
 	border-left: solid 2px transparent;
 	border-right: solid 3px transparent;
 	padding:4px 10px;
@@ -1877,7 +1874,7 @@ body.frontend_search .contactBox {
 	padding:15px 20px;
 	padding-top:10px;
 
-	background: none repeat scroll 0 0 #e9f8fb;
+	background:#DBF5FC;
 
 	border-color: #cccccc;
 	border-style: solid;
@@ -2100,7 +2097,6 @@ body.frontend_search .loadingmap {
 	z-index:999;
 	width:62px;
 	height:47px;
-	/*	background:url(/img/backgrounds/loadingbox.png);*/
 	background:url(/img/ultraprop_ui_sprite.png) no-repeat scroll -506px -1px transparent;
 	text-align:center;
 	padding-top:15px;
@@ -2110,21 +2106,21 @@ body.frontend_search .loadingmap {
 }
 body.frontend_search .side_loadebox {
 	background:#fff;
-	border-bottom:solid 1px #65A33A;
+	border-bottom:solid 1px #666666;
 	z-index:1000;
 	position:absolute;
 	left:0;
 	right:0;
-	-moz-box-shadow: 1px 1px 1px rgb(148,164,107);
-	-webkit-box-shadow: 1px 1px 1px rgb(148,164,107);
-	box-shadow: 1px 1px 1px rgb(148,164,107);
+	-moz-box-shadow: 1px 1px 1px #999;
+	-webkit-box-shadow: 1px 1px #999;
+	box-shadow: 1px 1px 1px rgb#999;
 }
 body.frontend_search .side_loadebox .content {
-	background:#F2F8E1;
+	background:#DBF5FC;
 	height:46px;
 	padding-top:12px;
 	padding-left:12px;
-	color:#65a33a;
+	color:#1F3F45;
 	position:relative;
 	margin:2px;
 }
@@ -2978,6 +2974,7 @@ body.frontend_home #footer .inner a:hover {
 	text-align:left;
 	overflow:hidden;
 	padding-top:24px; 
+	background:#eeeeee; 
 }
 .top_search h3 {
 	color: #0A5278;
@@ -3010,12 +3007,11 @@ ul.lnk_search li {
 p.skill {
 	font-size:11px;
 	color:#666;
-	border-top: dotted 1px #ccc;
+	border-top: dashed 1px #ccc;
 	padding-top:20px;
 	text-align:left;
 }
 #map_tab {
-	background:#a1e0ed;
 	border:solid 2px #fff;
 	text-shadow:0 1px 0 #ceeff6; 
 	margin-top:3px;
@@ -3023,5 +3019,16 @@ p.skill {
 	opacity:1;
 	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 	filter: alpha(opacity=100);
+	
+/*	background:#a1e0ed;*/
+	
+	background: #c3c3c3; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #c3c3c3 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#c3c3c3)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#c3c3c3 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#c3c3c3 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#c3c3c3 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffffff 0%,#c3c3c3 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#c3c3c3',GradientType=0 ); /* IE6-9 */
 
 }
