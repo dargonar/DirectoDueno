@@ -27,7 +27,7 @@
       {% if is_logged is defined %}
         {% if is_logged %}
         <li>
-          <a href="{{ url_for('frontend/map/realestate', realestate=session['account.realestate.key']) }}" target="_blank" title="Vea sólo su propiedad en el Mapa">Mapa</a>
+          <a href="{{ url_for('frontend/map/realestate', realestate=session['account.realestate.key']) }}" target="_blank" title="Vista previa de sus propiedades en el Mapa">Vista previa</a>
         </li>
         <li>
           <a href="{{url_for('backend/auth/logout')}}" title="Cerrar sesión">Salir</a>

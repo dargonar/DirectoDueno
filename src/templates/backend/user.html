@@ -95,7 +95,7 @@ jQuery(document).ready(function() {
     <form id="signup_form" action="{{url_for('backend/user/edit')}}" method="post" >
       <input type="hidden" name="key" value="{{key}}" />
       <dl class="form">
-        <dt>Nombre de Usuario <small>(email)</small></dt>
+        <dt>Correo electrónico</dt>
         {{ form_field2_container(form.email) }}
           <!-- placeholder="Email", class="hint", hint="Email", -->
           {{ form_field(form.email, class="hint", readonly="readonly", id="user_name") }}
