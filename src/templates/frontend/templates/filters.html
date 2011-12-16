@@ -17,7 +17,7 @@
       {% set short_type_descriptions = config_array['cells']['prop_type_id']['short_descriptions'] %}
       {% set groups = config_array['cells']['prop_type_id']['generated_attributes'].keys() %}
       {% set in_home = config_array['cells']['prop_type_id']['in_home'] %}
-      <div class="block" jqtransform="true" group="{{groups[0]}}" style="margin:7px 9px;">
+      <div class="block" jqtransform="true" group="{{groups[0]}}" style="margin:7px 4px; overflow: hidden;">
         {% for item in type_descriptions %}
           {% set index = loop.index0 %} 
           {% if in_home[index]==1 %}
