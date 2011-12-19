@@ -4,7 +4,22 @@
 <div style="width:940px; margin:auto;">
   <div id="login_container" class="login_window" align="center" style="overflow:hidden; margin:auto;">
     {% if flash %}
+      {% if flash.type != 'success'%}
       <div class="msg_{{flash.type}}"><b>{{flash.message}}</b></div>
+      {% else %}
+      <div class="messageBox">
+        <div class="left">
+          <span class="icon">&nbsp;</span>
+          <span class="message">Bienvenido a <b>DirectoDueño</b></span>
+        </div>
+        <div class="right">
+          <p>Hemos enviamos un correo electrónico con el enlace de acceso. Ingrese a DirectoDueño a través del mismo. <br/> 
+            Si no recibe nuestro correo en los próximos minutos, verifique su carpeta de SPAM.
+          </p>
+        </div>
+      </div>
+      <div style="clear:both; margin-bottom:30px;"></div>
+      {% endif %}
     {% endif %}
     <div class="popup" style="float:left; width:435px;">
       <div id="login" class="popup_box" align="left" style="min-height:232px;"> 

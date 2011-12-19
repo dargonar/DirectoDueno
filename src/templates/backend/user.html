@@ -91,7 +91,7 @@ jQuery(document).ready(function() {
       </form>  
       {{ form.rol(style="display:none;") }}
       <!-- ///// CONTACT DATA ///// -->
-    <h2 class="title">Información Personal</h2>
+    <h2 class="title">Información Personal <small style="color:#a9a9a9;">-información de contacto para uso de DirectoDueño-</small></h2>
     <form id="signup_form" action="{{url_for('backend/user/edit')}}" method="post" >
       <input type="hidden" name="key" value="{{key}}" />
       <dl class="form">

@@ -91,7 +91,7 @@ class SignUp(BackendHandler):
     # Generamos la inmo en estado TRIAL y le ponemos el Plan
     realEstate = RealEstate.new()
     #realEstate.telephone_number = self.form.telephone_number.data
-    #realEstate.name             = self.form.name.data
+    realEstate.name             = self.form.email.data #self.form.name.data
     realEstate.email            = self.form.email.data
     realEstate.plan             = plan
     realEstate.status           = RealEstate._REGISTERED
