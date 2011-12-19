@@ -110,7 +110,7 @@ class LaPlataCampaign(BackendHandler):
       
     
 class VerArchivo(BackendHandler):
-  @need_auth(roles='ultraadmin', code=505)
+  #@need_auth(roles='ultraadmin', code=505)
   def get(self, **kwargs):
     return self.render_response(kwargs['archivo'].replace('-','/'))
 
