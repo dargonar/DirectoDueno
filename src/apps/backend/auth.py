@@ -68,7 +68,8 @@ class SignUp(BackendHandler):
     if self.is_logged:
       return self.redirect_to('property/list')
     
-    kwargs['planes']        = Plan.all().filter('online = ',1).order('amount').fetch(3)
+    #kwargs['planes']        = Plan.all().filter('online = ',1).order('amount').fetch(3)
+    kwargs['plan']          =  Plan.all().filter('online = ',1).filter('amount =', 0).get()
     kwargs['form']          = self.form
     
     return self.render_response('backend/signup.html', **kwargs)
@@ -83,7 +84,7 @@ class SignUp(BackendHandler):
     if not form_validated:
       kwargs['form']         = self.form
       if self.form.errors:
-        kwargs['flash']      = self.build_error('Verifique los datos ingresados:')# + '<br/>'.join(reduce(lambda x, y: str(x)+' '+str(y), t) for t in self.user_form.errors.values()))
+        kwargs['flash']      = self.build_error('Verifique los datos ingresados:<br/>&nbsp;&nbsp;' + '<br/>&nbsp;&nbsp;'.join(reduce(lambda x, y: ''+str(x)+' '+str(y), t) for t in self.form.errors.values()))
       kwargs['plan']         = plan
       return self.render_response('backend/signup.html', **kwargs)
     
@@ -138,7 +139,7 @@ class SignUp(BackendHandler):
     # Envío el correo.
     mail.send_mail(sender="www.directodueno.com <%s>" % self.config['directodueno']['mail']['signup']['sender'], 
                  to=user.email,
-                 subject="DirectoDueño - Bienvenido",
+                 subject=u"DirectoDueño - Bienvenido",
                  body=body,
                  html=html
                  )
@@ -171,7 +172,7 @@ class ValidateUser(BackendHandler):
     
     self.do_login(user)
     
-    self.set_ok('Su correo ha sido validado. Por favor complete la información de la inmobiliaria para comenzar a operar con DirectoDueño.')
+    self.set_ok(u'Su correo ha sido validado. Por favor complete la información de contacto en su <b>Perfil Público</b> para comenzar a operar con DirectoDueño.')
     
     return self.redirect_to('property/list')
 

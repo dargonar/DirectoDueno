@@ -461,11 +461,11 @@ class SignUpForm(KetchupForm):
     if user:
       raise ValidationError(u'Este correo ya esta siendo utilizado.')
   
-  def validate_name(form, field):
-    # Chequeo que el nombre de la inmo no este repetido
-    name = RealEstate.all().filter('name', field.data.strip()).get()
-    if name:
-      raise ValidationError(u'Ese nombre ya esta siendo utilizado.')
+  # def validate_name(form, field):
+    # # Chequeo que el nombre de la inmo no este repetido
+    # name = RealEstate.all().filter('name', field.data.strip()).get()
+    # if name:
+      # raise ValidationError(u'Ese nombre ya esta siendo utilizado.')
   
   # TODO: NO HAY INDICE PARA ESTO POR ESO NO SE PUEDE VALIDAR!!!!
   # def validate_telephone_number(form, field):
@@ -474,9 +474,9 @@ class SignUpForm(KetchupForm):
     # if name:
       # raise ValidationError(u'Ese teléfono ya esta siendo utilizado.')
 
-  name                = TextField('',[validators.Required(message=u'Debe ingresar un nombre de Inmobiliaria.')])
+  # name                = TextField('',[validators.Required(message=u'Debe ingresar un nombre de Inmobiliaria.')])
   email               = TextField('',[validators.email(message=u'Debe ingresar un correo válido.')], default='')
-  telephone_number    = TextField('',[validators.Required(message=u'Debe ingresar un número de teléfono.')])
+  # telephone_number    = TextField('',[validators.Required(message=u'Debe ingresar un número de teléfono.')])
   password            = PasswordField(u'Contraseña', [
                             validators.Length(message=u'La contraseña debe tener al menos %(min)d caracteres.', min=6),
                             validators.Required(message=u'Debe ingresar una contraseña.'),

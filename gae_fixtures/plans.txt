@@ -1,4 +1,20 @@
 from models import *
+from myfilters import do_slugify
+
+p = Plan()
+p.name  = 'Promo Lanzamiento'
+p.slug  = do_slugify(p.name)
+p.description = u'Promo Lanzamiento: Avisos ilimitados'
+p.html = u'Promo Lanzamiento: Avisos ilimitados'
+p.type = Plan._ONE_TIME
+p.amount = 0
+p.free_days = 0
+p.payd_days = 0
+p.online = 1
+p.enabled = 1
+p.max_properties               = 1
+p.save()
+
 
 p = Plan()
 p.name = 'Plan Chapa'

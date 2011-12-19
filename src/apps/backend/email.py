@@ -44,7 +44,7 @@ class SendTask(MyBaseHandler):
     # Envío el correo.
     mail.send_mail(sender="www.directodueno.com <info@directodueno.com>", 
                  to       = mail_to,
-                 subject  = "DirectoDueño: Llegue a miles de clientes en La Plata y Gran La Plata",
+                 subject  = u"DirectoDueño: Llegue a miles de clientes en La Plata y Gran La Plata",
                  body     = body,
                  html     = html)
     # --------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ class SendTask(MyBaseHandler):
     # Envío el correo.
     mail.send_mail(sender="www.directodueno.com <%s>" % data['sender'], 
                  to       = mail_to,
-                 subject  = "%s - DirectoDueño" % subject,
+                 subject  = u"%s - DirectoDueño" % subject,
                  body     = body,
                  html     = html)
     # --------------------------------------------------------------------------------
@@ -164,7 +164,7 @@ class SendTask(MyBaseHandler):
     # Envío el correo.
     mail.send_mail(sender="www.directodueno.com <%s>" % self.config['directodueno']['mail']['requestinfo_user']['sender'], 
                  to       = context['sender_email'],
-                 subject  = "Consulta por un inmueble - DirectoDueño",
+                 subject  = u"Consulta por un inmueble - DirectoDueño",
                  body     = body,
                  html     = html)
     # --------------------------------------------------------------------------------
@@ -214,7 +214,7 @@ class SendTask(MyBaseHandler):
     mail.send_mail(sender="www.directodueno.com <%s>" % self.config['directodueno']['mail']['requestinfo_agent']['sender'], 
                  to       = realestate.email,
                  bcc      = self.config['directodueno']['mail']['reply_consultas']['mail'],
-                 subject  = "Hicieron una consulta por un inmueble - DirectoDueño",
+                 subject  = u"Hicieron una consulta por un inmueble - DirectoDueño",
                  body     = body,
                  html     = html)
     
@@ -246,7 +246,7 @@ class SendTask(MyBaseHandler):
     # Envío el correo.
     mail.send_mail(sender="www.directodueno.com <%s>" % self.config['directodueno']['mail']['contact_user']['sender'], 
                  to       = context['sender_email'],
-                 subject  = "Consulta - DirectoDueño",
+                 subject  = u"Consulta - DirectoDueño",
                  body     = body,
                  html     = html)
     # --------------------------------------------------------------------------------
@@ -278,7 +278,7 @@ class SendTask(MyBaseHandler):
     mail.send_mail(sender="www.directodueno.com <%s>" % self.config['directodueno']['mail']['contact_agent']['sender'], 
                  to       = realestate.email,
                  bcc      = self.config['directodueno']['mail']['reply_consultas']['mail'],
-                 subject  = "Hicieron una consulta - DirectoDueño",
+                 subject  = u"Hicieron una consulta - DirectoDueño",
                  body     = body,
                  html     = html)
     

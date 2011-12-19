@@ -34,12 +34,14 @@ $(document).ready(function() {
 
 <div style="width:940px; margin:auto;">
 
-
+{% if flash %}
+  <div class="msg_{{flash.type}}"><b>{{flash.message}}</b></div>
+  {% endif %}
 <div class="signupBox">
   <div class="popup" style="border:none; width: 400px; text-align:left;">
     <div id="login" class="popup_box" style="padding:0;"> 
       <h1 style="font-size:24px; margin-left:5px;">Comience a Publicar Ahora!</h1>
-      <h2 style="color:#0A5278; font-weight:normal; margin-left:5px;">Utilize la plataforma sin cargo por un período de 7 días.</h2>
+      <h2 style="color:#0A5278; font-weight:normal; margin-left:5px;">Utilize la plataforma y concrete su negocio.</h2>
       {% set post_url = url_for('backend/auth/signup/promo',promo=promo ) if promo else url_for('backend/auth/signup') %}
       <form id="signup_form" action="{{post_url}}" method="post" style="margin-right:15px; width:400px; margin-top:15px;">
         <!-- ///// IDENTITY ///// -->    
@@ -58,7 +60,7 @@ $(document).ready(function() {
           {{ form_field(form.accept_terms) }}
         </div>
         {{form.ketchup(id='ketchup')}}
-        <input type="hidden" name="plan" id="plan" value="{{default_plan}}" />
+        <input type="hidden" name="plan" id="plan" value="{{plan.key()|string}}" />
         <input type="submit" value="COMENZAR A PUBLICAR!" name="" class="btnPublish register">
       </form>  
     </div>
