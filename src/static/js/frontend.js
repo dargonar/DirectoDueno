@@ -1687,7 +1687,34 @@ function init_home()
       jQuery('#center_lon').val(location.lng());
   }
   
+  // jQuery("#btnSearchHome").click( function() {
+    // checkForm();
+    
+    // //TODO: Unificar -> Esta funcion esta en backend/frontend x 2 (home e index)
+    // var address = document.getElementById("searchmap").value;
+
+    // put_marker = true;
+    // geocoder.geocode({'address': address,'region' : 'ar'}, function(results, status){ 
+    
+      // var handled = false;
+      // $.each(results, function(i, item) {
+        // if( is_from_country(item, 'Argentina') )
+        // {
+          // handle_result_home(item.geometry.location);
+          // handled = true;
+          // return false;
+        // }
+      // });
+      
+      // $('#home_search_form').submit();
+    // });
+  // });
+  
   jQuery("#btnSearchHome").click( function() {
+    $('#home_search_form').submit();
+  });
+  
+  jQuery("#home_search_form").submit( function() {
     checkForm();
     
     //TODO: Unificar -> Esta funcion esta en backend/frontend x 2 (home e index)
@@ -1705,13 +1732,7 @@ function init_home()
           return false;
         }
       });
-      
-      // if (status != google.maps.GeocoderStatus.OK || handled == false) 
-      // {
-        // return false;
-      // }
-      
-      $('#home_search_form').submit();
+      return true;
     });
   });
   
