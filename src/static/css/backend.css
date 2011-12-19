@@ -2760,3 +2760,20 @@ table.poll td p { color:#333;}
 .custom_data_theme {border:solid 1px #ccc; padding:10px 15px; margin-top:20px;}
 .custom_data_theme input[type="text"],
 .custom_data_theme textarea { width:388px !important;}
+
+
+/* ///// Messages ///// */
+.messageBox { 
+	background:#82ba24;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px; 
+	padding:20px; 
+	overflow:hidden; 
+	margin-top:20px;
+}
+.messageBox .left { width:450px; float:left; font-size:24px; overflow:hidden; color:#ffffff;}
+.messageBox .left span.message {display:block; float:left; width:360px; margin-top:8px;}
+.messageBox .left span.icon { display:block; float:left; width:64px; height:64px; background:url(../img/icons/ok.png); margin-right:15px;}
+.messageBox .right { width:443px; float:right; color:#ffffff; font-size:14px;}
+.messageBox .right a { color:#ffffff; font-weight:bold; padding-top:5px; display:block;}
