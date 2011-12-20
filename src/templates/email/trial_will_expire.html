@@ -1,26 +1,33 @@
 {% extends "email/_base.html"%}
 {%block content%}
   <tr>
-    <td style="font-family:Arial, Helvetica, sans-serif; padding:20px;">
+    <td style="font-family:Arial, Helvetica, sans-serif; padding:8px 20px;">
       <h1 style="font-size:18px; font-weight:normal;">Estimado usuario de DirectoDueño.</h1>
       <div style="border-bottom:solid 3px #cccccc; border-right:solid 4px #cccccc;">
-        <div style="border:solid 1px #cccccc; padding:20px; padding-top:25px; height:120px;">
-          <table width="100%" border="0">
+        <div style="border:solid 1px #cccccc; padding:20px; padding-top:25px;">
+          <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr>
-              <td valign="top" width="300">
+              <td valign="top">
                 Su período de prueba finaliza el {{expire_date.strftime('%d/%m/%Y')}}, dentro de {{expire_span}} días.<br/>
                 Pasados estos {{expire_span}} días sus propiedades publicadas serán desactivadas de los resultados de búsqueda. <br />
                 
                 <span style="font-size:15px; font-weight:bold;"></span>
               </td>
-              <td valign="top" align="right"><a href="http://www.directodueno.com/admin/account/status" style="background-color: #5cb039; border: 1px solid #559f32; color: #FFFFFF; display: inline-block; font-size: 13px; font-weight: bold; padding: 10px 50px; text-decoration: none; white-space: nowrap; margin-bottom:15px;" title="Ir al Panel de control">Ir al Panel de control</a><br /></td>
+              <td width="250" align="right" valign="top"><a href="http://www.directodueno.com/admin/account/status" style="background-color: #ff9600; border: 1px solid #cc6600; color: #FFFFFF; display: inline-block; font-size: 13px; font-weight: bold; padding: 15px 25px; text-decoration: none; white-space: nowrap; margin-bottom:15px; font-size:14px; font-family:Verdana, Arial, sans-serif;" title="Ir al Panel de control">Ir al Panel de control</a><br /></td>
             </tr>
           </table>
           <p style="font-size:12px; margin-bottom:10px;">
             Para continuar deberá realizar el pago de la factura correspondiente al mes en curso.<br />
-            Puede acceder ingresando en "<b>Mi Cuenta</b>" en el panel de control de DirectoDueño.<br />
+            Puede acceder ingresando en <a href="http://www.directodueno.com/admin/account/status">"Mi Cuenta"</a> en el <a href="http://www.directodueno.com/admin/account/status">panel de control</a> de DirectoDueño.<br />
+            
+          
             Para acceder al panel ahora haga <a href="http://www.directodueno.com/admin/account/status" style="font-size:12px;">click aquí</a> o presione en "Ir al Panel de control".
           </p>
+          
+                <p style="font-size:12px;">
+Si precisa que extendamos el vencimiento de la factura, escríbanos respondiendo a <a href="{{support_url}}">{{support_url}}</a>.
+                </p>
+          
         </div>
       </div>
     </td>
