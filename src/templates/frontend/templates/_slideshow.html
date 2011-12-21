@@ -1,11 +1,30 @@
+{% block headscript %}
+    <script type="text/javascript" src="/js/jquery.lightbox-0.5.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css" media="screen" />
+
+    <script type="text/javascript">
+    $(function() {
+				//$('#gallery a.zoom').lightBox();
+				$('#thumblist a').lightBox();
+    });
+    </script>
+{% endblock %}
+
+
 <div id="gallery" class="ad-gallery" style="position:relative;">
   {{ property|operationify(1) }}
-  <div class="ad-image-wrapper"></div>
+  
+
+
+  <a class="zoom" href="">
+  	<div class="ad-image-wrapper"></div>
+  </a>
+
   
   <div class="ad-controls"></div>
   <div class="ad-nav">
     <div class="ad-thumbs">
-      <ul class="ad-thumb-list">
+      <ul id="thumblist" class="ad-thumb-list">
         {% set _width  = 616 %}
         {% set _height = 462 %}
         {% for img in images %}
