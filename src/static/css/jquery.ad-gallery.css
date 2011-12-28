@@ -230,7 +230,7 @@
               /* height:54px;*/
             }
             .ad-gallery .ad-thumbs li a.ad-active img {
-              border: 1px solid #65A33A;
+              border: 1px solid #000000;
             }
 /* Can't do display none, since Opera won't load the images then */
 .ad-preloads {
