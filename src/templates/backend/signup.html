@@ -41,7 +41,7 @@ $(document).ready(function() {
   <div class="popup" style="border:none; width: 400px; text-align:left;">
     <div id="login" class="popup_box" style="padding:0;"> 
       <h1 style="font-size:24px; margin-left:5px;">Comience a Publicar Ahora!</h1>
-      <h2 style="color:#0A5278; font-weight:normal; margin-left:5px;">Utilize la plataforma y concrete su negocio.</h2>
+      <h2 style="color:#0A5278; font-weight:normal; margin-left:5px;">Utilize la plataforma y concrete su negocio.<br/>Promoción lanzamiento sin costo.</h2>
       {% set post_url = url_for('backend/auth/signup/promo',promo=promo ) if promo else url_for('backend/auth/signup') %}
       <form id="signup_form" action="{{post_url}}" method="post" style="margin-right:15px; width:400px; margin-top:15px;">
         <!-- ///// IDENTITY ///// -->    
@@ -71,7 +71,7 @@ $(document).ready(function() {
 <!-- Foot -->
 <div class="foot">
   <img class="logo_foot" src="/img/pixel-transp.gif" alt="DirectoDueño" />
-  <p>El uso de este sitio web implica la aceptación de los Términos y Condiciones y la Política de Privacidad de directodueno.com.ar.<br/>
+  <p>El uso de este sitio web implica la aceptación de los <a target="_blank" href="{{url_for('frontend/terms')}}">Términos y Condiciones</a> y la Política de Privacidad de directodueno.com.ar.<br/>
   Copyright © 2011 - Todos los derechos reservados. Protección de Datos Personales.</p> 
   <img class="appengine" src="/img/googleappengine.jpg"/>       
 </div>
