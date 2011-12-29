@@ -111,7 +111,7 @@ function hideLightbox() {
             {% if property.realestate %}  
               <div class="data" style="padding-left:10px;">
                 <h1>{{property.realestate.name}}</h1>
-                <span>{{property.realestate.telephone_number}}</span><br/>
+                <span>{{property.realestate.telephone_number if property.realestate.telephone_number else 'No dispone de teléfono de contacto.'}}</span><br/>
                 <span>{{property.realestate.email}}</span><br/>
                 {% if property.realestate.open_at %}
                   <span>Atención {{property.realestate.open_at}}</span><br/>

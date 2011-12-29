@@ -153,7 +153,7 @@ class NewEdit(BackendHandler):
       kwargs['form']  = PropertyForm(obj=self.mine_or_404(kwargs['key']))
     else:
       if len(Property.all().filter('realestate = ',db.Key(self.get_realestate_key())).fetch(10))>=1:
-        self.set_error(u'Comuníquese con DirectoDueño si desea publicar más de una propiedad.')
+        self.set_error(u'Comuníquese con DirectoDueño si desea publicar más de una propiedad; por correo (soporte@directodueno.com) o a través del <a href="%s">panel de ayuda</a>.' % self.uri_for('backend/help'))
         return self.redirect_to('property/list')
       kwargs['title'] = 'Nueva Propiedad'
       kwargs['form']  = self.form
