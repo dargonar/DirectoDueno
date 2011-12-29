@@ -2,24 +2,29 @@
 {% set headline = property|headlinify %}
 <ul class="prop_content" key="{{ property.key()|string }}">
   <li class="prop_box" id="prop_box_{{ property.key()|string }}" 
-    onmouseout="return onMouseOutProp('{{ property.key()|string }}');" onmouseover="return onMouseOverProp('{{ property.key()|string }}');" >
+    onmouseout="return onMouseOutProp('{{ property.key()|string }}');" onmouseover="return onMouseOverProp('{{ property.key()|string }}');">
+    
     <div class="bdrTop"></div>
+    
+    
     <div class="head">
       <div class="address">
         <input type="checkbox" class="chk" key="{{ property.key()|string }}" title="Marque esta propiedad para compararla con otras propiedades" />
         <a href="{{ url_for('frontend/ficha', slug=(headline+'-'+address)|slugify ,key=property.key(), oper=price_data_operation)}}" onclick="return onShowFicha(this, '{{property.key()}}');" 
-          title="Ver ficha: {{ headline }} - {{address}} " class="address_link" >{{ address }}</a>
+          title="Mostrar Ficha: {{ headline }} - {{address}} " class="address_link" >{{ address }}</a>
         <!--a href="#" onclick="return false;" class="index" title="Indice del paginador">{# {index} #}&nbsp;</a-->
       </div>
       <!--a class="close" title="Quitar de la vista" onclick="return removeProperty('{{property.key()}}');" ></a>
       <img src="/img/misc/transparent.png" class="favorite"/-->
     </div>
       
+   
+    <div class="prop_click" onclick="return onShowFicha(this, '{{property.key()}}');" title="Mostrar Ficha: {{ headline }} - {{address}} ">
     <!-- div class="picbox" onclick="return onShowPopup(this, null, '--key--');"-->
-    <div class="picbox" onclick="return onShowFicha(this, '{{property.key()}}');" style="position:relative;">
+    <div class="picbox"  style="position:relative;">
       <div class="qty">{{ property.images_count }}&nbsp;fotos</div>
       {{ property|operationify(0) }}
-      <img class="viewBubble pic" style="max-width:115px; max-height:86px;" {% if property.main_image_url %} src="{{property.main_image_url}}=s115" wh="115,86" {% else %} src="/img/picturebox/nophoto_115x86.jpg"  {% endif %} onerror="this.src='/img/picturebox/nophoto_115x86.jpg';" title="Ver ficha: {{ headline }} - {{address}} "/>
+      <img class="viewBubble pic" style="max-width:115px; max-height:86px;" {% if property.main_image_url %} src="{{property.main_image_url}}=s115" wh="115,86" {% else %} src="/img/picturebox/nophoto_115x86.jpg"  {% endif %} onerror="this.src='/img/picturebox/nophoto_115x86.jpg';"/>
       
     </div>
         
@@ -44,6 +49,8 @@
         {{ property | descriptify(cols=['rooms','bedrooms','bathrooms','area_indoor']) }}
       </p>
     </div>
+    </div>
+    
   </li>
   <li class="prop_mini_bubble" id="prop_mini_bubble_{{ property.key()|string }}">
     {% include "frontend/templates/_bubble_mini.html" %}

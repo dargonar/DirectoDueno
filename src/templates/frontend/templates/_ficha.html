@@ -1,7 +1,50 @@
+{% block headscript %}
+<script type="text/javascript">
+function showLightbox() {
+	document.getElementById('over').style.display='block';
+	document.getElementById('fade').style.display='block';
+}
+function hideLightbox() {
+	document.getElementById('over').style.display='none';
+	document.getElementById('fade').style.display='none';
+}
+</script>
+{% endblock %}
+
+  <div id="over" class="overbox dialog">
+      <div class="btnClose" onclick="javascript:hideLightbox();"></div>
+      
+      <form method="post" action="{{url_for('frontend/ficha/sendemail', key=property.key()|string, oper=price_data_operation)}}" onsubmit="return sendMail(this);">
+        <h1>Solicitar Información sobre esta propiedad</h1>
+        
+          <p>Mensaje:</p>
+          {{form.message(title="mensaje", class="comment_txtarea")}}
+          {{form.ketchup(id='ketchup')}}
+          
+          <p>Su nombre</p>
+          {{form.name(title="nombre")}}
+          
+          <p>Su email</p>
+          {{form.email(title="email")}}
+          
+          <p>Su Teléfono (Opcional)</p>
+          {{form.email(title="teléfono")}}
+        
+        <div class="center">
+          <input type="submit" class="btnSend" title="Enviar correo" value="Enviar Email" />
+        </div>
+        <input type="hidden" name="opened_ficha_keys" value="{{property.key()|string}}"/>
+      </form>
+  </div>
+  <div id="fade" class="fadebox" onclick="javascript:hideLightbox();">&nbsp;</div>
+
+
   <!-- AREA UNDER WINDOW TABS -->
   <!-- wh=133,47 , wh=230,80 -->
   {% set realestate_logo = (property.realestate.logo_url+'=s133') if property.realestate.logo_url else '/img/picturebox/realestate_ficha_nophoto.jpg'%}
   {% set realestate_logo_big = (property.realestate.logo_url+'=s230') if property.realestate.logo_url else '/img/picturebox/realestate_ficha_nophoto.jpg'%}
+   
+  
   <div class="innerContent detail" id="ficha_{{property.key()}}">
     <div id="detailBox">
       <h2>Ficha de Propiedad</h2>
@@ -21,7 +64,9 @@
           {%include "frontend/templates/_prop_details.html"%}
           <!-- LOGO / BTN CONTACT -->
           <div class="agent">
-            <a class="btnContact" title="Ver información del dueño" href="#" onclick="return scrollFichaToBottom('ficha_{{property.key()}}');">Contactar al dueño</a>
+            <!--a class="btnContact" title="Ver información del dueño" href="#" onclick="return scrollFichaToBottom('ficha_{{property.key()}}');">Contactar al dueño</a-->
+            
+            <a class="btnContact" title="Contactar al dueño" href="#" onclick="javascript:showLightbox();">Contactar al dueño</a>
           </div>
         </div>
       </div>
