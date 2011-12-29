@@ -1285,14 +1285,17 @@ body.frontend_search .viewBubble.pic {
 	width:115px;
 }
 body.frontend_search .buttonsSlide {
-	position:absolute;
-	overflow:hidden;
-	width:306px;
-	height:31px;
-	/*padding-top:99px;*/
-	top:99px;
-  z-index:102;
+/*	overflow:hidden;
+	top:99px;*/
+	position: absolute;
+	width: 306px;
+	height: 31px;
+	z-index: 102;
+	cursor: default;
 }
+
+body.frontend_search .buttonsSlide.compare { overflow:visible !important; top:0 !important;}
+
 body.frontend_search .btnSlide {
 	/*	background:url(/img/backgrounds/btnSlide.gif) no-repeat;*/
 	background:url(/img/ultraprop_ui_sprite.png) no-repeat transparent;
@@ -1303,12 +1306,24 @@ body.frontend_search .btnSlide {
 	padding:0 8px;
 }
 body.frontend_search .btnSlide.prev {
-	background-position:-511px -64px;
-	float:left;
+	background-position: -511px -64px;
+	position: absolute;
+	top: 99px;
+	z-index: 999;
+}
+body.frontend_search .btnSlide.prev.compare {
+    top: 55px !important;
 }
 body.frontend_search .btnSlide.next {
-	background-position:-527px -64px;
-	float:right;
+	background-position: -527px -64px;
+	left: 290px;
+	position: absolute;
+	top: 99px;
+	z-index: 999;
+}
+body.frontend_search .btnSlide.next.compare {
+    left: 184px !important;
+    top: 55px !important;
 }
 body.frontend_search .bubble .picbox {
 	margin-left:0px;

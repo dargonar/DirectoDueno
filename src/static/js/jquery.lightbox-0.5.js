@@ -36,8 +36,8 @@
 			containerBorderSize:	10,			// (integer) If you adjust the padding in the CSS for the container, #lightbox-container-image-box, you will need to update this value
 			containerResizeSpeed:	400,		// (integer) Specify the resize duration of container image. These number are miliseconds. 400 is default.
 			// Configuration related to texts in caption. For example: Image 2 of 8. You can alter either "Image" and "of" texts.
-			txtImage:				'Image',	// (string) Specify text "Image"
-			txtOf:					'of',		// (string) Specify text "of"
+			txtImage:				'',	// (string) Specify text "Image"
+			txtOf:					'/',		// (string) Specify text "of"
 			// Configuration related to keyboard navigation
 			keyToClose:				'c',		// (string) (c = close) Letter to close the jQuery lightBox interface. Beyond this letter, the letter X and the SCAPE key is used to.
 			keyToPrev:				'p',		// (string) (p = previous) Letter to show the previous image
@@ -125,7 +125,7 @@
 		 */
 		function _set_interface() {
 			// Apply the HTML markup into body tag
-			$('body').append('<div id="jquery-overlay"></div><div id="jquery-lightbox"><div id="lightbox-container-image-box"><div id="lightbox-container-image"><img id="lightbox-image"><div style="" id="lightbox-nav"><a href="#" id="lightbox-nav-btnPrev"></a><a href="#" id="lightbox-nav-btnNext"></a></div><div id="lightbox-loading"><a href="#" id="lightbox-loading-link"><img src="' + settings.imageLoading + '"></a></div></div></div><div id="lightbox-container-image-data-box"><div id="lightbox-container-image-data"><div id="lightbox-image-details"><span id="lightbox-image-details-caption"></span><span id="lightbox-image-details-currentNumber"></span></div><div id="lightbox-secNav"><a href="#" id="lightbox-secNav-btnClose"><img src="' + settings.imageBtnClose + '"></a></div></div></div></div>');	
+			$('body').append('<div id="jquery-overlay"></div><div id="jquery-lightbox"><div id="lightbox-container-image-box"><div id="lightbox-container-image"><img id="lightbox-image"><div style="" id="lightbox-nav"><a href="#" id="lightbox-nav-btnPrev"></a><a href="#" id="lightbox-nav-btnNext"></a></div><div id="lightbox-loading"><a href="#" id="lightbox-loading-link"><img src="' + settings.imageLoading + '"></a></div></div><div id="lightbox-container-image-data-box"><div id="lightbox-container-image-data"><div id="lightbox-image-details"><span id="lightbox-image-details-caption"></span><span id="lightbox-image-details-currentNumber"></span></div><div id="lightbox-secNav"><a href="#" id="lightbox-secNav-btnClose"><img src="' + settings.imageBtnClose + '"></a></div></div></div></div></div>');	
 			// Get page sizes
 			var arrPageSizes = ___getPageSize();
 			// Style overlay and show it
@@ -205,7 +205,7 @@
 			var intCurrentHeight = $('#lightbox-container-image-box').height();
 			// Get the width and height of the selected image plus the padding
 			var intWidth = (intImageWidth + (settings.containerBorderSize * 2)); // Plus the image큦 width and the left and right padding value
-			var intHeight = (intImageHeight + (settings.containerBorderSize * 2)); // Plus the image큦 height and the left and right padding value
+			var intHeight = (intImageHeight + (settings.containerBorderSize * 2) + 50); // Plus the image큦 height and the left and right padding value
 			// Diferences
 			var intDiffW = intCurrentWidth - intWidth;
 			var intDiffH = intCurrentHeight - intHeight;
@@ -218,8 +218,8 @@
 					___pause(100);	
 				}
 			} 
-			$('#lightbox-container-image-data-box').css({ width: intImageWidth });
-			$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ height: intImageHeight + (settings.containerBorderSize * 2) });
+			//$('#lightbox-container-image-data-box').css({ width: intImageWidth });
+			//$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ height: intImageHeight + (settings.containerBorderSize * 2) });
 		};
 		/**
 		 * Show the prepared image
@@ -253,15 +253,22 @@
 		 *
 		 */
 		function _set_navigation() {
+			
+			
+			//var btnNavMarginTop = (intImageHeight - 30); // Distancia desde arriba
+			
 			$('#lightbox-nav').show();
 
 			// Instead to define this configuration in CSS file, we define here. And it큦 need to IE. Just.
-			$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
+			//$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({'top' : settings.btnNavMarginTop});
+			$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({});
+			//$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
+			//$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({'opacity' : '0.5'});
 			
 			// Show the prev button, if not the first image in set
 			if ( settings.activeImage != 0 ) {
 				if ( settings.fixedNavigation ) {
-					$('#lightbox-nav-btnPrev').css({ 'background' : 'url(' + settings.imageBtnPrev + ') left 15% no-repeat' })
+					$('#lightbox-nav-btnPrev').css({ 'background' : 'url(' + settings.imageBtnPrev + ') 30px 30px no-repeat' })
 						.unbind()
 						.bind('click',function() {
 							settings.activeImage = settings.activeImage - 1;
@@ -271,9 +278,10 @@
 				} else {
 					// Show the images button for Next buttons
 					$('#lightbox-nav-btnPrev').unbind().hover(function() {
-						$(this).css({ 'background' : 'url(' + settings.imageBtnPrev + ') left 15% no-repeat' });
+						$(this).css({ 'background' : 'url(' + settings.imageBtnPrev + ') 30px 30px no-repeat' });
 					},function() {
-						$(this).css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
+						//$(this).css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
+						$(this).css({});
 					}).show().bind('click',function() {
 						settings.activeImage = settings.activeImage - 1;
 						_set_image_to_view();
@@ -285,7 +293,7 @@
 			// Show the next button, if not the last image in set
 			if ( settings.activeImage != ( settings.imageArray.length -1 ) ) {
 				if ( settings.fixedNavigation ) {
-					$('#lightbox-nav-btnNext').css({ 'background' : 'url(' + settings.imageBtnNext + ') right 15% no-repeat' })
+					$('#lightbox-nav-btnNext').css({ 'background' : 'url(' + settings.imageBtnNext + ') 30px 30px no-repeat' })
 						.unbind()
 						.bind('click',function() {
 							settings.activeImage = settings.activeImage + 1;
@@ -295,9 +303,10 @@
 				} else {
 					// Show the images button for Next buttons
 					$('#lightbox-nav-btnNext').unbind().hover(function() {
-						$(this).css({ 'background' : 'url(' + settings.imageBtnNext + ') right 15% no-repeat' });
+						$(this).css({ 'background' : 'url(' + settings.imageBtnNext + ') 30px 30px no-repeat' });
 					},function() {
-						$(this).css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
+						//$(this).css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
+						$(this).css({});
 					}).show().bind('click',function() {
 						settings.activeImage = settings.activeImage + 1;
 						_set_image_to_view();

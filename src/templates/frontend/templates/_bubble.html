@@ -39,11 +39,11 @@
               <div class="qty">foto <font class="qty_font">1</font> de {{ loop.length }}</div>
               <center>
             {% endif %}
-            <img id="image_{{loop.index}}" class="popupimg" style="max-width:306px; max-height:230px; {%if loop.index != 1 %} display:none {%endif%}" src="{{img.title}}=s306" wh="306,230" onerror="this.src='/img/picturebox/nophoto_306x230.jpg';" />
+            <img id="image_{{loop.index}}" class="popupimg" style="max-width:306px; max-height:230px; {%if loop.index != 1 %} display:none {%endif%}" src="{{img.title}}=s306" wh="306,230" onerror="this.src='/img/picturebox/nophoto_306x230.jpg';" onclick="return onShowFicha(this, '{{property.key()}}');" title="Mostrar Ficha" />
           {% else %}
           <div class="qty">No hay imagenes.</div>
           <center>
-          <img id="image_no" style="max-width:306px; max-height:230px;" src="/img/picturebox/nophoto_306x230.jpg" />
+          <img id="image_no" style="max-width:306px; max-height:230px;" src="/img/picturebox/nophoto_306x230.jpg" onclick="return onShowFicha(this, '{{property.key()}}');" title="Mostrar Ficha" />
           {% endfor %}
         </center>
       </div>
