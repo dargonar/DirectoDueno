@@ -1,11 +1,7 @@
 {% block headscript %}
-    <!--script type="text/javascript" src="/js/jquery.lightbox-0.5.js?rand='+Math.random();"></script-->
-    <script type="text/javascript" src="/js/jquery.lightbox-0.5.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css" media="screen" />
-
     <script type="text/javascript">
     $(function() {
-				$('#thumblist a').lightBox();
+				$('.thumblist_{{ property.key()|string }} a').lightBox();
     });
     </script>
 {% endblock %}
@@ -19,7 +15,7 @@
   <div class="ad-controls"></div>
   <div class="ad-nav">
     <div class="ad-thumbs">
-      <ul id="thumblist" class="ad-thumb-list">
+      <ul id="thumblist" class="ad-thumb-list thumblist_{{ property.key()|string }}">
         {% set _width  = 616 %}
         {% set _height = 462 %}
         {% for img in images %}
