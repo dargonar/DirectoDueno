@@ -25,23 +25,23 @@ config['webapp2_extras.jinja2'] = {
 
 config['directodueno'] = {
   'mail':{
-    'signup':             {'sender':'info@directodueno.com.ar', 'template':'welcome'},
-    'password':           {'sender':'info@directodueno.com.ar', 'template':'forgot_password'},
-    'requestinfo_user':   {'sender':'info@directodueno.com.ar', 'template':'request_info_to_user'},
-    'requestinfo_agent':  {'sender':'info@directodueno.com.ar', 'template':'request_info_to_agent'},
-    'share_link':         {'sender':'info@directodueno.com.ar', 'template':'share_link'},
-    'contact_user':       {'sender':'info@directodueno.com.ar', 'template':'contact_to_user'},
-    'contact_agent':      {'sender':'info@directodueno.com.ar', 'template':'contact_to_agent'},
+    'signup':             {'sender':'info@directodueno.com', 'template':'welcome'},
+    'password':           {'sender':'info@directodueno.com', 'template':'forgot_password'},
+    'requestinfo_user':   {'sender':'info@directodueno.com', 'template':'request_info_to_user'},
+    'requestinfo_agent':  {'sender':'info@directodueno.com', 'template':'request_info_to_agent'},
+    'share_link':         {'sender':'info@directodueno.com', 'template':'share_link'},
+    'contact_user':       {'sender':'info@directodueno.com', 'template':'contact_to_user'},
+    'contact_agent':      {'sender':'info@directodueno.com', 'template':'contact_to_agent'},
     
-    'trial_will_expire':  {'sender':'info@directodueno.com.ar', 'template':'trial_will_expire'},
-    'trial_ended':        {'sender':'info@directodueno.com.ar', 'template':'trial_ended'},
-    'no_payment':         {'sender':'info@directodueno.com.ar', 'template':'no_payment'},
-    'enabled_again':      {'sender':'info@directodueno.com.ar', 'template':'enabled_again'},
-    'payment_received':   {'sender':'info@directodueno.com.ar', 'template':'payment_received'},
-    'new_invoice':        {'sender':'info@directodueno.com.ar', 'template':'new_invoice'},
-    'pending_invoices':   {'sender':'info@directodueno.com.ar', 'template':'pending_invoices'},
+    'trial_will_expire':  {'sender':'info@directodueno.com', 'template':'trial_will_expire'},
+    'trial_ended':        {'sender':'info@directodueno.com', 'template':'trial_ended'},
+    'no_payment':         {'sender':'info@directodueno.com', 'template':'no_payment'},
+    'enabled_again':      {'sender':'info@directodueno.com', 'template':'enabled_again'},
+    'payment_received':   {'sender':'info@directodueno.com', 'template':'payment_received'},
+    'new_invoice':        {'sender':'info@directodueno.com', 'template':'new_invoice'},
+    'pending_invoices':   {'sender':'info@directodueno.com', 'template':'pending_invoices'},
 
-    'reply_consultas':    {'mail':'consultas@directodueno.com.ar'},
+    'reply_consultas':    {'mail':'consultas@directodueno.com'},
 
   },
   'recaptcha':{
