@@ -1,17 +1,17 @@
 {% block headscript %}
 <script type="text/javascript">
 function showLightbox() {
-	document.getElementById('over').style.display='block';
-	document.getElementById('fade').style.display='block';
+	document.getElementById('over_{{property.key()|string}}').style.display='block';
+	document.getElementById('fade_{{property.key()|string}}').style.display='block';
 }
 function hideLightbox() {
-	document.getElementById('over').style.display='none';
-	document.getElementById('fade').style.display='none';
+	document.getElementById('over_{{property.key()|string}}').style.display='none';
+	document.getElementById('fade_{{property.key()|string}}').style.display='none';
 }
 </script>
 {% endblock %}
 
-  <div id="over" class="overbox dialog">
+  <div id="over_{{property.key()|string}}" class="overbox dialog">
       <div class="btnClose" onclick="javascript:hideLightbox();"></div>
       
       <form method="post" action="{{url_for('frontend/ficha/sendemail', key=property.key()|string, oper=price_data_operation)}}" onsubmit="return sendMail(this);">
@@ -36,7 +36,7 @@ function hideLightbox() {
         <input type="hidden" name="opened_ficha_keys" value="{{property.key()|string}}"/>
       </form>
   </div>
-  <div id="fade" class="fadebox" onclick="javascript:hideLightbox();">&nbsp;</div>
+  <div id="fade_{{property.key()|string}}" class="fadebox" onclick="javascript:hideLightbox();">&nbsp;</div>
 
 
   <!-- AREA UNDER WINDOW TABS -->

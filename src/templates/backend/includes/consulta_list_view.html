@@ -12,7 +12,7 @@
       <!-- div style="height:auto;float:left;overflow-x: hidden;margin-left: 50px;margin-right: 25px;position:absolute;"-->
         <div style="margin-left:50px;margin-right:25px;position:relative;height:auto;width:95%;">
           {% if consulta.property %}
-            <h3>Consulta por {{consulta.property.prop_operation_id|operationfy}} de  
+            <h3>Consulta por {{consulta.property.prop_operation_id|operationify}} de  
               <a href="{{url_for('frontend/ficha', key=consulta.property.key()|string, oper=consulta.property.prop_operation_id|string , slug=(headline+'-'+address)|slugify)}}" target="_blank" title="Ver ficha en nueva ventana">esta propiedad</a>.
             </h3>
           {% else %}
