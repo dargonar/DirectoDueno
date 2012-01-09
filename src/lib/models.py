@@ -35,6 +35,10 @@ class Plan(db.Model):
   
   max_properties      = db.IntegerProperty(indexed=False)
   
+  @property
+  def is_free(self):
+    return self.amount<=0
+    
   def __repr__(self):
     return 'PLAN: ' + self.name
     

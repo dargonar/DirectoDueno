@@ -69,7 +69,7 @@ class InvoicerMapper(Mapper):
   
   def map(self, re):
     
-    #logging.error('----------------entro al mapper para %s:%d' % (re.name, re.status) )
+    plan = re.plan
     
     if re.status == RealEstate._TRIAL:
       #logging.error('-----------------entro en trial')
@@ -89,7 +89,7 @@ class InvoicerMapper(Mapper):
         send_mail('trial_ended', re)
         return ([re], []) # update/delete
     
-    elif re.status == RealEstate._ENABLED:
+    elif re.status == RealEstate._ENABLED and not re.plan.is_free:
 
       #logging.error('-----------------------entro en ENABLED')
       
@@ -114,7 +114,7 @@ class InvoicerMapper(Mapper):
         invoice.realestate = re
         invoice.trx_id     = create_transaction_number(next_date, re)
         invoice.amount     = re.plan.amount
-        invoice.state      = Invoice._NOT_PAID if re.plan.amount > 0 else Invoice._INBANK
+        invoice.state      = Invoice._NOT_PAID
         invoice.date       = next_date
         invoice.put()
         

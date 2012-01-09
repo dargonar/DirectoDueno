@@ -94,7 +94,7 @@ class SignUp(BackendHandler):
     realEstate.name             = self.form.email.data #self.form.name.data
     realEstate.email            = self.form.email.data
     realEstate.plan             = plan
-    realEstate.status           = RealEstate._REGISTERED
+    realEstate.status           = RealEstate._ENABLED if plan.is_free else RealEstate._REGISTERED
     
     realEstate.put()
     
@@ -139,7 +139,7 @@ class SignUp(BackendHandler):
     # Envío el correo.
     mail.send_mail(sender="www.directodueno.com <%s>" % self.config['directodueno']['mail']['signup']['sender'], 
                  to=user.email,
-                 subject=u"DirectoDueño - Bienvenido",
+                 subject=u'Bienvenido a DirectoDueño!',
                  body=body,
                  html=html
                  )
