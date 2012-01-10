@@ -1544,6 +1544,7 @@ function copyLink(){
       g_currentSearchXHR = null;
       jQuery('#copied_link').val(obj.bitly);
       jQuery('#copied_link2').val(obj.bitly);
+      jQuery('#email_link').val('');
       jQuery('#copylink').show();
       if (clip==null)
       {
