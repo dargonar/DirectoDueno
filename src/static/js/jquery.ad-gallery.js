@@ -21,7 +21,7 @@
                      display_back_and_forward: true,
                      scroll_jump: 0, // If 0, it jumps the width of the container
                      slideshow: {
-                       enable: true,
+                       enable: false,
                        autostart: false,
                        speed: 5000,
                        start_label: 'Start',

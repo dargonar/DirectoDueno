@@ -109,9 +109,12 @@ def expand_link_url(key_name_or_id):
 
 def expand_link_url_ex(link):
   return cgi.parse_qs(link.query_string)
+  
 # FIN Funciones para manejo de Links....     ===================================== #
 # ================================================================================ #
 
+def get_property_slug(property):
+  return do_slugify(do_headlinify(property)+'-'+do_addressify(property))
 
 def get_or_404(key):
     try:

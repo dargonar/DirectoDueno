@@ -1623,6 +1623,25 @@ function scrollFichaToBottom(obj_id){
   return false;
 }
 
+function showLightbox(key) {
+  var obj = jQuery('#contact_dialog_container_'+key);
+  jQuery('body').append(obj);
+  obj.addClass('located');
+  obj.css('display','block');
+}
+function hideLightbox(key) {
+	var obj = jQuery('#contact_dialog_container_'+key);
+  obj.fadeOut('slow', function(){ obj.css('display','none') });
+  
+  jQuery('ficha_'+key).append(obj);
+}
+
+function doSubmitContactPopUpForm(obj, key){
+  hideLightbox(key); 
+  sendMail(obj); 
+  return false;
+}
+
 function sendMail(form){
   
   var params = updateObject(g_searchOptions, { zoom_level:         map.getZoom(),
@@ -1682,12 +1701,6 @@ function init_home()
                       , 'ars'
                       ,jQuery( "#price_slider" ).slider( "option", "max") );
   
-  function handle_result_home(location)
-  {
-      jQuery('#center_lat').val(location.lat());
-      jQuery('#center_lon').val(location.lng());
-  }
-  
   // jQuery("#btnSearchHome").click( function() {
     // checkForm();
     
@@ -1712,29 +1725,11 @@ function init_home()
   // });
   
   jQuery("#btnSearchHome").click( function() {
-    $('#home_search_form').submit();
+    home_submit();
   });
   
   jQuery("#home_search_form").submit( function() {
-    checkForm();
-    
-    //TODO: Unificar -> Esta funcion esta en backend/frontend x 2 (home e index)
-    var address = document.getElementById("searchmap").value;
-
-    put_marker = true;
-    geocoder.geocode({'address': address,'region' : 'ar'}, function(results, status){ 
-    
-      var handled = false;
-      $.each(results, function(i, item) {
-        if( is_from_country(item, 'Argentina') )
-        {
-          handle_result_home(item.geometry.location);
-          handled = true;
-          return false;
-        }
-      });
-      return true;
-    });
+    home_submit();
   });
   
   jQuery("#searchmap").autocomplete({
@@ -1773,6 +1768,41 @@ function init_home()
   });
   
   jQuery('input[placeholder]').addPlaceholder({ 'class': 'hint'}); //{dotextarea:false, class:hint}
+}
+
+function handle_result_home(location)
+{
+    jQuery('#center_lat').val(location.lat());
+    jQuery('#center_lon').val(location.lng());
+    $('#home_search_form').submit();
+}
+  
+function home_submit(){
+  checkForm();
+    
+  //TODO: Unificar -> Esta funcion esta en backend/frontend x 2 (home e index)
+  var address = document.getElementById("searchmap").value;
+
+  put_marker = true;
+  geocoder.geocode({'address': address,'region' : 'ar'}, function(results, status){ 
+  
+    var handled = false;
+    $.each(results, function(i, item) {
+      if( is_from_country(item, 'Argentina') )
+      {
+        handle_result_home(item.geometry.location);
+        handled = true;
+        return false;
+      }
+    });
+    
+    //return true;
+    if (status != google.maps.GeocoderStatus.OK || handled == false) 
+    {
+      alert("Imposible ubicar dirección");
+      return;
+    }
+  });
 }
 
 function checkForm()

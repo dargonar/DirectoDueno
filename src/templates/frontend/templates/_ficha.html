@@ -1,43 +1,3 @@
-{% block headscript %}
-<script type="text/javascript">
-function showLightbox() {
-	document.getElementById('over_{{property.key()|string}}').style.display='block';
-	document.getElementById('fade_{{property.key()|string}}').style.display='block';
-}
-function hideLightbox() {
-	document.getElementById('over_{{property.key()|string}}').style.display='none';
-	document.getElementById('fade_{{property.key()|string}}').style.display='none';
-}
-</script>
-{% endblock %}
-
-  <div id="over_{{property.key()|string}}" class="overbox dialog">
-      <div class="btnClose" onclick="javascript:hideLightbox();"></div>
-      
-      <form method="post" action="{{url_for('frontend/ficha/sendemail', key=property.key()|string, oper=price_data_operation)}}" onsubmit="return sendMail(this);">
-        <h1>Solicitar Información sobre esta propiedad</h1>
-        
-          <p>Mensaje:</p>
-          {{form.message(title="mensaje", class="comment_txtarea")}}
-          {{form.ketchup(id='ketchup')}}
-          
-          <p>Su nombre</p>
-          {{form.name(title="nombre")}}
-          
-          <p>Su email</p>
-          {{form.email(title="email")}}
-          
-          <p>Su Teléfono (Opcional)</p>
-          {{form.email(title="teléfono")}}
-        
-        <div class="center">
-          <input type="submit" class="btnSend" title="Enviar correo" value="Enviar Email" />
-        </div>
-        <input type="hidden" name="opened_ficha_keys" value="{{property.key()|string}}"/>
-      </form>
-  </div>
-  <div id="fade_{{property.key()|string}}" class="fadebox" onclick="javascript:hideLightbox();">&nbsp;</div>
-
 
   <!-- AREA UNDER WINDOW TABS -->
   <!-- wh=133,47 , wh=230,80 -->
@@ -46,6 +6,37 @@ function hideLightbox() {
    
   
   <div class="innerContent detail" id="ficha_{{property.key()}}">
+    <!-- Pop up de contacto -->
+    <div id="contact_dialog_container_{{property.key()|string}}" style="display:none;">
+      <div id="over_{{property.key()|string}}" class="overbox dialog">
+          <div class="btnClose" onclick="javascript:hideLightbox('{{property.key()|string}}');"></div>
+          
+          <form method="post" action="{{url_for('frontend/ficha/sendemail', key=property.key()|string, oper=price_data_operation)}}" onsubmit="return doSubmitContactPopUpForm(this, '{{property.key()|string}}');" id="popup_form_{{property.key()|string}}">
+            <h1>Solicitar Información sobre esta propiedad</h1>
+            
+              <p>Mensaje:</p>
+              {{form.message(title="mensaje", class="comment_txtarea")}}
+              {{form.ketchup(id='ketchup', class='ketchup')}}
+              
+              <p>Su nombre</p>
+              {{form.name(title="nombre")}}
+              
+              <p>Su email</p>
+              {{form.email(title="email")}}
+              
+              <p>Su teléfono (Opcional)</p>
+              {{form.telephone(title="teléfono")}}
+            
+            <div class="center">
+            
+              <input type="submit" class="btnSend" title="Enviar correo" value="Enviar Email" /> <a href="#" onclick="jQuery(':input','#popup_form_{{property.key()|string}}').not(':button, :submit, :reset, :hidden').val(''); return false;" >Limpiar</a>
+            </div>
+            <input type="hidden" name="opened_ficha_keys" value="{{property.key()|string}}"/>
+          </form>
+      </div>
+      <div id="fade_{{property.key()|string}}" class="fadebox" onclick="javascript:hideLightbox('{{property.key()|string}}');">&nbsp;</div>
+    </div>
+  
     <div id="detailBox">
       <h2>Ficha de Propiedad</h2>
       <h1>{{property | headlinify}}</h1>
@@ -66,7 +57,7 @@ function hideLightbox() {
           <div class="agent">
             <!--a class="btnContact" title="Ver información del dueño" href="#" onclick="return scrollFichaToBottom('ficha_{{property.key()}}');">Contactar al dueño</a-->
             
-            <a class="btnContact" title="Contactar al dueño" href="#" onclick="javascript:showLightbox();">Contactar al dueño</a>
+            <a class="btnContact" title="Contactar al dueño" href="#" onclick="javascript:showLightbox('{{property.key()|string}}');">Contactar al dueño</a>
           </div>
         </div>
       </div>
@@ -131,10 +122,12 @@ function hideLightbox() {
                   {{form.name(placeholder="nombre", title="nombre")}}
                   <label>Su email</label>
                   {{form.email(placeholder="email", title="email")}}
+                  <label>Su teléfono (Opcional)</label>
+                  {{form.telephone(placeholder="teléfono", title="teléfono")}}
                 </div>
                 <!-- COL RIGHT -->                                
                 <div class="comment">
-                  {{form.message(placeholder="mensaje", title="mensaje", class="comment_txtarea")}}
+                  {{form.message(placeholder="mensaje", title="mensaje", class="comment_txtarea", style="height:124px;")}}
                   {{form.ketchup(id='ketchup')}}
                 </div>
               </div>

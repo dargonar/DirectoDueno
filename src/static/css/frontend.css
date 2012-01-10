@@ -3052,7 +3052,7 @@ p.skill {
 }
 /* popup_contact */
 .fadebox {
-	display: none;
+	display: block; /*none*/
 	position: absolute;
 	top: 0%;
 	left: 0%;
@@ -3065,7 +3065,7 @@ p.skill {
 	filter: alpha(opacity=80);
 }
 .overbox {
-	display: none;
+	display: block; /*none*/
 	position: absolute;
 	top: 50%;
 	margin-top:-200px;

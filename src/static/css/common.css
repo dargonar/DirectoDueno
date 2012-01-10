@@ -894,7 +894,7 @@ ul.skills li .detail {
 .hint {
 	color: #cccccc !important;
 }
-form #ketchup, form #inketchup {
+form #ketchup, form #inketchup, form .inketchup , form .ketchup {
 	display:none;
 }
 /* ///// GEOLOCATION ///// */

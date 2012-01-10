@@ -157,7 +157,7 @@ class SendMail(FrontendHandler):
     
     if not self.form.validate():
       # responsetxt = [reduce(lambda x, y: str(x)+' '+str(y), t) for t in self.form.errors.values()]
-      responsetxt = 'Verifique los datos ingresados:' + '<br/>'.join(reduce(lambda x, y: str(x)+' '+str(y), t) for t in self.form.errors.values())
+      responsetxt = 'Verifique los datos ingresados: <big>' + '<br/>'.join(reduce(lambda x, y: str(x)+' '+str(y), t) for t in self.form.errors.values()) + '</big>'
       self.response.status_int = 500
       self.response.write(responsetxt)
       return
@@ -168,6 +168,7 @@ class SendMail(FrontendHandler):
                ,'sender_name':                self.form.name.data
                ,'sender_email':               self.form.email.data
                ,'sender_comment':             self.form.message.data
+               ,'sender_telephone':           self.form.telephone.data
                ,'prop_operation_id':          self.request.GET.get('prop_operation_id', default='1')}               
                 
     def txn():
