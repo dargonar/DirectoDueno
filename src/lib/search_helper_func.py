@@ -231,7 +231,7 @@ class PropertyPaginatorMixin(object):
   
   @cached_property
   def form(self):
-    from models import RealEstate, RealEstateFriendship
+    from models import RealEstate
     
     if self.state_source == 'request':
       self.session['request.data'] = self.request.POST.mixed()

@@ -14,7 +14,7 @@ from google.appengine.api import taskqueue
 from webapp2 import cached_property, Response, RequestHandler
 
 from backend_forms import PropertyForm, PropertyFilterForm
-from models import Property, PropertyIndex, ImageFile, RealEstateFriendship, RealEstate
+from models import Property, PropertyIndex, ImageFile, RealEstate
 from search_helper_func import PropertyPaginatorMixin, create_query_from_dict
 
 from utils import need_auth, BackendHandler 

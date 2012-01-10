@@ -12,7 +12,7 @@ from google.appengine.ext import deferred, db, blobstore
 # Cositas sueltas
 from utils import get_or_404, need_auth, BackendHandler 
 from taskqueue import Mapper
-from models import Property, ImageFile, RealEstate, Plan, RealEstate, Invoice, PropertyIndex, User, RealEstateFriendship
+from models import Property, ImageFile, RealEstate, Plan, RealEstate, Invoice, PropertyIndex, User
 from myfilters import do_slugify
 from apps.backend.payment import create_transaction_number
 
@@ -135,15 +135,14 @@ class RemoveRealEstate(BackendHandler):
     db.delete(imgs)
 
     props = []
-    for prop in Property.all().filter('realestate', re.key()):
-      props.append(prop.key())
+    for prop_key in Property.all(keys_only=True).filter('realestate', re.key()):
+      props.append(prop_key)
       
     db.delete(props)
     
-    
     pis = []
-    for pi in PropertyIndex.all().filter('realestate', re.key()):
-      pis.append(pi.key())
+    for pi_key in PropertyIndex.all(keys_only=True).filter('realestate', re.key()):
+      pis.append(pi_key)
       
     db.delete(pis)
     
@@ -158,16 +157,10 @@ class RemoveRealEstate(BackendHandler):
     db.delete(pays)
     
     usrs = []
-    for usr in User.all().filter('realestate', re.key()):
-      usrs.append(usr)
+    for usr_key in User.all(keys_only=True).filter('realestate', re.key()):
+      usrs.append(usr_key)
     
     db.delete(usrs)
-    
-    mRealEstateFriendship=[]
-    for fr in RealEstateFriendship.all().filter('realestates', str(re.key())):
-      mRealEstateFriendship.append(fr)
-    
-    db.delete(mRealEstateFriendship)
     
     re.delete()
     

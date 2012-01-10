@@ -108,7 +108,7 @@ class SignUp(BackendHandler):
     invoice.realestate = realEstate
     invoice.trx_id     = '%sI%d' % ( first_date.strftime('%Y%m'), realEstate.key().id() )
     invoice.amount     = plan.amount
-    invoice.state      = Invoice._NOT_PAID if plan.amount > 0 else Invoice._INBANK
+    invoice.state      = Invoice._NOT_PAID if not plan.is_free else Invoice._INBANK
     invoice.date       = first_date
     invoice.put()
     
