@@ -1,5 +1,5 @@
 application: directodueno-web
-version: 1-0-2
+version: 1-0-3
 runtime: python
 api_version: 1
 
@@ -46,11 +46,7 @@ handlers:
 - url: /(css|img|js|pics)/(.*)
   static_files: static/\1/\2
   upload: static/(.*)
-  
-- url: /re/(.*)
-  static_files: static_realestate/\1
-  upload: static_realestate/(.*)
-  
+    
 - url: /_ah/queue/deferred
   script: main.py
   login: admin

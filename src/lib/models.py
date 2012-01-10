@@ -177,7 +177,6 @@ class Property(GeoModel):
   _NOT_PUBLISHED = 2
   _DELETED       = 3
   
-  # realestates_friends     => al ser amigos
   # realestates_frontend    => al ampliar oferta  
   @staticmethod
   def new(realestate):
@@ -417,11 +416,10 @@ class Property(GeoModel):
     pi.property                = self.key()    
   
   
-  def save(self, build_index=True, friends=None):
+  def save(self, build_index=True):
     # Puede ser que venga de imagenes.
     if build_index:
       self.calculate_inner_values()
-      self.append_friends(friends)
     # Magia para saber si necesitamos actualizar o rebuildear el index [o no hacer nada]
     # Solo para la edicion, quitar publicacion o borrar lo fuerzan directamente
     retvalue = 'nones'
@@ -435,19 +433,12 @@ class Property(GeoModel):
     return retvalue
     
   #Cuando nuevo
-  def put(self, friends):
+  def put(self):
     self.calculate_inner_values()
-    self.append_friends(friends)
     
     super(Property, self).put()
     return 'need_rebuild'
   
-  #Agrego realestates amigas a self.location_geocells y me agrgo a mi mismo jejej.
-  def append_friends(self, friends):
-    
-    
-    self.location_geocells.extend(friends)
-    
   
   def getPropType(self):
     return config_array['cells']['prop_type_id']['short_descriptions'][alphabet.index(self.prop_type_id)]

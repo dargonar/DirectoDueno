@@ -185,9 +185,9 @@ class NewEdit(BackendHandler):
     # Updateamos y mandamos a rebuild el indice si es necesario
     # Solo lo hacemos si se require y la propiedad esta publicada
     # Si se modifica una propiedad BORRADA o DESACTIVADA no se toca el indice por que no existe
-    friend_realestates_keys = property.realestate_friend_keys()
+    
     def savetxn():
-      result = property.save(build_index=True, friends=friend_realestates_keys) if editing else property.put(friends=friend_realestates_keys)
+      result = property.save(build_index=True) if editing else property.put()
       if result != 'nones' and property.status == Property._PUBLISHED:
         taskqueue.add(url=self.url_for('property/update_index'), params={'key': str(property.key()),'action':result}, transactional=True)
     
