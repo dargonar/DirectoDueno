@@ -16,7 +16,10 @@ def get_rules():
       Route('/tsk/fix_re',          name='fixre',          handler='apps.backend.hacks.FixRealEstates'),
       Route('/tsk/remove_re/<key>', name='removere',       handler='apps.backend.hacks.RemoveRealEstate'),
       Route('/tsk/fix_prop',        name='fixprop',        handler='apps.backend.hacks.FixProperty'),
-
+      
+      # Campaña lanzamiento
+      Route('/tsk/start_engine_campaign', name='start_engine_campaign', handler='apps.backend.hacks.StartEngineCampaign'),
+      
       # Hacko para EMI
       Route('/ver/<archivo>',         name='ver_archivo',         handler='apps.backend.hacks.VerArchivo'),
       

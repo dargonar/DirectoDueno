@@ -1,8 +1,9 @@
 {% extends "email/_base.txt"%}
 {%block content%}
 
-  ULTRAPROP, La mejor opción para publicar en La Plata y Gran La Plata.
+  Soy DirectoDueño.com y te escribo para invitarte a mi lanzamiento.
+  En DirectoDueño vendés y alquilás tu propiedad sin intermediarios.
 
-    Si no puede visualizar correctamente este email ingrese a http://www.ultraprop.com.ar/admin/signup .
+  Te esperamos para que <a href="http://www.directodueno.com/admin/signup" title="Registrate y publicá gratis!">concretes tu negocio aquí</a>! 
 
 {% endblock %}

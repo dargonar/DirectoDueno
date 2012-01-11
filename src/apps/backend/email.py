@@ -32,9 +32,10 @@ class SendTask(MyBaseHandler):
     # params: { rekey, invoice=None }
     return
 
-  def laplata_campaign(self, params):
+  def directodueno_campaign(self, params):
     mail_to = params['email']
-    context = self.common_context()
+    context = { 'server_url':                 'http://www.directodueno.com'
+              , 'support_url' :               'http://www.directodueno.com/admin/login'}
     context['mail_to'] = mail_to
     # Armo el body en plain text.
     body = self.render_template('email/campaign_start_v1.txt', **context)  
@@ -44,7 +45,7 @@ class SendTask(MyBaseHandler):
     # Envío el correo.
     mail.send_mail(sender="www.directodueno.com <info@directodueno.com>", 
                  to       = mail_to,
-                 subject  = u"DirectoDueño: Llegue a miles de clientes en La Plata y Gran La Plata",
+                 subject  = u"DirectoDueño: donde vendés y alquilás sin intermediarios.",
                  body     = body,
                  html     = html)
     # --------------------------------------------------------------------------------
