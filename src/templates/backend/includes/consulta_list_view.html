@@ -1,7 +1,3 @@
-    {% if consulta.property %}
-      {% set address  = consulta.property|addressify %}
-      {% set headline = consulta.property|headlinify %}
-    {% endif %}
     <div class="list_box" style="position: relative;height:auto;overflow-x:hidden;overflow-y:auto;">
       <div style="clear:both;height:auto;width:30px;min-height: 105px;float:left;position:absolute;">
           <p class="price">
@@ -11,11 +7,10 @@
           </span>
         </p>
       </div>
-      <!-- div style="height:auto;float:left;overflow-x: hidden;margin-left: 50px;margin-right: 25px;position:absolute;"-->
-        <div style="margin-left:50px;margin-right:25px;position:relative;height:auto;width:95%;">
+      <div style="margin-left:50px;margin-right:25px;position:relative;height:auto;width:95%;">
           {% if consulta.property %}
             <h3>Consulta por {{consulta.property|operationify}} de  
-              <a href="{{url_for('frontend/ficha', key=consulta.property.key()|string, oper=consulta.property.prop_operation_id|string , slug=(headline+'-'+address)|slugify)}}" target="_blank" title="Ver ficha en nueva ventana">esta propiedad</a>.
+              <a href="{{url_for('frontend/ficha', key=consulta.property.key()|string, oper=consulta.property.prop_operation_id|string , slug=((consulta.property|headlinify)+'-'+(consulta.property|addressify))|slugify)}}" target="_blank" title="Ver ficha en nueva ventana">esta propiedad</a>.
             </h3>
           {% else %}
             <h3>Consulta de contacto</h3>  
@@ -26,10 +21,9 @@
             Consulta: <b>{{consulta.sender_comment}}</b><br/>
             Teléfono: <b>{{consulta.sender_telephone if consulta.sender_telephone else 'N/D'}}</b><br/>
             {% if consulta.property %}
-            Propiedad consultada: <a href="{{url_for('frontend/ficha', key=consulta.property.key()|string, oper=consulta.property.prop_operation_id|string , slug=(headline+'-'+address)|slugify)}}" target="_blank" title="Ver ficha en nueva ventana">Ver ficha</a>.<br/>
+              Propiedad consultada: <a href="{{url_for('frontend/ficha', key=consulta.property.key()|string, oper=consulta.property.prop_operation_id|string , slug=((consulta.property|headlinify)+'-'+(consulta.property|addressify))|slugify)}}" target="_blank" title="Ver ficha en nueva ventana">Ver ficha</a>.<br/>
             {% endif %}
             Consulta enviada desde DirectoDueño el día {{ consulta.created_at.strftime('%d/%m/%Y')}}
           </p>
-        </div>
-      <!--/div-->
+      </div>
     </div>
