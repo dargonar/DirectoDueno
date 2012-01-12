@@ -93,10 +93,12 @@
                   {{form.name(placeholder="nombre", title="nombre")}}
                   <label>Su email</label>
                   {{form.email(placeholder="email", title="email")}}
+                  <label>Su teléfono (Opcional)</label>
+                  {{form.telephone(placeholder="teléfono", title="teléfono")}}
                 </div>
                 <!-- COL RIGHT -->                                
                 <div class="comment">
-                  {{form.message(placeholder="mensaje", title="mensaje", class="comment_txtarea")}}
+                  {{form.message(placeholder="mensaje", title="mensaje", class="comment_txtarea", style="height:124px;")}}
                   {{form.ketchup(id='ketchup')}}
                 </div>
               </div>

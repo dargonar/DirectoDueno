@@ -51,6 +51,8 @@ def get_rules():
       Route('/service/popup/<key>/<bubble_css>/<oper>',             name='frontend/property_popup',   handler='apps.frontend.property_info.PopUp'),
       Route('/service/ficha/<key>/<oper>',                          name='frontend/property_ficha',   handler='apps.frontend.property_info.Ficha'),
       Route('/service/ficha/email/<key>/<oper>',                    name='frontend/ficha/sendemail',  handler='apps.frontend.property_info.SendMail'),
+      
+      Route('/landing/<key>',                                       name='landing',                   handler='apps.frontend.landing.Handler')
     ]
     
     return rules
