@@ -1776,7 +1776,6 @@ function home_submit(handled, ui_event){
         $.each(results, function(i, item) {
           if( is_from_country(item, 'Argentina') )
           {
-            alert(item.geometry.location.lat());
             handle_result_home(item.geometry.location);
             handled = true;
             // if(!ui_event)
