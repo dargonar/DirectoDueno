@@ -152,20 +152,36 @@ def compile_templates(argv=None):
     FileSystemLoader.list_templates = list_templates
 
     env = jinja2.get_jinja2(app=app).environment
-    from myfilters import do_currencyfy, do_statusfy, do_pricefy, do_addressify, do_descriptify, do_headlinify, do_slugify, do_operationfy, do_totalareafy, do_expensasfy, do_add_days, do_ownerify
+    from myfilters import do_currencyfy, do_statusfy, do_pricefy, do_addressify, do_descriptify, do_headlinify, do_slugify, do_operationfy, do_totalareafy, do_expensasfy, do_add_days,  do_ownerify, do_oper_labelify
 
-    env.filters['currencyfy']     = do_currencyfy
-    env.filters['statusfy']       = do_statusfy
-    env.filters['pricefy']        = do_pricefy
-    env.filters['addressify']     = do_addressify
-    env.filters['descriptify']    = do_descriptify
-    env.filters['headlinify']     = do_headlinify
-    env.filters['slugify']        = do_slugify
-    env.filters['operationify']   = do_operationfy
-    env.filters['totalareafy']    = do_totalareafy
-    env.filters['expensasfy']     = do_expensasfy
-    env.filters['add_days']       = do_add_days
-    env.filters['ownerify']       = do_ownerify
+    env.filters['currencyfy']         = do_currencyfy
+    env.filters['statusfy']           = do_statusfy
+    env.filters['pricefy']            = do_pricefy
+    env.filters['addressify']         = do_addressify
+    env.filters['descriptify']        = do_descriptify
+    env.filters['headlinify']         = do_headlinify
+    env.filters['slugify']            = do_slugify
+    env.filters['operationfy']        = do_operationfy
+    env.filters['totalareafy']        = do_totalareafy
+    env.filters['expensasfy']         = do_expensasfy
+    env.filters['add_days']           = do_add_days
+    env.filters['ownerify']           = do_ownerify
+    env.filters['oper_labelify']      = do_oper_labelify
+    
+    # from myfilters import do_currencyfy, do_statusfy, do_pricefy, do_addressify, do_descriptify, do_headlinify, do_slugify, do_operationfy, do_totalareafy, do_expensasfy, do_add_days, do_ownerify
+
+    # env.filters['currencyfy']     = do_currencyfy
+    # env.filters['statusfy']       = do_statusfy
+    # env.filters['pricefy']        = do_pricefy
+    # env.filters['addressify']     = do_addressify
+    # env.filters['descriptify']    = do_descriptify
+    # env.filters['headlinify']     = do_headlinify
+    # env.filters['slugify']        = do_slugify
+    # env.filters['totalareafy']    = do_totalareafy
+    # env.filters['expensasfy']     = do_expensasfy
+    # env.filters['add_days']       = do_add_days
+    # env.filters['ownerify']       = do_ownerify
+    # env.filters['operationify']   = do_operationfy
 
 
     env.compile_templates(target, extensions=None,

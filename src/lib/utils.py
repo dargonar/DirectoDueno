@@ -9,7 +9,7 @@ from taskqueue import Mapper
 from webapp2 import abort, cached_property, RequestHandler, Response, HTTPException, uri_for as url_for, get_app
 from webapp2_extras import jinja2, sessions, json
 
-from myfilters import do_currencyfy, do_statusfy, do_pricefy, do_addressify, do_descriptify, do_headlinify, do_slugify, do_operationfy, do_totalareafy, do_expensasfy, do_add_days, do_ownerify, do_operationify
+from myfilters import do_currencyfy, do_statusfy, do_pricefy, do_addressify, do_descriptify, do_headlinify, do_slugify, do_oper_labelify, do_totalareafy, do_expensasfy, do_add_days, do_ownerify, do_operationfy
 
 from models import Link, Property, RealEstate
 # ================================================================================ #
@@ -267,12 +267,12 @@ class Jinja2Mixin(object):
     env.filters['descriptify']        = do_descriptify
     env.filters['headlinify']         = do_headlinify
     env.filters['slugify']            = do_slugify
-    env.filters['operationfy']        = do_operationfy
+    env.filters['oper_labelify']      = do_oper_labelify
     env.filters['totalareafy']        = do_totalareafy
     env.filters['expensasfy']         = do_expensasfy
     env.filters['add_days']           = do_add_days
     env.filters['ownerify']           = do_ownerify
-    env.filters['operationify']       = do_operationify
+    env.filters['operationfy']        = do_operationfy
     env.globals['url_for']            = self.uri_for
     env.globals['app_version_id']     = self.app.config['directodueno']['app_version_id']
     env.globals['app_version']        = self.app.config['directodueno']['app_version']

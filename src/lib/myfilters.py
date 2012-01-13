@@ -15,7 +15,7 @@ def do_add_days(date, days):
   return date + timedelta(days=days)
 
   
-def do_operationify(property, size=0):
+def do_oper_labelify(property, size=0):
   sizes         = ['height:82px; width:81px;','width:102px; height:104px;']
   sizes_class   = ['small_state_' , 'medium_state_']
   

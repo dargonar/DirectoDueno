@@ -23,7 +23,7 @@
     <!-- div class="picbox" onclick="return onShowPopup(this, null, '--key--');"-->
     <div class="picbox"  style="position:relative;">
       <div class="qty">{{ property.images_count }}&nbsp;fotos</div>
-      {{ property|operationify(0) }}
+      {{ property|oper_labelify(0) }}
       <img class="viewBubble pic" style="max-width:115px; max-height:86px;" {% if property.main_image_url %} src="{{property.main_image_url}}=s115" wh="115,86" {% else %} src="/img/picturebox/nophoto_115x86.jpg"  {% endif %} onerror="this.src='/img/picturebox/nophoto_115x86.jpg';"/>
       
     </div>

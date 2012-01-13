@@ -33,7 +33,7 @@
       </div>
       
       <div class="picbox picbox_bubble">
-          {{ property|operationify(1) }}
+          {{ property|oper_labelify(1) }}
           {% for img in images %}
             {% if loop.index == 1 %}
               <div class="qty">foto <font class="qty_font">1</font> de {{ loop.length }}</div>
