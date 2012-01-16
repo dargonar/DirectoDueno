@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from google.appengine.ext import db, blobstore
+from google.appengine.api.images import get_serving_url
+
 from geo.geomodel import GeoModel
 import random 
 import logging
@@ -12,6 +14,8 @@ from search_helper import config_array, alphabet, MAX_QUERY_RESULTS
 from search_helper import build_list, get_index_alphabet , calculate_price, indexed_properties
 
 from geo import geocell
+
+from texttoimage_helper import render_text_into_blob
 
 class UPConfig(db.Model):
   last_ipn     = db.DateProperty()
@@ -75,6 +79,9 @@ class RealEstate(db.Model):
   name                = db.StringProperty()
   website             = db.StringProperty(indexed=False)
   email               = db.EmailProperty(indexed=False)
+  email_image         = blobstore.BlobReferenceProperty() #--Borrar--
+  email_image_url     = db.StringProperty(indexed=False)
+  
   tpl_title           = db.StringProperty(indexed=False)
   tpl_text            = db.TextProperty(indexed=False)
   
@@ -111,7 +118,29 @@ class RealEstate(db.Model):
   
   def __repr__(self):
     return self.name
-
+  
+  def put(self):
+    if self.email and len(self.email):
+      blob_key = render_text_into_blob(self.email)
+      self.email_image      = blob_key
+      self.email_image_url  = get_serving_url(blob_key)
+    
+    super(RealEstate, self).put()
+  
+  def save(self):  
+    _change_email = db.get(self.key()).email != self.email
+    if _change_email:
+      if self.email_image:
+        blobstore.delete(self.email_image.key())
+      self.email_image      = None
+      self.email_image_url  = ''
+      if self.email and len(self.email):
+        blob_key = render_text_into_blob(self.email)
+        self.email_image      = blob_key
+        self.email_image_url  = get_serving_url(blob_key)
+      
+    super(RealEstate, self).save()
+    
 class Payment(db.Model):
   trx_id              = db.StringProperty()
   date                = db.DateProperty()

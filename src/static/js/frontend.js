@@ -320,7 +320,15 @@ function locateMap(myLatlng)
       }
     });
   });  
-
+  
+  $('#searchmap').keypress(function(event){
+    if(event.keyCode == 13 || event.which == 13) {
+      event.preventDefault();
+      setTimeout("$('#btnSearch').click();",1)
+      jQuery("#searchmap").autocomplete( "close" );
+      return false;
+    }
+  });
       
   jQuery("#searchmap").autocomplete({
       //This bit uses the geocoder to fetch address values
