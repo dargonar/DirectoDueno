@@ -11,6 +11,10 @@ from search_helper import config_array, alphabet
 _slugify_strip_re = compile(r'[^\w\s-]')
 _slugify_hyphenate_re = compile(r'[-\s]+')
 
+def do_email_to_png(realestate):
+  return realestate.email_image_url if realestate.email_image_url and len(realestate.email_image_url) else '/img/misc/transparent.png'
+
+  
 def do_add_days(date, days):
   return date + timedelta(days=days)
 

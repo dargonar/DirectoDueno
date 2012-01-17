@@ -91,10 +91,12 @@ class SignUp(BackendHandler):
     # Generamos la inmo en estado TRIAL y le ponemos el Plan
     realEstate = RealEstate.new()
     #realEstate.telephone_number = self.form.telephone_number.data
-    realEstate.name             = self.form.email.data #self.form.name.data
+    realEstate.name             = self.form.email.data.split('@')[0]
     realEstate.email            = self.form.email.data
     realEstate.plan             = plan
     realEstate.status           = RealEstate._ENABLED if plan.is_free else RealEstate._REGISTERED
+    realEstate.email_image      = None
+    realEstate.email_image_url  = ''
     
     realEstate.put()
     

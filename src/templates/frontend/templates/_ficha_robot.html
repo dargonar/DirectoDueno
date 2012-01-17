@@ -74,7 +74,7 @@
               <div class="data">
                 <h1>{{property.realestate.name}}</h1>
                 <span>{{property.realestate.telephone_number}}</span><br/>
-                <span>{{property.realestate.email}}</span><br/>
+                <span><img src="{{property.realestate|email_to_png}}" alt="Correo electrónico" /></span><br/>
                 {% if property.realestate.open_at %}
                   <span>Atención {{property.realestate.open_at}}</span><br/>
                 {% endif %}

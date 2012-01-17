@@ -35,8 +35,9 @@ def render_text_into_blob(text):
   
   # img = images.Image.open(f)
   img.resize(width=250, height=22)
-  with files.open(file_name, 'a') as myfile:
-    myfile.write(img.execute_transforms(output_encoding=images.JPEG, quality=100))
+  myfile = files.open(file_name, 'a')
+  myfile.write(img.execute_transforms(output_encoding=images.JPEG, quality=100))
+  myfile.close()
   
   files.finalize(file_name)
   

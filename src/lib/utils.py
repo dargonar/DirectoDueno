@@ -9,7 +9,7 @@ from taskqueue import Mapper
 from webapp2 import abort, cached_property, RequestHandler, Response, HTTPException, uri_for as url_for, get_app
 from webapp2_extras import jinja2, sessions, json
 
-from myfilters import do_currencyfy, do_statusfy, do_pricefy, do_addressify, do_descriptify, do_headlinify, do_slugify, do_oper_labelify, do_totalareafy, do_expensasfy, do_add_days, do_ownerify, do_operationfy
+from myfilters import do_currencyfy, do_statusfy, do_pricefy, do_addressify, do_descriptify, do_headlinify, do_slugify, do_oper_labelify, do_totalareafy, do_expensasfy, do_add_days, do_ownerify, do_operationfy, do_email_to_png
 
 from models import Link, Property, RealEstate
 # ================================================================================ #
@@ -273,6 +273,7 @@ class Jinja2Mixin(object):
     env.filters['add_days']           = do_add_days
     env.filters['ownerify']           = do_ownerify
     env.filters['operationfy']        = do_operationfy
+    env.filters['email_to_png']       = do_email_to_png
     env.globals['url_for']            = self.uri_for
     env.globals['app_version_id']     = self.app.config['directodueno']['app_version_id']
     env.globals['app_version']        = self.app.config['directodueno']['app_version']
